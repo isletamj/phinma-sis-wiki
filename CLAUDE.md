@@ -44,6 +44,30 @@ both a standalone permalink *and* an inlined section of `/changelog`:
   Entries must be resolved with `Promise.all`; an async `.map` callback returns
   promises, not elements.
 
+Entries are deliberately **body-only fragments**: no `# heading` in the MDX, just
+`title`/`date` frontmatter. The heading is supplied by whoever renders them, so
+an entry never shows its title twice in the feed. The cost is that a permalink
+has nothing to title itself with, so `page.tsx` renders the `<h1>` + `<time>`
+for `content/changelog/*` routes. **Don't "fix" a title-less entry by adding a
+heading to its MDX** — that puts it back twice on `/changelog`.
+
+The two views deliberately differ: the feed puts the date in a sticky left
+gutter (it has to survive scrolling past many entries), while a permalink stacks
+the date above the title and keeps the breadcrumb for orientation, since it has
+no sidebar.
+
+**The title morph does not play on browser back/forward — that's Next, not us.**
+Measured in 16.2.10: clicking any link (feed title, breadcrumb, navbar) fires
+`document.startViewTransition` and pairs the morph in both directions, but a
+popstate navigation never fires it at all — no page reload, no error, just a cut.
+Next's `dispatchAction` (`client/components/app-router-instance.js`) skips the
+transition wrapper for `ACTION_RESTORE` on purpose: *"it's important that restore
+is handled quickly since it's fired on the popstate event and we don't want to
+add any delay on a back/forward nav"*. Next's own shipped guide claims the shared
+morph "still applies" on back — it does not. Don't burn time hunting for a bug in
+our `<ViewTransition>` names; the fix would mean intercepting popstate ahead of
+the router, which isn't worth it.
+
 **Custom MDX components** (`Section`, `YouTube`) are registered globally in
 `mdx-components.tsx`, so MDX files use them without importing. `Section` is the
 collapsible accordion, built on native `<details>`/`<summary>` — that's where
@@ -76,6 +100,19 @@ deliberately.
 The `p`/`li` rules win by being *declared* against elements Nextra only styles by
 inheritance, so they need no specificity tricks. Anything Nextra colours with a
 real `x:` class (headings, blockquotes, tables) will not yield so easily.
+
+## Line-height: Nextra styles `<li>` with margin only
+
+Nextra gives `<p>` a `x:leading-7` class (28px) but its `<li>` class
+(`x:my-[.5em]`) sets **margin and nothing else**, so list items fall back to
+`html { line-height: 1.5 }` and set 4px tighter than the prose around them.
+`app/globals.css` pins `main li` to `1.75rem` to match.
+
+This reads as "the accordion text is cramped", because `<Section>` holds nothing
+but bullet lists while the copy above it is paragraphs — but the mismatch is
+everywhere a list appears, and the fix belongs on `li`, not on `<Section>`.
+Measure it, don't eyeball it: `getComputedStyle(el).lineHeight` on a `main p` and
+a `main details li` should both say `28px`.
 
 ## Verifying colour, and why `getComputedStyle` lies
 
@@ -130,6 +167,29 @@ a compiled `x:` utility and unsafe to target.
 
 These are load-bearing; changing them breaks the build in non-obvious ways.
 
+- **The title morph needs less setup than it looks.** An entry's title morphs
+  from the feed into its permalink via React's `<ViewTransition>`
+  (`changelog-feed.tsx` + `page.tsx`, paired by `entryTitleTransition`). Three
+  things that are easy to get wrong in *both* directions:
+  - **Do not install `react@canary`, and don't add a `react/canary` types
+    reference.** Next aliases `react$` to its own vendored build, which is
+    already canary (19.3.0-canary) and exports `ViewTransition` from the client
+    and `react-server` entries alike. The *types* come free too:
+    `next/dist/types.d.ts` opens with
+    `/// <reference types="react/experimental" />`, and `@types/react`'s
+    `experimental.d.ts` does `import React = require("./canary")`, where
+    `ViewTransition` is declared. Verified by deleting our own reference file —
+    `tsc` still passes. If a future Next drops that line, tsc fails *loudly*
+    (`no exported member`), so just add the reference back then.
+  - **`experimental.viewTransition: true` is a no-op today — keep it anyway.**
+    In 16.2.10 the morph works with the flag removed (measured), and nothing in
+    Next's client runtime reads it; only `config-schema.js`/`config-shared.js`
+    mention it. It stays because it's the documented switch, and unlike the types
+    above, a future version gating this would fail *silently* — a cut, not an
+    error.
+  - **`metadata` is typed narrower than it is.** Nextra types it as a closed
+    `$NextraMetadata` with no `date`, so `page.tsx` casts; at runtime it's the
+    whole parsed frontmatter.
 - **`zod` is pinned to `~4.3.6` via `overrides`.** zod 4.4.0 made required
   `z.custom()` keys reject `undefined`, which breaks `nextra-theme-docs`'
   `<Layout>`: it destructures `children` out of props, then validates the rest
