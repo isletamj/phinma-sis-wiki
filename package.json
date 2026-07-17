@@ -1,0 +1,43 @@
+{
+  "name": "msph-phinma-changelog",
+  "version": "1.0.0",
+  "description": "This repo includes the changes made to phinma sis platform",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "pagefind --site out --output-path out/_pagefind",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isletamj/msph-phinma-changelog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isletamj/msph-phinma-changelog/issues"
+  },
+  "homepage": "https://github.com/isletamj/msph-phinma-changelog#readme",
+  "comment:overrides": "zod 4.4.0 made required z.custom() keys reject undefined, which breaks nextra-theme-docs' <Layout>: it strips `children` from props before validating them against a schema that still requires `children`. Nextra 4.6.1 asks for zod ^4.1.12, so npm otherwise resolves 4.4.x and every page 500s. Remove this once Nextra fixes the schema.",
+  "overrides": {
+    "zod": "~4.3.6"
+  },
+  "dependencies": {
+    "next": "^16.2.10",
+    "nextra": "^4.6.1",
+    "nextra-theme-docs": "^4.6.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "pagefind": "^1.5.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  }
+}

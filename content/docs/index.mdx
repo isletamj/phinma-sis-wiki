@@ -1,0 +1,30 @@
+---
+title: Docs
+---
+
+# Docs
+
+Documentation for the PHINMA SIS platform.
+
+## Writing a changelog entry
+
+Add one MDX file per release to `content/changelog/`, named by date:
+
+```
+content/changelog/2026-07-15.mdx
+```
+
+Give it `title` and `date` frontmatter. The changelog page picks it up
+automatically and sorts it into place — nothing else to register.
+
+Group the details with `<Section>`, which renders a collapsed-by-default
+panel:
+
+```mdx
+<Section title="New">
+- What got added
+</Section>
+```
+
+Use `<YouTube id="..." />` for video, and put images in
+`public/images/changelog/` (compress to WebP first).
