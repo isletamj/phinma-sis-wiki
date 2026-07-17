@@ -34,10 +34,15 @@ export const ChangelogFeed: FC = async () => {
           className="pb-16 lg:grid lg:grid-cols-[9rem_minmax(0,44rem)] lg:gap-x-10"
         >
           {/* `self-start` is load-bearing: a grid item stretches to its row by
-              default, which leaves `sticky` nothing to move within. */}
+              default, which leaves `sticky` nothing to move within.
+
+              `leading-8` matches the title's line box (`text-2xl` is 1.5rem/2rem),
+              which is what centres the date against it — text sits in the middle
+              of its own line box, so two boxes starting at the same y only share
+              a middle if they're the same height. Keep the two in sync. */}
           <time
             dateTime={date}
-            className="text-sm text-neutral-500 lg:sticky lg:top-[calc(var(--nextra-navbar-height)+2rem)] lg:self-start dark:text-neutral-400"
+            className="text-sm text-neutral-500 lg:sticky lg:top-[calc(var(--nextra-navbar-height)+2rem)] lg:self-start lg:leading-8 dark:text-neutral-400"
           >
             {formatDate(date)}
           </time>
