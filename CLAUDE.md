@@ -131,6 +131,42 @@ ctx.fillRect(0, 0, 1, 1)
 R === G === B means a true neutral. This is the colour twin of the font landmine
 below: the check appears to pass while measuring the wrong thing.
 
+## Verifying alignment, and which rect to measure
+
+Same species as the colour check above — both failure modes are a plausible
+number measured off the wrong box.
+
+Text is centred within its own line box, so **two elements can share a top edge
+and still not share a middle** if their line boxes differ in height. That was the
+changelog date: `text-sm` (14px in a 20px box) beside `text-2xl` (24px in a 32px
+box), both flush to the top of the grid row, 6px apart. The fix is to match the
+line boxes (`lg:leading-8` on the `<time>`), not to nudge with padding.
+
+Two traps when checking it, in opposite directions:
+
+- **`getBoundingClientRect()` on the element measures the line box, not the
+  glyphs inside it.** Two top-aligned elements return the same `top` while
+  looking obviously misaligned — it calls the bug *fixed*. Use range rects:
+
+  ```js
+  const firstLineCentre = el => {
+    const r = document.createRange()
+    r.selectNodeContents(el)
+    const { top, bottom } = r.getClientRects()[0] // [0], not the union
+    return (top + bottom) / 2
+  }
+  ```
+
+- **Compare *first line boxes*, not whole elements.** `getBoundingClientRect()`
+  on a wrapped title returns the union of its lines, whose centre sits half a
+  line (16px) lower. Against correct CSS that reads as a −16px failure on
+  exactly the entries with long titles — which looks like a real wrapping bug.
+  `getClientRects()[0]` is the first line; aligning the date to it is the
+  intended result.
+
+Sanity-check any alignment fix against both a one-line and a wrapped title. On
+`/changelog` the correct answer is 0.00px for every entry.
+
 ## Moving the theme switch (deferred, but already investigated)
 
 Putting the light/dark control in the header was scoped out once, on cost. If it
