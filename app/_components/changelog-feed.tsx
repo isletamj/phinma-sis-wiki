@@ -19,24 +19,36 @@ export const ChangelogFeed: FC = async () => {
   )
 
   return (
-    <div className="mt-8 flex flex-col gap-16">
+    // No `gap` between entries: the dates below are sticky within their own
+    // article, so a gap would leave a stretch of scrolling with no date at all.
+    // Each article carries its own `pb-16` instead, and the dates hand off.
+    <div className="mt-8 flex flex-col">
       {rendered.map(({ name, route, title, date, MDXContent }) => (
-        <article key={name}>
+        <article
+          key={name}
+          className="pb-16 lg:grid lg:grid-cols-[9rem_minmax(0,44rem)] lg:gap-x-10"
+        >
+          {/* `self-start` is load-bearing: a grid item stretches to its row by
+              default, which leaves `sticky` nothing to move within. */}
           <time
             dateTime={date}
-            className="text-sm text-gray-500 dark:text-neutral-400"
+            className="text-sm text-neutral-500 lg:sticky lg:top-[calc(var(--nextra-navbar-height)+2rem)] lg:self-start dark:text-neutral-400"
           >
             {formatDate(date)}
           </time>
-          <h2
-            id={entrySlug(name)}
-            className="mt-1 mb-4 scroll-mt-(--nextra-navbar-height) text-2xl font-bold tracking-tight"
-          >
-            <Link href={route} className="hover:underline">
-              {title}
-            </Link>
-          </h2>
-          <MDXContent />
+          {/* MDXContent renders a list of siblings, so the column needs a
+              wrapper — otherwise every paragraph becomes its own grid item. */}
+          <div>
+            <h2
+              id={entrySlug(name)}
+              className="mt-1 mb-4 scroll-mt-(--nextra-navbar-height) text-2xl font-bold tracking-tight text-neutral-900 lg:mt-0 dark:text-neutral-100"
+            >
+              <Link href={route} className="hover:underline">
+                {title}
+              </Link>
+            </h2>
+            <MDXContent />
+          </div>
         </article>
       ))}
     </div>

@@ -11,7 +11,7 @@ export const Section: FC<{ title: string; children: ReactNode }> = ({
   children
 }) => (
   <details className="group my-3 rounded-lg border border-gray-200 bg-gray-50 dark:border-neutral-800 dark:bg-neutral-900">
-    <summary className="cursor-pointer list-none rounded-lg px-4 py-2.5 font-medium select-none hover:bg-gray-100 dark:hover:bg-neutral-800">
+    <summary className="cursor-pointer list-none rounded-lg px-4 py-2.5 font-medium text-neutral-900 select-none hover:bg-gray-100 dark:text-neutral-100 dark:hover:bg-neutral-800">
       <span className="mr-2 inline-block transition-transform group-open:rotate-90">
         &rsaquo;
       </span>

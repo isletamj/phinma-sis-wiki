@@ -35,3 +35,29 @@ body::before {
 .dark body::before {
   background: linear-gradient(to bottom, rgb(255 255 255 / 8%), transparent);
 }
+
+/* Nextra colors all prose from the page <article> and gives <strong> only a
+   heavier weight, so emphasis never changes color. Mute the copy and let bold
+   carry the contrast instead.
+
+   `neutral` rather than Nextra's own `slate`: slate is a blue-tinted gray, and
+   the tint is obvious once the text is dimmed (slate-400 sits at b* -14.5 in
+   Lab, vs ~0 for neutral). We want a dimmer white, not a blue-gray.
+
+   These beat the article's color by being declared rather than inherited — no
+   specificity fight with Nextra's `x:` classes. */
+main :is(p, li) {
+  color: var(--color-neutral-600);
+}
+
+.dark main :is(p, li) {
+  color: var(--color-neutral-400);
+}
+
+main :is(p, li) :is(strong, b) {
+  color: var(--color-neutral-900);
+}
+
+.dark main :is(p, li) :is(strong, b) {
+  color: var(--color-neutral-100);
+}
