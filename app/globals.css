@@ -4,3 +4,34 @@
 /* Binds Tailwind's `dark:` variant to the `.dark` class that Nextra's
    theme switcher puts on <html>, so both styling systems agree. */
 @variant dark (&:where(.dark *));
+
+/* Nextra ships its own Tailwind build with `--x-` prefixed variables, and its
+   font resolves through `--x-font-sans`. Setting only `--font-sans` below would
+   leave every themed element on the system stack. Must stay after the imports
+   above — it beats Nextra's own `:root` on order, not specificity. */
+:root {
+  --x-font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Sits above the navbar (z-30) so the header washes into the gradient rather
+   than hiding behind its 70%-opaque blur. Keep the alpha low: this layer also
+   overlaps the top of any open dropdown. */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14rem;
+  z-index: 40;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 6%), transparent);
+}
+
+.dark body::before {
+  background: linear-gradient(to bottom, rgb(255 255 255 / 8%), transparent);
+}
