@@ -57,6 +57,43 @@ via `<YouTube>`); images are hand-compressed WebP in `public/images/`.
 
 MJ is learning web dev — prefer conventional, boring patterns over clever ones.
 
+## Text colour
+
+Prose is muted and **emphasis** carries the contrast, set in `app/globals.css`:
+body copy at `neutral-600` / `dark:neutral-400`, and `strong` at
+`neutral-900` / `dark:neutral-100` to match the headings. Entry titles
+(`changelog-feed.tsx`) and `<Section>`'s `<summary>` set the emphasis colour
+explicitly — they are our elements, and would otherwise inherit the muted body
+colour.
+
+Use **`neutral`, not `slate`** — slate is a blue-tinted grey (slate-400 sits at
+b\* −14.5 in Lab, vs ~0 for neutral) and the tint is obvious once text is dimmed.
+Nextra's own defaults are slate, so its headings stay faintly blue: invisible in
+dark, but a real navy cast on `# ` headings in light mode. Fixing that means
+outranking a compiled `x:` class, which needs a fragile hook — left alone
+deliberately.
+
+The `p`/`li` rules win by being *declared* against elements Nextra only styles by
+inheritance, so they need no specificity tricks. Anything Nextra colours with a
+real `x:` class (headings, blockquotes, tables) will not yield so easily.
+
+## Verifying colour, and why `getComputedStyle` lies
+
+Tailwind 4 emits `oklch()`/`lab()`, and `getComputedStyle(el).color` returns those
+strings verbatim — *not* `rgb()`. Parsing them as RGB yields silent garbage
+(`rgb(7,78201,0)`-shaped nonsense that still looks like a number). Rasterise
+instead, which forces a real sRGB triple:
+
+```js
+const ctx = document.createElement('canvas').getContext('2d')
+ctx.fillStyle = getComputedStyle(el).color
+ctx.fillRect(0, 0, 1, 1)
+;[...ctx.getImageData(0, 0, 1, 1).data].slice(0, 3) // [161, 161, 161]
+```
+
+R === G === B means a true neutral. This is the colour twin of the font landmine
+below: the check appears to pass while measuring the wrong thing.
+
 ## Moving the theme switch (deferred, but already investigated)
 
 Putting the light/dark control in the header was scoped out once, on cost. If it
