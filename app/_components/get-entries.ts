@@ -1,3 +1,4 @@
+import type { Heading } from 'nextra'
 import { normalizePages } from 'nextra/normalize-pages'
 import { getPageMap } from 'nextra/page-map'
 
@@ -30,6 +31,23 @@ export async function getEntries(): Promise<ChangelogEntry[]> {
       ]
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+}
+
+/** Anchor id for an entry's heading in the inlined feed. */
+export const entrySlug = (name: string): string => `entry-${name}`
+
+/**
+ * The feed's headings, as Nextra's table of contents expects them. The entries
+ * are rendered at runtime, so Nextra can't extract these from the MDX itself.
+ */
+export async function getEntriesToc(): Promise<Heading[]> {
+  const entries = await getEntries()
+
+  return entries.map(({ name, date }) => ({
+    id: entrySlug(name),
+    value: formatDate(date),
+    depth: 2
+  }))
 }
 
 /** "2026-07-15" -> "July 15, 2026" */

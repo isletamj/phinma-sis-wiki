@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { importPage } from 'nextra/pages'
 import type { FC } from 'react'
-import { formatDate, getEntries } from './get-entries'
+import { entrySlug, formatDate, getEntries } from './get-entries'
 
 /**
  * Renders every changelog entry inline, newest first — each entry's MDX is
@@ -28,7 +28,10 @@ export const ChangelogFeed: FC = async () => {
           >
             {formatDate(date)}
           </time>
-          <h2 className="mt-1 mb-4 text-2xl font-bold tracking-tight">
+          <h2
+            id={entrySlug(name)}
+            className="mt-1 mb-4 scroll-mt-(--nextra-navbar-height) text-2xl font-bold tracking-tight"
+          >
             <Link href={route} className="hover:underline">
               {title}
             </Link>

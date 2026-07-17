@@ -1,5 +1,6 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents as getMDXComponents } from '../../mdx-components'
+import { getEntriesToc } from '../_components/get-entries'
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
 
@@ -24,8 +25,17 @@ export default async function Page(props: PageProps) {
     sourceCode
   } = await importPage(params.mdxPath)
 
+  // The changelog index renders its entries at runtime via <ChangelogFeed />, so
+  // the compiled MDX has no headings to build a table of contents from.
+  const isChangelogIndex =
+    params.mdxPath?.length === 1 && params.mdxPath[0] === 'changelog'
+
   return (
-    <Wrapper toc={toc} metadata={metadata} sourceCode={sourceCode}>
+    <Wrapper
+      toc={isChangelogIndex ? await getEntriesToc() : toc}
+      metadata={metadata}
+      sourceCode={sourceCode}
+    >
       <MDXContent {...props} params={params} />
     </Wrapper>
   )
