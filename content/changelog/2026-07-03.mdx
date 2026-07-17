@@ -1,0 +1,19 @@
+---
+title: Survey and Feedback Module
+date: 2026-07-03
+---
+
+This release delivers a new configurable Survey/Feedback Module with its own
+dashboard, plus reporting refinements for per-question answer exports and
+decimal completion percentages.
+
+<Section title="New">
+- **Survey/Feedback Module:** Delivered a new configurable Survey Module (CR-2026-0014) supporting multiple survey types (Course Teacher Feedback, General Feedback, Course Exit Feedback), objective (MCQ) and descriptive question setup with scoring logic, question-group-to-subject/course allocation, feedback scheduling (start/end date-time), and student survey submission through login.
+- **Feedback Dashboard:** Added a Feedback Dashboard with upload functionality for feedback questions, consolidating survey/feedback data for reporting and evaluation.
+</Section>
+
+<Section title="Improvements">
+- **Feedback Dashboard – Course Wise Report decimal completion %:** The Completion % column in the Feedback Dashboard Course Wise Report — and its Excel export — now shows decimal percentages (up to 2 decimal places) instead of rounding down to 0%, so low but active submission counts remain visible against large eligible populations.
+- **Feedback/Survey Report – export student answers by question:** Users can now generate and download a report for a selected feedback/survey and question, showing each applicable student's submitted answer or a "Pending" status if not yet answered.
+- **Student user type:** Added student user type to the user creation page so that admins can reactivate student accounts manually.
+</Section>

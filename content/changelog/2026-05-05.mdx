@@ -1,0 +1,42 @@
+---
+title: Transcript of Records overhaul
+date: 2026-05-05
+---
+
+This release delivers a major overhaul of the Transcript of Records (TOR)
+module, introducing support for specialized programs including Nursing,
+Medicine, BS BIO, and Graduate Studies. Alongside the TOR enhancements, new
+capabilities have been added across Admissions, Finance, Attendance, and
+portal-wide usability. Several items affecting student uploads, grade updates,
+and university authority management have also been resolved.
+
+<Section title="New">
+- **TOR – Nursing course format:** The Transcript of Records now displays RLE (Related Learning Experience) hours for Nursing programs, with two report formats available: one showing an RLE Hours column and another with separate Lecture and Lab Hours columns. A dropdown selector has been added for convenient report selection.
+- **TOR – BS BIO credits summary:** The TOR now reflects a summary of credits based on departmental assessment for the BS BIO program, allowing registrars to add subject details directly via the advising page. *(SWU)*
+- **TOR – Medicine program clerkship details:** Clerkship duration and completion dates are now displayed on the TOR for Medicine programs, supported by new configurations and a dedicated registrar-only clerkship entry page. *(SWU)*
+- **TOR – thesis and dissertation titles:** The TOR now displays thesis and dissertation titles for Graduate Programs, labeled appropriately as "Thesis" for Master's and "Dissertation" for Doctorate levels.
+- **TOR – certificate number field:** A new Certificate Number field has been added to the Student Profile, with its value now reflected on the TOR. *(SWU)*
+- **TOR – previous school address:** The TOR now displays the previous school address, supported by an enhanced configuration page that includes a School Address field alongside Previous College details.
+- **TOR – old and current grading system configuration:** A new configuration utility allows mapping of Old and New grading schemes at the Campus, Study Level, College, and Curriculum levels. The TOR dynamically displays the appropriate grading tables based on this configuration.
+- **Intake-to-session mapping page:** A new Intake Mapping configuration page is now available, allowing admins to map sessions to an intake and activate or deactivate each session. Admissions logic now uses the configured active session instead of the highest-sequence session.
+- **Nationality-to-payment type mapping:** Admins can now map nationality to a specific payment type, ensuring that foreign students are automatically tagged with the correct fee structure upon enlistment. *(SWU)*
+- **News Notice – Firebase notifications:** Real-time push notifications are now available on the SIS portal, powered by Firebase-based notification delivery.
+- **Bookmarks and video links:** Users can now bookmark frequently visited pages and access video links directly within the portal for quicker navigation.
+- **Reason for withdrawal dropdown:** A new "Reason for Withdrawal" dropdown field has been added to the Admission Cancellation process, with standardized pre-defined values to improve reporting and data consistency. A corresponding column has also been added to the Admission Cancellation Report.
+</Section>
+
+<Section title="Improvements">
+- **Add Applicant page – session field:** A session selection field has been added to the Add Applicant page for more precise applicant data entry.
+- **Report expiry time extension:** The expiry time for generated reports has been extended, giving users more time to download or review reports before regeneration is required.
+- **Bulk Re-Computation – optional semester and modality:** The semester and modality fields on the Bulk Re-Computation page are now optional, providing greater flexibility when processing fee recalculations.
+- **Holiday/event entry – revert provision:** Users can now revert mistakenly added holiday or event entries directly from the grid, restoring cancelled class schedules and re-enabling attendance marking for affected dates.
+- **Daily Collection Report – cancelled payment exclusion:** The All Daily Collection Report now excludes cancelled (voided) payments from the Grand Total calculation, ensuring accurate financial summaries.
+- **Security hardening – input validation:** Enhanced input validation and output encoding have been applied across the application to strengthen data integrity and protect against script injection.
+</Section>
+
+<Section title="Bug fixes">
+- **Bookmark feature:** The bookmark feature is now functioning as expected across the portal. *(PHINMA)*
+- **Add Students – file upload:** File uploads on the Add Students page now process correctly, resolving the format validation prompt that previously prevented valid files from being accepted. *(COC)*
+- **University Authorities – Dean update:** Updating the Dean in University Authorities now saves successfully without encountering a system prompt on submission. *(UPang)*
+- **Historical Grade Correction – SSP grade update:** Grade updates submitted through Historical Grade Correction are now properly reflected in both the correction page and the Student Profile Grades view. *(UPang)*
+</Section>

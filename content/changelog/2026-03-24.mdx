@@ -1,0 +1,31 @@
+---
+title: User management and grade configuration
+date: 2026-03-24
+---
+
+This release delivers meaningful improvements across user management, grade
+configuration, and academic record accuracy. It introduces new security and
+audit trail capabilities, enhances grading workflow efficiency through expanded
+selection and advisor allotment options, and addresses several data accuracy
+concerns affecting student IDs, college filtering, and receipt generation.
+
+<Section title="New">
+- **Admin password expiration:** The admin login page now displays a password expiration indicator, supporting better security compliance across all schools.
+- **Change section logs:** Front-end activity logs are now available on the Change Section page for both Block Section and Subject Wise views, providing greater accountability for section-related updates.
+</Section>
+
+<Section title="Improvements">
+- **Role assignment – student validation:** The role assignment page now filters and displays only student-appropriate roles when the user type is set to Student, preventing incorrect role configurations.
+- **Grade Encoding Period – select all:** A Select All option is now available for exam components on the Grade Encoding Period page, streamlining the setup process.
+- **Grade Encoding Period Extension – select all:** A Select All option has been added to the Assessment Component field on the Grade Encoding Period Extension page for faster configuration.
+- **Advisor allotment increase:** The maximum number of assignable advisors per curriculum has been expanded from 3 to 15, accommodating programs with larger advisory teams.
+- **Program head allotment boxes:** Additional allotment boxes have been added on the Program Head page for CTHM (HM and TM programs) and CCJE (BS Criminology), supporting schools with multiple Program Heads per program.
+- **Faculty user creation flow:** Faculty accounts can no longer be created directly from the User Creation page. Faculty must now be registered through the Add Employee page, after which they will appear in User Creation for activation and campus/college assignment.
+</Section>
+
+<Section title="Bug fixes">
+- **Grade Encoding Period – submit button:** The Submit button on the Grade Encoding Period page is now functioning correctly, allowing users to save configurations without requiring a page reload.
+- **College filter – Program Head/Dean page:** The college filter on the Tagging Program Head and Dean page now correctly displays only courses belonging to the selected college, eliminating results from unrelated colleges.
+- **Student ID – academic year display:** The Academic Year and Valid Till fields on Student ID cards now correctly reflect the intended year range (e.g., AY 2026–2027) and retain their values after saving.
+- **Misc fee receipt – session access:** Users can now generate miscellaneous fee receipts without needing to re-login. The unauthorized access concern during active sessions has been addressed.
+</Section>

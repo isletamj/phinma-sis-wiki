@@ -1,0 +1,23 @@
+---
+title: Transmutation tagging and deliberation reports
+date: 2026-06-25
+---
+
+This release prioritizes the Transmutation Tagging configuration under Exam Rule
+Configuration, enabling modality-wise subject transmutation setup. It also
+delivers new deliberation report capabilities for Indonesia and Philippines
+schools, along with SSO login fixes and login audit logging.
+
+<Section title="New">
+- **Exam Rule Configuration – Transmutation Table Tagging:** Added a Transmutation Table Tagging feature in the Exam Rule Configuration page, enabling administrators to configure modality-wise subject transmutation setups per exam rule.
+- **Deliberation Report – teacher-wise subject level view:** A new Teacher-wise Subject Level Deliberation Report is now available, providing a subject-level breakdown per teacher. Applicable to all PEN schools and SWU.
+</Section>
+
+<Section title="Improvements">
+- **Deliberation Report – passing criteria, subject view, and P1/P2 color matrix:** Updated deliberation reports to include passing criteria indicators, a subject-level view, and a P1/P2 color matrix for clearer grade category visualization. *(Indonesia & PH)*
+- **SSO login – audit logging:** Added backend logs to identify whether a user logged in via Google SSO or the standard application login page, supporting audit and troubleshooting workflows.
+</Section>
+
+<Section title="Bug fixes">
+- **SSO login – server error:** Resolved an issue where logging in via SSO returned an "It's not on you it's on us" error page due to expired credentials.
+</Section>

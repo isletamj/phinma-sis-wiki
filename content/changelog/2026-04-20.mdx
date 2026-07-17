@@ -1,0 +1,41 @@
+---
+title: Scholarship management and finance reports
+date: 2026-04-20
+---
+
+This release delivers a significant set of enhancements and new capabilities
+across the SIS platform. Key highlights include new scholarship management
+tools, expanded student profile fields, improved finance and fee configuration
+modules, and refined grade release controls. Several workflows have also been
+updated to improve accuracy, usability, and operational efficiency across all
+campuses.
+
+<Section title="New">
+- **Fixed discount scholarship:** A new configuration page is now available for setting up fixed discount scholarships by course. Once tagged to a student, the discount is automatically calculated and reflected in the Official Receipt of Fees.
+- **External scholarship – bulk upload and tagging:** A new master setup page allows creation of external scholarship entries with name and percentage. Registrars can now bulk-tag students with external scholarships filtered by session, campus, college, course, and semester.
+- **Scholarship module – duty assignment:** A new Duty Assignment page is now available within the Scholarship module, enabling the CSDL team to assign duty hours to scholar students. Includes support for mentor evaluation and scholarship renewal workflows.
+- **Public voucher scholarship configuration:** A dedicated configuration page is now available for setting up Public Voucher Scholarship percentages by scholarship type. Tagged students are automatically linked to the appropriate scholarship.
+- **Off term fees configuration:** Off-term subjects can now be configured with subject-wise fees that are applied against the respective subject and reflected in the Official Receipt of Fees. Scholarship computation is excluded for off-term subjects, and SMS/email notifications are now available when minimum enrollment is not met.
+- **Finance efficiency and outstanding reports:** Three new financial reports are now available — Efficiency Detailed Report, Efficiency Summary Report, and Outstanding Report — each with a cut-off date filter to generate point-in-time snapshots.
+- **Attendance via Excel upload:** Faculty can now mark student attendance by uploading a pre-formatted Excel template directly on the Attendance by Faculty page.
+- **Privacy agreement and consent form – student enlistment:** A Terms & Conditions pop-up now appears during student enlistment. Students must accept the consent form before their submission is processed. Registrars can configure the content through a dedicated settings page.
+- **Document submission – registrar verification:** Registrars can now perform per-document verification independently of student upload status. Verification includes Verified, Rejected, and Pending options, with fields for Verified By, Verified Date, and Remarks. The downloadable report now includes Semester, College, and Course columns.
+</Section>
+
+<Section title="Improvements">
+- **Final grade release – teacher-wise:** The grade release process has been updated to allow per-teacher release. Grades submitted by one teacher can now be released independently, without waiting for all co-teachers to submit.
+- **Special Subject Request Report – pending status:** The Special Subject Request Report now includes a "Pending" status filter, allowing registrars to monitor applications still awaiting action.
+- **Student Profile – photo signature dimension hint:** A dimension hint has been added to the Photo/Signature upload area to guide students on the correct image size and aspect ratio.
+- **Semester promotion – entry limit increase:** The Semester Promotion module now supports up to 500 entries per batch, accommodating larger student populations.
+- **Student Profile – additional fields:** Two new fields have been added to Personal Details: sectoral group affiliation (PWD, Indigenous People, or None) and solo parent guardian indicator, linked with the application portal.
+- **Student Profile – extension name field:** An optional Extension Name field has been added to the Student Profile for Horizon University, also reflected in applicable reports alongside name fields.
+- **Fixed amount computation – affiliation and RLE fees:** The fixed amount fee computation now includes Affiliation Fee and RLE Fee. Updated formula: Fixed Amount + Books and Uniform Fees + RLE Fee + Affiliation Fee.
+- **Payment requery – expired order ID status:** Order IDs that have lapsed are now automatically tagged as "Expired" in the Payment Requery page, reducing manual verification effort for the Finance team.
+- **Main menu optimization:** The main navigation menu has been optimized across all user types for improved load performance and responsiveness.
+- **Bookmark – session storage:** The bookmark functionality has been updated to use session storage, improving reliability of the navigation state mechanism.
+</Section>
+
+<Section title="Bug fixes">
+- **Student ID validation – UPANG/PUCU format:** The student ID validation has been updated to accept both the standard format (NN-NNNN-NNNNNN) and the UPANG/PUCU campus format (NN-NN-NNNN-NNNNNN), allowing IDs with campus identifiers to be modified correctly.
+- **Fixed discount amount – date format and scholarship alert:** The date display has been corrected to MM/DD/YYYY format. An alert now notifies users when a student is being modified with a scholarship they are already tagged with.
+</Section>
