@@ -13,6 +13,15 @@ npm run build && npx serve out   # the only way to test search
 There is no test suite or linter configured. `next build` runs `tsc`, so a
 type error fails the build.
 
+Most UI work is not type-checkable and needs to be looked at in a browser, not
+inferred from the diff — see the font landmine below for a change that builds
+clean while doing nothing.
+
+## Branches
+
+MJ develops on `dev` — branch from it and merge back into it. `main` is the
+repo's default branch but is not where work lands.
+
 ## Architecture
 
 Nextra 4 docs theme on Next.js App Router, statically exported (`output: 'export'`)
@@ -48,6 +57,38 @@ via `<YouTube>`); images are hand-compressed WebP in `public/images/`.
 
 MJ is learning web dev — prefer conventional, boring patterns over clever ones.
 
+## Moving the theme switch (deferred, but already investigated)
+
+Putting the light/dark control in the header was scoped out once, on cost. If it
+comes back, these are the traps — all found by reading compiled
+`node_modules/nextra-theme-docs@4.6.1`, so they are expensive to re-derive and
+none of them are in the docs:
+
+- **`<Layout darkMode={false}>` is a visibility flag, not a feature flag.** It
+  does not disable dark mode; `ThemeProvider` renders regardless. But it makes
+  *every* `ThemeSwitch` return null — **including one you add yourself** — so
+  "disable the built-in, add my own" cannot work with the theme's own export.
+  Write a custom switch composing `Select` (`nextra/components`), `useMounted`
+  (`nextra/hooks`), and `useTheme` (re-exported from `nextra-theme-docs` — do
+  not import `next-themes` directly, it is not in our `package.json`).
+- **The switch renders in three places**, not one: the desktop sidebar footer,
+  the mobile drawer footer, and — easy to miss — the *page* footer, which only
+  appears when the sidebar is hidden, i.e. exactly on `/changelog`.
+  `darkMode: false` clears all three at once, which is why it beats CSS.
+- **Nextra's `ThemeSwitch` opens its dropdown upward.** It calls `Select`
+  without an `anchor`, inheriting the `{ to: 'top start' }` default that suits a
+  switch pinned to the sidebar's *bottom*. From the navbar, pass
+  `anchor={{ to: 'bottom end' }}`.
+- **Hiding the top-level nav links must be done in CSS**, not `display: 'hidden'`
+  in `content/_meta.ts` — see the landmine below. Note the cost: `type: 'page'`
+  entries are excluded from the desktop sidebar by `normalizePages`, so hiding
+  them strands `/docs` on desktop (the logo still reaches Home). Mobile is fine;
+  the drawer renders the full tree.
+
+Stable, unprefixed hooks for CSS: `.nextra-navbar`, `.nextra-search`,
+`.nextra-sidebar-footer`, `.nextra-scrollbar`. Everything else in that markup is
+a compiled `x:` utility and unsafe to target.
+
 ## Version landmines
 
 These are load-bearing; changing them breaks the build in non-obvious ways.
@@ -72,6 +113,16 @@ These are load-bearing; changing them breaks the build in non-obvious ways.
 - **`images.unoptimized: true`** is mandatory or the static export fails.
 - **Pagefind** indexes `out/` (`--site out`), despite Nextra's static-export
   docs showing `.next/server/app`.
+- **To change the font, override `--x-font-sans`, not just `--font-sans`.**
+  Nextra ships its *own* `x:`-prefixed Tailwind build alongside ours, and its
+  font resolves `html { font-family: var(--x-default-font-family) }` →
+  `--x-default-font-family: var(--x-font-sans)`. Setting only `--font-sans`
+  touches our utilities and nothing else. This one fails *silently* — the build
+  passes and the page renders, just in the system stack. The override in
+  `app/globals.css` must also stay **after** the `@import`s: it beats Nextra's
+  own `:root` on source order, not specificity. Verify with a computed style
+  check (`getComputedStyle(document.body).fontFamily`), never by eye — Inter and
+  the default system stack are near-identical at a glance.
 
 Nextra 4 is App Router only — Pages Router would mean Nextra 3.3.1, which is
 unmaintained. Don't "restore" the Pages Router.
