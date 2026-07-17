@@ -61,3 +61,29 @@ main :is(p, li) :is(strong, b) {
 .dark main :is(p, li) :is(strong, b) {
   color: var(--color-neutral-100);
 }
+
+/* Nextra gives <p> a `x:leading-7` class but styles <li> with margin only, so
+   list items fall back to html's 1.5 and set 4px tighter than the prose around
+   them. Most obvious inside <Section>, which holds nothing but lists — though
+   the mismatch is everywhere a list is.
+
+   Wins the same way the colours above do: declared against an element Nextra
+   only reaches by inheritance, so no specificity fight with its `x:` classes. */
+main li {
+  line-height: 1.75rem; /* matches `x:leading-7` on <p> */
+}
+
+/* An entry's title morphs from the feed into its permalink — `share="morph"` on
+   the <ViewTransition> is what names this class. */
+::view-transition-group(.morph) {
+  animation-duration: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}

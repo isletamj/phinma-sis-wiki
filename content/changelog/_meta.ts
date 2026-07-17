@@ -13,10 +13,15 @@ export default {
       pagination: false
     }
   },
+  // Entries run without a sidebar, so the breadcrumb is the only thing telling
+  // you which release you're on and how to get back to the feed. `type: 'page'`
+  // on `changelog` in the parent `_meta.ts` doesn't reach here — `normalizePages`
+  // re-reads this file for the children and they resolve to `type: 'doc'`, which
+  // is what lets the breadcrumb render at all (it's skipped on `page` types).
   '*': {
     theme: {
       sidebar: false,
-      breadcrumb: false,
+      breadcrumb: true,
       pagination: false
     }
   }

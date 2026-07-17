@@ -37,6 +37,14 @@ export async function getEntries(): Promise<ChangelogEntry[]> {
 export const entrySlug = (name: string): string => `entry-${name}`
 
 /**
+ * Pairs an entry's title in the feed with the same title on its permalink, so
+ * the browser morphs one into the other on navigation. Unique per entry: the
+ * feed renders every title at once, and duplicate names abort the transition.
+ */
+export const entryTitleTransition = (name: string): string =>
+  `entry-title-${name}`
+
+/**
  * The feed's headings, as Nextra's table of contents expects them. The entries
  * are rendered at runtime, so Nextra can't extract these from the MDX itself.
  */

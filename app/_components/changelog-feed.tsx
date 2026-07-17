@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import { importPage } from 'nextra/pages'
-import type { FC } from 'react'
-import { entrySlug, formatDate, getEntries } from './get-entries'
+import { ViewTransition, type FC } from 'react'
+import {
+  entrySlug,
+  entryTitleTransition,
+  formatDate,
+  getEntries
+} from './get-entries'
 
 /**
  * Renders every changelog entry inline, newest first — each entry's MDX is
@@ -39,14 +44,23 @@ export const ChangelogFeed: FC = async () => {
           {/* MDXContent renders a list of siblings, so the column needs a
               wrapper — otherwise every paragraph becomes its own grid item. */}
           <div>
-            <h2
-              id={entrySlug(name)}
-              className="mt-1 mb-4 scroll-mt-(--nextra-navbar-height) text-2xl font-bold tracking-tight text-neutral-900 lg:mt-0 dark:text-neutral-100"
+            {/* Morphs into the <h1> on the entry's own permalink. `default="none"`
+                keeps the other entries' titles still: without it every title on
+                the page animates, not just the one clicked. */}
+            <ViewTransition
+              name={entryTitleTransition(name)}
+              share="morph"
+              default="none"
             >
-              <Link href={route} className="hover:underline">
-                {title}
-              </Link>
-            </h2>
+              <h2
+                id={entrySlug(name)}
+                className="mt-1 mb-4 scroll-mt-(--nextra-navbar-height) text-2xl font-bold tracking-tight text-neutral-900 lg:mt-0 dark:text-neutral-100"
+              >
+                <Link href={route} className="hover:underline">
+                  {title}
+                </Link>
+              </h2>
+            </ViewTransition>
             <MDXContent />
           </div>
         </article>
