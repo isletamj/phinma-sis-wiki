@@ -163,3 +163,35 @@ These are load-bearing; changing them breaks the build in non-obvious ways.
 
 Nextra 4 is App Router only — Pages Router would mean Nextra 3.3.1, which is
 unmaintained. Don't "restore" the Pages Router.
+
+## Dev-server noise that is not a bug
+
+`npm run dev` prints these on repeat, and they look like a regression from
+whatever you just committed. They aren't:
+
+```
+error [nextra] Error while loading {
+  pathSegments: [ '.well-known', 'appspecific', 'com.chrome.devtools.json' ]
+} Error: Cannot find module 'private-next-content-dir/undefined'
+
+⨯ Failed to generate static paths for /[[...mdxPath]]:
+Error: Page "/[[...mdxPath]]/page" is missing param "/[[...mdxPath]]" ...
+```
+
+The trigger is **Chrome DevTools**, not the codebase. DevTools 136+ probes
+`/.well-known/appspecific/com.chrome.devtools.json` on localhost for its
+Automatic Workspace Folders feature, so the errors appear only while DevTools is
+open — which correlates with CSS work and reads as "the last commit broke it".
+
+- The catch-all route takes the probe, and `importPage` (`nextra/dist/client/pages.js`)
+  looks it up in the route map, gets `undefined`, and interpolates *that* into
+  `require('private-next-content-dir/undefined')`. The `MODULE_NOT_FOUND` is
+  Nextra's ordinary 404 signal — it logs, then calls `notFound()`. So
+  `private-next-content-dir/undefined` just means "no such route". It fires twice
+  per request because `generateMetadata` and `Page` each call `importPage`.
+- The `generateStaticParams` complaint is `output: 'export'`'s dev-time check
+  against the same bogus path. `generateStaticParams` only enumerates `content/`.
+
+Both are dev-only and cannot reach the export — `next build` visits only the
+paths `generateStaticParams` produced. Safe to ignore; to silence at the source,
+untick DevTools → Settings → Experiments → "Automatic workspace folders".
