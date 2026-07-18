@@ -1,0 +1,13 @@
+{
+  // Deploys the static export in out/ to Cloudflare Workers Static Assets.
+  // There is no Worker script — this is a pure static site (output: 'export'),
+  // so `assets.directory` is all Wrangler needs. `npm run build` writes out/
+  // and Pagefind indexes it via the postbuild hook.
+  "name": "msph-phinma-changelog",
+  "compatibility_date": "2026-07-18",
+  "assets": {
+    // Nextra exports out/404.html; serve it on any unmatched path.
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
