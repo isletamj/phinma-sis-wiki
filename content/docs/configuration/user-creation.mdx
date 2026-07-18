@@ -1,0 +1,143 @@
+---
+title: User Creation
+---
+
+# User Creation
+
+## Overview
+
+The **User Creation** page is where authorized administrators create and manage SIS
+user accounts for staff across all PHINMA campuses. It lets you set up new accounts
+with assigned colleges, departments, and campuses, and to activate or deactivate
+existing users.
+
+<Callout type="important">
+  New **faculty** accounts **cannot** be created from this page — faculty must be
+  added through [Add Employee](/docs/configuration/add-employee) first. Existing
+  faculty accounts, however, do appear in the User Creation list and can be edited
+  here (information, status, campus/college assignments). Changes made here
+  synchronize back to Add Employee.
+</Callout>
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. Go to the **Configuration** module.
+3. Search for and click **User Creation**.
+4. The User Creation form and the New User List load on the same page.
+
+## Understanding the Page
+
+The page has two parts: the **User Creation form** at the top and the **New User
+List** table at the bottom.
+
+### Form fields
+
+| Field | Description |
+| --- | --- |
+| **Username (Login ID)** | The unique login credential. Click **Check Availability** to confirm it isn't taken. |
+| **User Type** | The account type (e.g. Admin, Faculty). **Faculty** is for editing existing faculty only — new faculty must go through Add Employee. |
+| **Department (Acd)** | The academic department the user belongs to. |
+| **Full Name** | The user's full name as shown in the system. |
+| **Email** | The user's official email address. |
+| **Mobile No.** | The user's contact number. |
+| **Status – Check if Active** | Toggle on to create an active account; off for inactive. |
+
+Below the fields, a **College & Campus assignment table** lists colleges/departments
+as rows and campuses as columns. Use the checkboxes to assign which colleges the
+user can access under each campus.
+
+<Callout type="info">
+  A user can be assigned to multiple colleges and campuses at once. Verify the
+  assignments before submitting — incorrect college-campus tags affect what the
+  user can access.
+</Callout>
+
+The **New User List** shows all existing accounts (Name, Username, College,
+Department, Type, Email, Mobile No., Status). Use **Search**, the **Show entries**
+dropdown, and pagination to navigate. **Export** downloads the list, including a
+**Department** column useful for auditing that users are tagged correctly.
+
+## Creating a New User
+
+<Steps>
+
+#### Enter user details
+
+Type the **Username (Login ID)** and click **Check Availability**. Select the
+**User Type** (do **not** select Faculty for a new account), the **Department
+(Acd)**, then enter the **Full Name**, **Email**, and **Mobile No.**
+
+#### Set account status
+
+Toggle **Check if Active** ON for an immediately active account, or leave it off to
+create it inactive.
+
+#### Assign colleges and campuses
+
+In the assignment table, check the boxes for the colleges and campuses the user
+should access — each row is a college/department, each column a campus.
+
+#### Submit
+
+Click **Submit** to save. The account appears in the New User List. Click **Clear**
+to reset the form and start over.
+
+</Steps>
+
+## Editing an Existing User
+
+<Steps>
+
+#### Find the user
+
+Locate them in the **New User List**.
+
+#### Open for editing
+
+Click the **edit icon** in the **Action** column. Their details load into the form.
+
+#### Make changes
+
+Update the department, email, mobile number, college/campus assignments, active
+status, or **User Type**.
+
+#### Submit
+
+Click **Submit** to save.
+
+</Steps>
+
+<Callout type="warning">
+  If you change the **User Type** while editing, the New User List reloads filtered
+  to the new user type — this is expected, and the user you were editing stays
+  populated in the form. Click **Submit** (or **Clear** to cancel) before
+  navigating away, so your changes aren't lost.
+</Callout>
+
+## Activating and Deactivating Users
+
+To activate or deactivate a user, edit them to load their details into the form,
+toggle the **Check if Active** switch, and click **Submit**. This applies to all
+user types including Faculty — activating or deactivating a faculty account here
+synchronizes automatically with [Add Employee](/docs/configuration/add-employee).
+
+## Frequently Asked Questions
+
+**I see Faculty in the User Type dropdown. Can I create a new faculty account with it?**
+No. Faculty is for **editing existing** faculty accounts only. New faculty must be
+added through [Add Employee](/docs/configuration/add-employee) first — once added,
+the account appears here for editing.
+
+**A faculty member needs their account reactivated or deactivated. Can I do it here?**
+Yes. Find them in the New User List, click edit, and toggle **Check if Active**. The
+change syncs automatically with Add Employee.
+
+**I submitted the form but the user doesn't appear in the list.**
+Refresh and search for the username. If it still doesn't appear, check whether the
+Username passed the availability check before submission — duplicate usernames
+aren't saved.
+
+**Can I assign a user to multiple campuses at once?**
+Yes. The assignment table lets you check multiple boxes across different campus
+columns.

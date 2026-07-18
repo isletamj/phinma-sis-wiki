@@ -1,0 +1,133 @@
+---
+title: Intake Creation
+---
+
+# Intake Creation
+
+## Overview
+
+The **Intake Creation** page is used to create and manage intake records for a
+school year. You define the intake name, date range, school year, intake code, and
+active status. These records are used by enrollment and admissions processes,
+including **Student ID generation**.
+
+<Callout type="important">
+  The **Intake Code** is required and is used for Student ID generation. Use a
+  clean code with no spaces so generated IDs remain valid for student login and
+  downstream SIS processes.
+</Callout>
+
+## Prerequisites
+
+- The required **School Year** is already configured and active.
+- You have access to the **Academics** module and the **Intake Creation** page.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Academics**.
+3. Select **Intake Creation**.
+
+## Understanding the Page
+
+The page has a form at the top and an **Intake Creation List** table below it.
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Intake** | Yes | The intake name or label, e.g. "July-Dec 2023" or "2026-2027". |
+| **Intake Start-End Date** | Yes | The date range for the intake, chosen with the date picker. |
+| **School Year** | Yes | The school year connected to the intake. |
+| **Intake Code** | Yes | The code used by Student ID generation. Must be **unique**, contain **no spaces**, and be **8 alphanumeric characters or fewer**. |
+| **Status** | — | "Check if Active" toggle — enabled means the intake is available for use. |
+
+The table lists existing intakes (Intake, date range, School Year, Intake Code,
+Status) with an edit icon in the **Action** column. Use **Search** to filter and
+**Export** for an offline copy.
+
+## Creating a New Intake
+
+<Steps>
+
+#### Fill in the intake details
+
+Enter a clear **Intake** label (match the naming pattern already used where
+possible), the **Intake Start-End Date**, the **School Year**, and a unique
+**Intake Code** — alphanumeric, no spaces, 8 characters max.
+
+#### Set the status
+
+Leave **Check if Active** enabled if the intake should be usable immediately. Turn
+it off only when the intake should be saved but not used yet.
+
+#### Submit
+
+Click **Submit**. The saved record appears in the **Intake Creation List**.
+
+</Steps>
+
+<Callout type="warning">
+  After submitting, review the saved **Intake Code** in the table. Because the code
+  is used for Student ID generation, incorrect spacing or an incorrect value can
+  affect generated student accounts.
+</Callout>
+
+## Editing an Existing Intake
+
+<Steps>
+
+#### Find the record
+
+In the **Intake Creation List**, locate the intake and click the edit icon in the
+**Action** column.
+
+#### Update and confirm the code
+
+Change the field values as needed. Confirm the **Intake Code** has no spaces and
+follows the expected format.
+
+#### Submit
+
+Click **Submit** to save.
+
+</Steps>
+
+<Callout type="warning">
+  Be careful editing an intake already used in admissions, enrollment, or Student
+  ID generation. Confirm the change with the appropriate school team before
+  updating live intake data.
+</Callout>
+
+## Common Errors
+
+**"Intake Code should not contain any spaces!"**
+Remove all spaces from the code and use a continuous alphanumeric value such as
+`2526` or `SY2526`, then submit again.
+
+**Intake Code is already used.**
+The code must be unique. Check the Intake Creation List for the existing code, enter
+a different one, and submit again.
+
+**Intake Code is too long or uses an unsupported format.**
+Shorten it to 8 characters or fewer, use letters and numbers only, and avoid spaces
+and special characters.
+
+## Frequently Asked Questions
+
+**Why is Intake Code required?**
+It's used for Student ID generation. A missing or incorrect code affects how student
+IDs are created.
+
+**Can I use spaces in the Intake Code?**
+No. Spaces can cause issues with generated IDs and student login.
+
+**How long can the Intake Code be?**
+The configured maximum is 8 alphanumeric characters. Keep it short, unique, and easy
+to identify.
+
+**Can two intakes use the same Intake Code?**
+No. It must be unique so the system can identify the correct intake during Student
+ID generation and related processes.
+
+**What does Check if Active do?**
+It controls whether the intake is active and available for use. Keep it enabled for
+intakes that current SIS processes should use.

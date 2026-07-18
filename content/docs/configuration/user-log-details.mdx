@@ -1,0 +1,113 @@
+---
+title: User Log Details
+---
+
+# User Log Details
+
+## Overview
+
+The **User Log Details** page gives administrators a view of user login sessions and
+page activity across the SIS. It shows when each user logged in and out, the device
+or IP address used, and which SIS pages they visited during a session. It's used for
+security auditing and accountability monitoring.
+
+<Callout type="important">
+  This page shows login and activity history only — it does **not** allow changes to
+  records or user accounts.
+</Callout>
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Configuration**.
+3. Click **User Log Details**.
+
+## Understanding the Page
+
+The page has a **filter section** at the top and a **Login Details table** below.
+
+### Filter section
+
+| Field | Description |
+| --- | --- |
+| **User Type** | Filter by account type (e.g. Admin). |
+| **User Name** (search) | Type a username to search for a specific user. |
+| **User Name** (dropdown) | Select a specific username from the list. |
+| **Time Filter** | Restrict results to a window (e.g. Last 7 Days). |
+
+Click **Show** to apply the filters; **Cancel** resets the form.
+
+### Login Details table
+
+| Column | Description |
+| --- | --- |
+| **Sr. No.** | Row number. |
+| **User Name** | The username that logged in. |
+| **IP Address** | The IP the session originated from. |
+| **Mac Address** | The device's MAC address. |
+| **Login Time** | When the user logged in (MM/DD/YYYY). |
+| **Logout Time** | When the session ended. A dash (–) means still active or not recorded. |
+| **Activity Details** | Click **View Details** to see the pages visited that session. |
+
+## Viewing Login History
+
+<Steps>
+
+#### Set your filters
+
+Select the **User Type**, optionally search or pick a specific **User Name**, and
+choose a **Time Filter** such as "Last 7 Days".
+
+#### Click Show
+
+Click **Show** to load matching login records into the table.
+
+#### Review the results
+
+Browse the table to review login times, IP addresses, and MAC addresses. Use the
+table's **Search** field to filter further by any column value.
+
+</Steps>
+
+## Viewing User Activity Details
+
+To see exactly which pages a user visited during a session:
+
+<Steps>
+
+#### Find the session
+
+Locate the session row in the Login Details table.
+
+#### Open activity details
+
+In the **Activity Details** column, click **View Details**. A modal opens showing
+each **Page Visit** and its **Activity Time** for that session.
+
+#### Close the modal
+
+Click **Close** to return to the Login Details table.
+
+</Steps>
+
+## Frequently Asked Questions
+
+**What does a dash (–) in the Logout Time column mean?**
+The session is still active or the logout wasn't captured (e.g. the browser was
+closed without a formal logout).
+
+**Can I see what changes a user made, not just which pages they visited?**
+No. This page shows page visits and session times only — it doesn't capture what
+data was added, edited, or deleted.
+
+**Why are there two User Name fields in the filter section?**
+The text field searches by partial username; the dropdown selects a specific user
+from the full list. Use either or both to narrow results.
+
+**How far back does the login history go?**
+It depends on your school's retention settings. Contact your CSE support
+representative if older records aren't appearing.
+
+**Can I export the login records?**
+The table has no built-in export button. Coordinate with your CSE team to generate
+a login report through the standard report channel.

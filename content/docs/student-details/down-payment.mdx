@@ -1,0 +1,103 @@
+---
+title: Down Payment
+---
+
+# Down Payment
+
+## Overview
+
+The **Down Payment** page is where students submit their down payment (DP) for the
+next semester. It's a self-service page in the student portal that guides the
+student through three steps: verify their details, submit payment, and confirm
+their registration status. It supports both **cash** and **online** payment.
+
+Before a student can proceed, Finance must have the DP configuration set up for the
+relevant year-level and semester, and the student must have completed their one-time
+profile.
+
+## Prerequisites
+
+- **One-time student profile is complete** — the student is prompted to complete it
+  if not.
+- **DP configuration exists** — Finance must have configured the DP date and
+  semester. If the page shows *"Down payment configuration is not yet available,
+  please contact university official,"* the configuration is missing — contact
+  Finance.
+- **No outstanding balance** — the student must have cleared previous balances. If a
+  balance appears incorrectly, check the **Payment Collection** page for the actual
+  status.
+
+## How to Access
+
+1. Log in to the SIS using student credentials.
+2. From the list of modules, go to **Student Details**.
+3. Click **Down Payment**.
+4. Click **Search Student** to find and select the student record.
+
+<Callout type="info">
+  Admins can also open this page from the admin panel for lookup and verification.
+</Callout>
+
+## Understanding the Page
+
+Once a student is selected, a progress tracker at the top shows three steps:
+
+| Step | Label | What happens |
+| --- | --- | --- |
+| 1 | Student Detail | Review enrollment details and confirm they're correct. |
+| 2 | Payment | View the DP amount due and choose a method (cash or online). |
+| 3 | Down Payment Status | Confirm the registration status updated after payment. |
+
+- **Step 1 – Student Details** shows Student ID, Current Semester, College, Campus,
+  Session, and registration Status, plus a Note with instructions. Click **Next** to
+  continue.
+- **Step 2 – Payment** shows the Fees Details (Down Payment Amount and Total) and
+  two options: **Pay In Cash** (pay at the University Counter; it then reflects in
+  the SIS) or **Pay Online** (via the configured gateway, e.g. Paynamics). A
+  **Previous Receipts** table lists past DP receipts, with a Print icon and an
+  **Export** button.
+- **Step 3 – Down Payment Status** confirms whether the registration status updated
+  after a successful payment.
+
+## Paying the Down Payment
+
+<Steps>
+
+#### Review your details
+
+Search for and select the student record, review the enrollment details, and click
+**Next**.
+
+#### Choose a payment method
+
+Confirm the down payment amount, then choose **Pay In Cash** (proceed to the
+University Counter) or **Pay Online** (click **Pay Online** to pay via the gateway).
+A confirmation appears once payment is verified.
+
+#### Confirm status
+
+Verify that the registration status has updated following the payment.
+
+</Steps>
+
+## Frequently Asked Questions
+
+**The student sees "Down payment configuration is not yet available." What does this mean?**
+The DP configuration for the student's year-level and semester hasn't been set up, or
+isn't recognized yet. Ask Finance to verify the DP Config for the correct session and
+year-level. If it's set and the error persists, raise a ticket for the dev team.
+
+**The student paid their balance, but the DP page still shows an outstanding balance.**
+Check the **Payment Collection** page to confirm balances are cleared on the system
+side. If it confirms zero balance but the DP page still blocks the student, this is a
+sync issue — raise a ticket with the student's ID and screenshots.
+
+**A student paid DP online, but it's not reflecting in the SIS.**
+Online payment can lag due to reconciliation with the gateway. Check for a Request ID
+or Order ID to perform a requery; if unavailable, coordinate with Finance to reflect
+the payment manually.
+
+**Can a student pay DP even if the enlistment page shows "DP Pending"?**
+If they've already paid successfully (confirmed in Payment Collection), the "DP
+Pending" label is a display sync issue. Raise a ticket with the student's ID and
+payment receipt.

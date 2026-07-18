@@ -1,0 +1,107 @@
+---
+title: Down Payment Flexibility
+---
+
+# Down Payment Flexibility
+
+## Overview
+
+The **Down Payment Flexibility** page lets administrators configure custom down
+payment (DP) amounts for specific groups of students, based on intake year, campus,
+study level, learning modality, qualification, school type, and scholarship. Once
+configured, eligible students automatically see the correct DP amount during
+enrollment — no manual adjustment needed.
+
+<Callout type="info">
+  The **Scholarship** field can link a scholarship directly to a DP flexibility
+  record. The system then automatically tags qualifying students with that
+  scholarship upon enrollment — no manual tagging. This supports the Public Voucher
+  Scholarship automation for SHS public-school students.
+</Callout>
+
+## How to Access
+
+1. Log in to the SIS.
+2. From the list of modules, go to **Finance**.
+3. Click **Down Payment Flexibility**.
+
+## Understanding the Page
+
+The page has a **configuration form** at the top and a **records table** below.
+
+| Field | Description |
+| --- | --- |
+| **Intake** | The academic year the record applies to (e.g. 2025-2026). |
+| **Campus** | The specific school campus. |
+| **Study Level** | The program level (e.g. Senior High School, College). |
+| **Learning Modality** | Mode of delivery (e.g. FLEX, On-site). |
+| **Qualification** | The student's prior schooling background (e.g. Junior High School G7-G10). |
+| **School Type** | Public or Private — the type of school the student came from. |
+| **DownPayment Amount** | The custom DP amount to apply (e.g. enter `200` for ₱200). |
+| **Scholarship** | Optional. The scholarship to auto-tag qualifying students with. |
+| **Status** | Toggle — enable to make the record active and enforceable. |
+
+The records table lists all configured records (Action, Intake, Campus, Study Level,
+Learning Modality, Qualification, School Type, DownPayment Amount, Scholarship Name),
+with an **Export** button.
+
+<Callout type="info">
+  Only **active** records (Status ON) are applied. Inactive records stay saved but
+  aren't enforced — the student sees the standard down payment instead.
+</Callout>
+
+## Adding a New Record
+
+<Steps>
+
+#### Select the criteria
+
+Fill in the dropdowns: **Intake**, **Campus**, **Study Level**, **Learning
+Modality**, **Qualification**, and **School Type** (typically **Public** for
+voucher-eligible students).
+
+#### Set the down payment amount
+
+In **DownPayment Amount**, enter the custom DP amount — e.g. `200` to set ₱200 for
+students matching the criteria.
+
+#### Link a scholarship (optional)
+
+If matching students should be auto-tagged with a scholarship, select it from the
+**Scholarship** dropdown. Only active scholarships appear here.
+
+#### Activate and submit
+
+Toggle **Status** ON ("Check if Active") so the record is enforced, then click
+**Submit**. It appears in the table below. Click **Cancel** to discard.
+
+</Steps>
+
+## Editing an Existing Record
+
+In the records table, click the **edit icon** under the **Action** column. The form
+populates with the existing values — make your changes and click **Submit**.
+
+## Frequently Asked Questions
+
+**A student is tagged in the scholarship but still sees the default DP amount. What do I check?**
+Confirm a Down Payment Flexibility record exists for the student's exact combination
+of intake, campus, study level, learning modality, qualification, and school type —
+and that its Status is **Active**. If it looks correct, raise a support ticket with
+the student's ID.
+
+**The cashier's Payment Collection page shows the correct DP but the student portal shows the old amount.**
+This is a known issue that has been resolved. If you still see it, raise a support
+ticket with the student's ID and both the expected and displayed amounts.
+
+**Does DP flexibility apply only to the first semester?**
+No. The configured DP amount applies across all semesters, as long as the student
+continues to meet the criteria.
+
+**I can't find a scholarship in the Scholarship dropdown.**
+The dropdown only shows active scholarships. Open the **Scholarship Configuration**
+page and confirm the scholarship is set to Active.
+
+**What happens if I save a record but forget to toggle Status to Active?**
+The record is saved but not enforced — matching students still see the standard DP
+amount. Edit the record and set Status to Active to activate it.

@@ -1,0 +1,159 @@
+---
+title: External Bulk Scholarship Tagging
+---
+
+# External Bulk Scholarship Tagging
+
+## Overview
+
+The **External Bulk Scholarship Tagging** page creates external scholarship records
+and tags students to them in bulk using an Excel upload. It supports scholarship
+mapping, filtered student selection, template download, upload verification,
+locking, and report extraction — for teams that track external scholarships
+separately from regular fee computation.
+
+<Callout type="important">
+  External scholarship tagging is for **tracking and reporting only**. It does not
+  recalculate assessment fees, billing, or ORF computation.
+</Callout>
+
+## Prerequisites
+
+- You have access to **Academics → Scholarship Management → External Bulk
+  Scholarship Tagging**.
+- The academic session, campus, college, curriculum, and semester values are
+  already configured and available in the page filters.
+- The scholarship to tag has been created in the **External Scholarship Mapping**
+  tab (see below).
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the list of modules, click **Academics**.
+3. Open **Scholarship Management**.
+4. Click **External Bulk Scholarship Tagging**.
+
+## Understanding the Page
+
+The page has two tabs:
+
+- **External Scholarship Mapping** — creates the scholarship master record that
+  later appears in the tagging dropdown. Fields: **Scholarship Type** (Fixed Amount
+  or Percent (%) wise), **Scholarship Title**, and the **Amount/Percentage** value
+  for the chosen type. Buttons: **Show**, **Submit**, **Cancel**.
+- **External Scholarship Tagging** — filters students, downloads the template,
+  verifies the upload, submits tagging, locks it, and generates the report.
+
+The tagging tab filters on **Academic Session**, **Campus**, **College**,
+**Curriculum**, **Semester**, and optionally **Scholarship**. Its Excel template has
+two sheets:
+
+| Sheet | Purpose |
+| --- | --- |
+| **Student List** | Student rows with `STUDENT_ID`, `STUDENT_NAME`, `ACADEMIC_SESSION`, `CAMPUS`, `COLLEGE`, `COURSE`, `SEMESTER`, and `EXTERNAL_SCHOLARSHIP`. |
+| **External Scholarship** | Scholarship setup rows with `SCHOLARSHIP NAME`, `SCHOLARSHIP %`, and `SCHOLARSHIP_FIXED_AMT`. |
+
+Key buttons: **Show**, **Download Template**, **Choose File**, **Verify Excel**,
+**Submit**, **Lock**, **Report**, **Cancel**.
+
+<Callout type="info">
+  Always start from the downloaded template for the selected student set. Do not
+  rename columns, remove required sheets, or change the template structure.
+</Callout>
+
+## Creating an External Scholarship Mapping
+
+<Steps>
+
+#### Select the scholarship type
+
+On the **External Scholarship Mapping** tab, set **Scholarship Type** to **Fixed
+Amount** or **Percent (%) wise**.
+
+#### Enter the scholarship title
+
+In **Scholarship Title**, enter the approved external scholarship name. Use the same
+name consistently in the Excel template and in any support references.
+
+#### Submit the mapping
+
+Complete the value field for the selected type, then click **Submit**. The
+scholarship becomes available for tagging and reporting.
+
+</Steps>
+
+<Callout type="warning">
+  If the scholarship doesn't appear in the tagging tab, refresh the page and confirm
+  the mapping saved with the correct type and title.
+</Callout>
+
+## Tagging Students Through Excel Upload
+
+<Steps>
+
+#### Select the student filters
+
+On the **External Scholarship Tagging** tab, choose the **Academic Session**,
+**Campus**, **College**, **Curriculum**, and **Semester**. Select a **Scholarship**
+if you need to filter or report against a specific one.
+
+#### Show the student list
+
+Click **Show** to load the students matching your filters, and review them.
+
+#### Download the template
+
+Click **Download Template**. The workbook contains the expected sheets and columns —
+keep the structure unchanged.
+
+#### Fill in the template
+
+In **Student List**, enter the scholarship value in the `EXTERNAL_SCHOLARSHIP`
+column for the students to be tagged. In **External Scholarship**, confirm the
+scholarship name and the correct fixed amount or percentage.
+
+<Callout type="warning">
+  Do not edit the header names, sheet names, or student-identifying columns — the
+  system uses those to verify the file.
+</Callout>
+
+#### Upload and verify
+
+Click **Choose File**, select the completed workbook, and click **Verify Excel**.
+Wait for verification before submitting.
+
+#### Submit and lock
+
+After the file verifies, click **Submit** to apply the tagging. Once it's confirmed
+and should no longer change, click **Lock**. Review all filters and the uploaded
+file before locking, since locking is meant to prevent further changes.
+
+</Steps>
+
+## Generating the External Scholarship Report
+
+Select the academic filters and scholarship on the **External Scholarship Tagging**
+tab, then click **Report** to generate the External Scholarship Report in Excel.
+Check that the output matches the expected session, campus, college, curriculum,
+semester, and scholarship. If it doesn't, recheck the uploaded template and filters.
+
+## Frequently Asked Questions
+
+**Can I tag more than one external scholarship to the same student?**
+No. The current implementation supports only one external scholarship per student.
+
+**Can I create a scholarship without a fixed amount or percentage?**
+No. The setup must use either **Fixed Amount** or **Percent (%) wise** so the record
+has a defined configuration.
+
+**Does tagging change a student's assessment, billing, or ORF computation?**
+No. It's for tracking and reporting only. If a financial posting looks incorrect,
+raise a support ticket with the affected student IDs and screenshots.
+
+**Why is the scholarship not appearing in the Scholarship dropdown?**
+Confirm it was created in the **External Scholarship Mapping** tab with the correct
+type and title, then refresh the page.
+
+**Should I edit the downloaded template columns?**
+No. Keep the sheet and header names unchanged — the page uses the template structure
+to verify the upload.

@@ -1,0 +1,155 @@
+---
+title: Terms & Conditions Configuration
+---
+
+# Terms & Conditions Configuration
+
+## Overview
+
+The **Terms & Conditions Configuration** page lets administrators design and manage
+the Privacy Agreement and Consent Form that students must complete before
+submitting their subject enlistment. The consent content is authored in a **raw
+HTML template editor**, which supports headings, paragraphs, lists, a mandatory
+acknowledgement checkbox, and any number of optional consent questions with radio
+options.
+
+When a record is set **Active**, students are prompted to read the Terms &
+Conditions, tick the mandatory acknowledgement, answer any optional questions, and
+click **Accept** before their enlistment can be submitted. When **Inactive**, the
+consent step is hidden entirely.
+
+## How to Access
+
+1. Log in to the SIS as an Administrator.
+2. From the list of modules, click **Configuration**.
+3. Select **Terms & Conditions Configuration**.
+
+## Understanding the Page
+
+The page has a **configuration form** at the top and a **records table** below.
+
+### Configuration form
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Page Name** | Yes | Which SIS page this entry applies to (e.g. Student Enlistment). |
+| **Terms & Conditions Content** | Yes | An **Add / Edit Template** button that opens the template editor. Reads "No template added" until saved. |
+| **Upload Consent Form** | No | Optional PDF, **up to 1 MB** only. |
+| **Status** | Yes | "Check if Active" toggle — on shows the T&C to students, off hides it. |
+
+Use **Submit** to save or **Cancel** to discard.
+
+### Records table
+
+Each row shows the **Page Name**, an **Action** edit icon (loads the record into
+the form), a **Template Preview** eye icon (👁️ — read-only rendered view), a
+**Template Edit** pencil (✏️ — opens the HTML editor for that record), plus
+**Upload File**, **Created By**, **Created Date**, and **Status**.
+
+## Understanding the Template Editor
+
+The **Terms & Conditions Template Editor** is a **raw HTML editor** — you author the
+consent document directly in HTML, giving full control over formatting, the
+mandatory checkbox, and optional radio-button questions. A typical PHINMA Privacy
+Agreement template includes a title and section headings, body paragraphs, a
+**mandatory acknowledgement checkbox**, and an **Optional Consents** section with
+numbered questions. Click **Save Template** to commit, or **Cancel** to discard.
+
+<Callout type="info">
+  The editor accepts raw HTML, so whoever maintains the template needs basic HTML
+  proficiency. PHINMA maintains a master template that can be copied between
+  schools — coordinate with your project team before authoring one from scratch.
+</Callout>
+
+<Callout type="warning">
+  The **mandatory** acknowledgement checkbox is what gates the **Accept** button on
+  the student side. **Optional** consent questions do not block submission, but the
+  student's selections are still recorded.
+</Callout>
+
+## Adding a New Record
+
+<Steps>
+
+#### Select the page
+
+Click the **Page Name** dropdown and select the SIS page to configure (e.g.
+**Student Enlistment**).
+
+#### Add or edit the template
+
+Click **Add / Edit Template**. In the editor, write or paste the HTML for the
+consent document — section headings, body text, the mandatory acknowledgement
+checkbox, and any optional questions — then click **Save Template**.
+
+#### Upload a consent form (optional)
+
+Click **Choose File** under **Upload Consent Form** and select a PDF no larger than
+**1 MB**. PDF is the only accepted format.
+
+#### Set the status
+
+Toggle **Check if Active** ON to make the Terms & Conditions live for students, or
+leave it off to configure without publishing yet.
+
+#### Submit
+
+Click **Submit**. The record appears in the records table. To confirm how it looks
+to students, click the 👁️ icon in the **Template Preview** column.
+
+</Steps>
+
+## Editing an Existing Record
+
+You can edit the **record** (page, upload, status) and the **template** (HTML)
+independently:
+
+- **Record fields** — click the **edit icon** in the **Action** column, change the
+  fields, and click **Submit**.
+- **HTML template only** — click the **pencil** in the **Template Edit** column,
+  edit the HTML, and click **Save Template**. Updated content reflects immediately
+  in the student pop-up with no need to re-submit the record.
+- **Preview** — click the **eye icon** in the **Template Preview** column.
+
+## How the Student Side Works
+
+When the record is **Active**, the student selects subjects and clicks **Submit &
+Next**, and the Terms & Conditions pop-up appears with the configured content. The
+student must tick the **mandatory acknowledgement checkbox** — the **Accept** button
+stays disabled until they do — may answer any optional questions, and can **Print**
+a copy. Clicking **Accept** submits the enlistment and logs their selections;
+**Cancel** closes the pop-up without submitting. When the record is **Inactive**,
+the pop-up is skipped entirely.
+
+<Callout type="info">
+  The configuration applies **globally** — there is no per-campus, per-college, or
+  per-session filter. The Active/Inactive toggle is the sole switch.
+</Callout>
+
+## Frequently Asked Questions
+
+**I added a record but students still don't see the pop-up. What's wrong?**
+Check the **Status** toggle. If it's off (gray), the T&C is **Inactive**. Edit the
+record, enable the toggle, and Submit.
+
+**A student says the Accept button stays greyed out.**
+The **Accept** button is disabled until the mandatory acknowledgement checkbox is
+ticked. Ask the student to scroll through the content and tick the required
+checkbox. If it's ticked and Accept is still disabled, take a screenshot and raise
+a support ticket.
+
+**I'm not comfortable writing HTML. Can I still configure the template?**
+The editor accepts raw HTML only. Coordinate with your project team — PHINMA
+maintains a master Privacy Agreement template that can be copied across schools.
+
+**Can I configure different Terms & Conditions for different pages?**
+Yes. The **Page Name** dropdown links a record to a specific SIS page. Create
+separate records, each with a unique page selected.
+
+**What happens if I upload a file larger than 1 MB?**
+The system rejects it. Compress the PDF first. The upload field is optional — you
+can configure the T&C using the HTML template alone.
+
+**Can I delete a Terms & Conditions record?**
+The interface supports editing records, not deleting them. To remove one, set it to
+**Inactive** (which disables it) or contact your SIS administrator.

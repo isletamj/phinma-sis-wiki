@@ -2,29 +2,23 @@
 title: Docs
 ---
 
-# Docs
+# PHINMA SIS Wiki
 
-Documentation for the PHINMA SIS platform.
+Guides for using the PHINMA Student Information System (SIS) — what each page is
+for and how to use it, written for the administrators and staff who run the
+system day to day.
 
-## Writing a changelog entry
+The documentation is organised by module. Pick a section to get started:
 
-Add one MDX file per release to `content/changelog/`, named by date:
+- [Configuration](/docs/configuration) — set up students, employees, users,
+  roles, and system-wide options
+- [Academics](/docs/academics)
+- [Examinations](/docs/examinations)
+- [Finance](/docs/finance)
+- [Student Details](/docs/student-details)
+- [University Setup](/docs/university-setup)
+- [SIS Support](/docs/sis-support)
+- [Processes](/docs/processes)
 
-```
-content/changelog/2026-07-15.mdx
-```
-
-Give it `title` and `date` frontmatter. The changelog page picks it up
-automatically and sorts it into place — nothing else to register.
-
-Group the details with `<Section>`, which renders a collapsed-by-default
-panel:
-
-```mdx
-<Section title="New">
-- What got added
-</Section>
-```
-
-Use `<YouTube id="..." />` for video, and put images in
-`public/images/changelog/` (compress to WebP first).
+Only **Configuration** is fully written up so far — the other sections are on
+their way.

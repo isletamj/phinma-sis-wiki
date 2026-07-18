@@ -1,0 +1,129 @@
+---
+title: Employee Masters
+---
+
+# Employee Masters
+
+## Overview
+
+The **Employee Masters** page is where school administrators define and manage the
+lookup values used across the Employee module. Think of it like building the
+options in a dropdown menu — whatever you add here becomes a selectable choice when
+managing employee records elsewhere in the system.
+
+It has four tabs — **Title**, **Position**, **Employment Status**, and **Type of
+License** — and each entry can be set Active or Inactive.
+
+<Callout type="important">
+  The values you configure here flow directly into employee-facing pages and
+  reports. A **Position** you create (e.g. "Dean") appears as a selectable
+  designation in [Add Employee](/docs/configuration/add-employee). Setting an
+  entry to **Inactive** removes it from dropdowns without deleting it — useful for
+  retiring a value while preserving historical records.
+</Callout>
+
+## How to Access
+
+1. Log in to the PHINMA SIS.
+2. From the list of modules, select **Configuration**.
+3. Search for and click **Employee Masters**.
+4. The page opens on the **Title** tab by default. Use the tab bar to switch
+   between **Title**, **Position**, **Employment Status**, and **Type of License**.
+
+## Understanding the Page
+
+Every tab follows the same layout:
+
+- **Form (top)** — a text field for the value name plus a **Status toggle**
+  ("Check if Active"), which is ON by default, so new entries are created Active.
+- **Submit / Cancel** — Submit saves the entry; Cancel clears the form.
+- **Table (bottom)** — lists existing entries with a green **Active** or red
+  **Inactive** badge, and a pencil icon in the **Action** column for editing.
+- **Search and Export** — filter the table or download the list.
+
+### The four tabs
+
+| Tab | What it holds | Example |
+| --- | --- | --- |
+| **Title** | Honorific/salutation for an employee | Mr., Mrs., Dr. |
+| **Position** | Job designation or role — appears across the system and in reports | Professor, Dean, Accounting Officer |
+| **Employment Status** | Employment classification | Full time, Contractual |
+| **Type of License** | Professional accreditation or license held | Accreditation, Board Exam Passer |
+
+<Callout type="warning">
+  **Position** is the most critical tab. When a position is assigned to an
+  employee, the system pulls its name from this list. If a position isn't set up
+  properly, the system may display an incorrect value (e.g. a number like "5"
+  instead of "Dean"). Always ensure positions are correctly named and Active
+  before assigning them.
+</Callout>
+
+## Adding a New Entry
+
+<Steps>
+
+#### Open the relevant tab
+
+Navigate to the tab you want to add to (e.g. **Position**).
+
+#### Enter the value
+
+Type the new value in the text field (e.g. "Vice President for Academic Affairs").
+
+#### Confirm the status
+
+Make sure the **Status toggle** ("Check if Active") is ON if the entry should be
+immediately available.
+
+#### Submit
+
+Click **Submit**. The new entry appears in the table below.
+
+</Steps>
+
+## Editing or Deactivating an Entry
+
+You cannot delete entries — deactivate them instead to remove them from dropdowns
+while preserving historical records.
+
+<Steps>
+
+#### Find the entry
+
+Navigate to the tab and locate the entry in the table (use Search if needed).
+
+#### Open it for editing
+
+Click the **pencil icon** in the Action column. The form populates with the
+existing values.
+
+#### Update or deactivate
+
+Change the name, or toggle the **Status** to OFF to deactivate it.
+
+#### Submit
+
+Click **Submit**. The status badge changes from green **Active** to red
+**Inactive** if you deactivated it.
+
+</Steps>
+
+## Frequently Asked Questions
+
+**I added a new Position but it's not showing up when I add an employee. Why?**
+Check that the Status toggle was ON when you submitted. Find the entry in the
+Position tab — if it shows **Inactive**, edit it, toggle to Active, and Submit.
+
+**Can I delete an entry I no longer need?**
+No. The system doesn't support deleting master entries, to preserve data
+integrity. Set the entry to **Inactive** instead — it will no longer appear as a
+selectable option.
+
+**An employee's designation shows as a number (e.g. "5"). What does that mean?**
+The Position assigned to the employee wasn't properly set up in Employee Masters.
+Check the Position tab to confirm the position exists and is Active. If it
+persists, raise a support ticket.
+
+**I accidentally submitted a duplicate entry. What should I do?**
+Find the duplicate, edit it, and set it to **Inactive**. Keep only the intended,
+correctly named entry as Active.

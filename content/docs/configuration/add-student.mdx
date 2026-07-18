@@ -1,0 +1,163 @@
+---
+title: Add Student
+---
+
+# Add Student
+
+## Overview
+
+The **Add Student** page brings new students into the SIS. It handles two related
+but separate tasks from a single page, each on its own tab:
+
+- **Upload Student** — adds student records in bulk by uploading a filled Excel
+  template. This is where student data (name, course, section, intake, and so on)
+  enters the system.
+- **Create Student Login** — creates login accounts for students who have already
+  been uploaded, sets their initial password, and emails their credentials.
+
+Think of it as a two-step process: first load the student data, then activate
+their accounts. The tabs work in that sequence.
+
+## How to Access
+
+1. Log in to the SIS.
+2. From the list of modules, go to **Configuration**.
+3. Search for and click **Add Student**.
+
+## Tab 1: Upload Student
+
+Use this tab to add student records in bulk by uploading a prepared Excel file.
+The same process applies whether the file has one row or thousands.
+
+<Callout type="warning">
+  Before importing, make sure the **College** and **Course** values you plan to
+  use are already configured in the SIS. If they don't exist yet, set them up
+  first — rows referencing unknown values will fail.
+</Callout>
+
+You must use the **official SIS Excel template**. Files that don't match the
+expected format — column names, column order, or file type — will fail to upload.
+
+### Steps
+
+<Steps>
+
+#### Download the template
+
+On the Upload Student tab, click **Download Template**. Always download a fresh
+copy rather than reusing an old file — the template may have been updated.
+
+#### Fill in the template
+
+The template file (`Student_Data_Template.xlsx`) has one data-entry sheet and
+several reference sheets (Campus, College, Course, Semester, Section, Gender,
+AdmissionType, LearningModality, CurriculumMaster, Payment Type). The reference
+sheets list the valid values you must use — do not enter free-text values that
+aren't on those lists.
+
+<Callout type="info">
+  Do not rename, remove, reorder, or add columns, and do not merge cells or apply
+  special formatting. `MIDDLE_NAME` is the only optional column — it may be left
+  blank. Save the file as `.xlsx` (not `.xls` or `.csv`).
+</Callout>
+
+#### Select the intake and attach the file
+
+Back in the SIS, select the correct **Intake** from the dropdown, then attach your
+completed file using the **Upload File** area.
+
+<Callout type="info">
+  The **currently active intake does not appear** in the dropdown. This is by
+  design — the system hides the current session to prevent accidental uploads to
+  the wrong intake. Confirm you are selecting the correct target intake.
+</Callout>
+
+#### Verify, then upload
+
+Click **Verify Excel** first. The system checks the file for errors and displays
+any issues without changing anything. Once verification passes, click **Upload
+Excel** to commit the records. The system confirms how many records were created
+and flags any rows that failed.
+
+</Steps>
+
+Things to note:
+
+- The upload supports up to **30,000 student records** per file.
+- Always verify before uploading — **Verify Excel** catches format and data errors
+  without making any changes.
+- For large files, the upload may take several minutes. Do not close or refresh
+  the browser tab while it's processing.
+- The system records who performed the upload and when, in the audit log.
+
+## Tab 2: Create Student Login
+
+Use this tab to create login accounts for students who have **already been
+uploaded**. This tab does not add student records — it activates accounts for
+students already in the system.
+
+### Steps
+
+<Steps>
+
+#### Select the student group
+
+Go to the **Create Student Login** tab and select the **Intake**, **Campus**,
+**College**, **Course**, and **Semester** for the students you want to activate.
+
+#### Show the students
+
+Click **Show** to display the matching students.
+
+#### Choose a password option
+
+- **Password Same As Student ID** *(default)* — the initial password is set to the
+  student's ID.
+- **Generate Random Password** — the system creates a unique password per student.
+- **Custom Password** — you set one password applied to all selected students.
+
+#### Create the logins and send credentials
+
+Click **Create Login** to generate the accounts, then **Send Email** to deliver
+credentials to each student's registered email address.
+
+</Steps>
+
+<Callout type="info">
+  Students must already be uploaded before their accounts can be created. If a
+  student doesn't appear after clicking **Show**, confirm their record uploaded
+  successfully. **Send Email** goes to the address stored in the student's record —
+  verify addresses are correct before sending.
+</Callout>
+
+## Frequently Asked Questions
+
+**Can I add just one student?**
+Yes. The Upload Student tab works for any number of rows — fill in one student's
+data in the template and upload it the same way you would a large batch.
+
+**Do I need to fill in Middle Name?**
+No. The `MIDDLE_NAME` column is optional and may be left blank.
+
+**What happens if some rows have errors?**
+The system processes what it can and flags the rows with issues. Successful
+records are created; failed rows are not. Correct the flagged rows and re-upload
+only those.
+
+**Can I undo a bulk upload?**
+Uploaded records can't be reversed automatically. If students were uploaded with
+incorrect data or to the wrong intake, each record must be corrected individually.
+Contact your system administrator for help.
+
+**Why is the current intake missing from the dropdown?**
+It's a safeguard — the active intake is intentionally hidden to prevent uploads to
+the wrong enrollment session. Select from the other available intakes.
+
+**What is the difference between Verify Excel and Upload Excel?**
+Verify Excel checks your file for errors without saving anything. Upload Excel
+commits the data. Always verify first.
+
+**A student didn't receive their credentials email. What do I check?**
+Verify the email address on the student's record is correct, confirm with your
+campus IT team that email notifications are active, then re-send from the Create
+Student Login tab by selecting the same group and clicking **Send Email**.

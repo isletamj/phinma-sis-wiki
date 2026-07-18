@@ -1,0 +1,151 @@
+---
+title: Add Employee
+---
+
+# Add Employee
+
+## Overview
+
+The **Add Employee** page is the primary entry point for onboarding faculty and
+staff into the SIS. It lets administrators create employee records, assign them to
+a campus, college, department, and position, and generate their login credentials.
+Once an employee is saved here, their account becomes visible and manageable under
+**User Management**.
+
+<Callout type="important">
+  Faculty accounts should always be created through **Add Employee** — not through
+  [User Creation](/docs/configuration/user-creation). Only Add Employee correctly
+  links the faculty record to the right campus and college, and makes it available
+  for activation in
+  [Bulk Employee User Creation](/docs/configuration/bulk-employee-user-creation).
+</Callout>
+
+## How to Access
+
+1. Log in to the SIS portal.
+2. From the list of modules, go to **Configuration**.
+3. Click **Add Employee**.
+
+## Understanding the Page
+
+The page has two tabs:
+
+- **Add Employee** — fill in an employee's details one at a time.
+- **Import Employee Data** — upload a bulk list of employees via Excel.
+
+Below the form, a searchable table lists existing employee records (Faculty Code,
+Title, names, Mobile No., Email, College, Position). Use **Search** to filter and
+**Export** to download the list.
+
+## Adding an Employee Manually
+
+<Steps>
+
+#### Enter basic information
+
+| Field | Notes |
+| --- | --- |
+| **Faculty Code** | Unique identifier (e.g. 97-080-A). Each campus follows its own format. |
+| **Title** | Select from the dropdown (Mr., Mrs., Ms., Dr.). |
+| **Last Name** | Required. Accepts letters, hyphens, apostrophes, and accented characters (ñ, é). |
+| **First Name** | Required. Same character support as Last Name. |
+| **Middle Name** | Optional. |
+| **Employee Full Name** | Auto-generated from the names entered, or typed manually. |
+| **Mobile No.** | Required. Select country code, then enter the number. |
+| **Email** | Required. Login credentials are sent here. |
+| **Upload Photo** | Optional. Click the **+** icon and select Upload File. |
+
+<Callout type="info">
+  Name fields support accented vowels (á, é, í, ó, ú), accented consonants (ñ, ć,
+  ś), hyphens, apostrophes, grave accents, tildes, and parentheses. Enter names
+  exactly as they appear on official documents.
+</Callout>
+
+#### Fill in employment details
+
+| Field | Notes |
+| --- | --- |
+| **Campus** | Required. The employee's home campus. |
+| **College** | Required. Populates based on the selected Campus. |
+| **Department** | Required. Populates based on the selected College. |
+| **Position** | Required. The employee's role (e.g. Faculty, Staff). |
+| **Employment Status** | Optional. Regular, Contractual, etc. |
+| **User Type** | Required. Defines the employee's access role (e.g. Faculty). |
+| **Date of Employment** | Optional. MM/DD/YYYY. |
+| **Date of Permanent Status** | Optional. MM/DD/YYYY. |
+
+#### Fill in license details (if applicable)
+
+Optional — for employees who hold a PRC license. Provide **Type of License**,
+**License Number**, **Date of Issue**, and **Date of Expiry** (MM/DD/YYYY).
+
+#### Submit the record
+
+Click **Submit**. The system creates the record, generates a username, and saves
+the account in an **inactive** state (the employee can't log in yet). The record
+is added to the table below. Click **Cancel** to discard without saving.
+
+<Callout type="warning">
+  After submitting, the account is **not yet active**. To activate it so the
+  employee can log in, go to
+  [Bulk Employee User Creation](/docs/configuration/bulk-employee-user-creation),
+  which activates the account and triggers the credentials email.
+</Callout>
+
+</Steps>
+
+## Importing Employees in Bulk
+
+Use the **Import Employee Data** tab to onboard many employees at once.
+
+<Steps>
+
+#### Download the template
+
+Click the **Import Employee Data** tab, then **Download Template** to get the
+standard Excel file.
+
+#### Fill in the template
+
+Complete the **Employee Data Template** sheet. Key columns: `FACULTY_CODE`,
+`TITLE`, `FIRST_NAME`, `MIDDLE_NAME`, `LAST_NAME`, `MOBILE_NO`, `EMAILID`,
+`CAMPUS`, `COLLEGE`, `DEPARTMENT`, `POSITION`, `EMPLOYEE_STATUS`, `Type of
+License`, `DATE_OF_EMPLOYMENT` (DD-MM-YYYY), `DATE_OF_PERMANENT_STATUS`, and
+`USER_TYPE`.
+
+<Callout type="info">
+  The template includes reference sheets (Title, Campus, College, Department,
+  Position, Employee Status, Type of License, User Type). Your entries must match
+  those values **exactly** — a mismatch in campus or college name will cause the
+  import to fail.
+</Callout>
+
+#### Upload the file
+
+Click the XLS file icon to attach your completed file, then click **Upload Excel**
+to import the records.
+
+</Steps>
+
+## Frequently Asked Questions
+
+**An employee said they didn't receive a credentials email. What should I do?**
+Add Employee only creates the account — it doesn't send credentials. Go to
+[Bulk Employee User Creation](/docs/configuration/bulk-employee-user-creation) to
+activate the account, which triggers the email. If activation was already done and
+the email still didn't arrive, verify the email address on the record is correct,
+then raise a support ticket to have the email re-triggered.
+
+**Can I create a faculty account from the User Creation page instead?**
+No. Faculty accounts must be created through Add Employee. Accounts created
+directly in User Creation aren't correctly linked to campus and college
+configuration, which causes issues in grade encoding, attendance, and other
+faculty functions.
+
+**The employee's name contains a hyphen or apostrophe. Is that supported?**
+Yes. Hyphens (-) and apostrophes (') are fully supported in all name fields.
+
+**I see a duplicate entry for the same employee. What should I do?**
+Don't attempt to delete duplicates yourself. Raise a support ticket with the
+faculty code, full name, and both record entries so the backend team can resolve
+the duplication.

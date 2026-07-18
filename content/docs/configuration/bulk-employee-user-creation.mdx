@@ -1,0 +1,114 @@
+---
+title: Bulk Employee User Creation
+---
+
+# Bulk Employee User Creation
+
+## Overview
+
+The **Bulk Employee User Creation** page creates SIS login accounts for multiple
+employees at once. It has two tabs:
+
+- **Bulk Employee User Creation** — generate user accounts for employees who don't
+  yet have one. Credential emails are sent automatically when accounts are created.
+- **Email Send** — resend login credentials to employees who didn't receive or
+  haven't used the automatic email.
+
+<Callout type="info">
+  Employees must already exist in the system (added via
+  [Add Employee](/docs/configuration/add-employee)) before their accounts can be
+  created here.
+</Callout>
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal with your admin credentials.
+2. Go to the **Configuration** module.
+3. Select **Bulk Employee User Creation**.
+
+## Understanding the Page
+
+Both tabs share the same filters — **Campus**, **College**, and **User Type**
+(required) — and a **Show** button that loads the matching employees into the
+table. Use the table's **Search** box and **Export** button to find employees or
+download the list.
+
+- **Bulk Employee User Creation tab** — after loading, select employees and click
+  **Create User**. Successfully created accounts show a **CREATED** status.
+- **Email Send tab** — includes extra columns (**Login Status**, **Email Send
+  Date**, User Name, Mobile No., Email) that help identify who still needs their
+  credentials resent.
+
+## Creating User Accounts in Bulk
+
+Make sure the employees have already been added via
+[Add Employee](/docs/configuration/add-employee) — if not, they won't appear here.
+
+<Steps>
+
+#### Set your filters
+
+On the **Bulk Employee User Creation** tab, select the **Campus**, **College**, and
+**User Type** (required).
+
+#### Load the employee list
+
+Click **Show**. The table populates with eligible employees matching your filters.
+
+#### Select and create
+
+Tick individual employees, or use the header checkbox to select all. Click
+**Create User**. Their status changes to **CREATED**, and login credential emails
+are sent **automatically** — no further action is needed to deliver them.
+
+</Steps>
+
+## Resending Login Credentials
+
+Credentials are sent automatically when accounts are created. Use the **Email
+Send** tab only when an employee didn't receive the initial email or hasn't logged
+in yet.
+
+<Steps>
+
+#### Switch to the Email Send tab
+
+Click the **Email Send** tab at the top of the page.
+
+#### Filter and load
+
+Select Campus, College, and User Type, then click **Show**.
+
+#### Send credentials
+
+Select the employees to email and click **Send Mail**. The **Email Send Date**
+column updates with the timestamp.
+
+</Steps>
+
+<Callout type="info">
+  Before sending, check the **Login Status** column. Employees showing **LOGGED
+  IN** have already accessed their account — focus on those who haven't logged in
+  or whose **Email Send Date** is blank.
+</Callout>
+
+## Frequently Asked Questions
+
+**I can't find an employee in the list. What should I check?**
+The employee must first be registered in
+[Add Employee](/docs/configuration/add-employee). Verify the record exists and that
+their Campus, College, and User Type are filled in.
+
+**I created the account but the employee hasn't received their login email.**
+Credentials are sent automatically at creation. If it didn't arrive, confirm the
+email address on their Add Employee record is correct, then use the **Email Send**
+tab to resend.
+
+**Can I create accounts for multiple User Types at the same time?**
+No. Select one User Type at a time and run the process separately for each (e.g.
+Faculty first, then Admin staff).
+
+**A faculty account was deactivated and needs reactivating. Can I do that here?**
+No. Activation and deactivation aren't handled on this page. Raise a support ticket
+with the employee's full details (Employee Code, Name, Campus, College, Username)
+and the CSE team will coordinate the update.

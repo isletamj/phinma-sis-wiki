@@ -1,0 +1,130 @@
+---
+title: Role-Based Access
+---
+
+# Role-Based Access
+
+## Overview
+
+The **Role-Based Access** page is the central hub for managing user access in the
+SIS. Administrators define roles, assign SIS pages or modules to those roles, and
+bulk-assign roles to users — all from one page. It's organized into three tabs that
+follow a setup sequence: create a role, assign pages to it, then assign it to users.
+
+<Callout type="warning">
+  Setting up access correctly requires all three tabs **in order** — first create
+  the role in **User Role**, then assign pages in **User Role Menu**, then assign
+  users in **Bulk Link Assign Department Wise**. Skipping steps leaves users with no
+  modules or incorrect access.
+</Callout>
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the list of modules, click **Configuration**.
+3. Click **Role-Based Access**.
+
+## Understanding the Page
+
+The page has three tabs, each handling a distinct part of the workflow.
+
+### Bulk Link Assign Department Wise
+
+The default tab — used to assign or remove roles from users in bulk, filtered by
+**User Type**, and to audit access. Select a User Type, tick one or more roles under
+**Access Link**, then work with the **Details** table (User Name, Full Name, and
+current Role per user). Key buttons:
+
+| Button | What it does |
+| --- | --- |
+| **Show** | Loads the user list for the selected User Type and Access Link filters. |
+| **Submit** | Assigns the checked Access Links to the selected users. |
+| **Remove** | Removes the checked Access Links from the selected users. |
+| **Report** / **User Role Report** | Download a report of the current view or of all role assignments. |
+| **Log Report** | Download an audit log of what access was added or removed, by whom, and when. |
+| **Cancel** | Resets the selection without saving. |
+
+### User Role
+
+Used to create and manage role definitions. Each role has a **User Type**, a **User
+Role Name**, a **Role Description**, a **Status** (Active/Inactive), and an optional
+**Is Default** toggle. Existing roles appear in the **User Role List** table with an
+edit icon.
+
+### User Role Menu
+
+Used to assign which SIS pages or modules a role can access. A tree view lists all
+pages organized by module — check the pages the role should access, then save.
+
+<Callout type="warning">
+  Pages must be assigned to a role here **before** users with that role can see
+  them. If a user has a role but sees no modules, check this tab first.
+</Callout>
+
+## Setting Up a New Role
+
+<Steps>
+
+#### Create the role (User Role tab)
+
+On the **User Role** tab, fill in the **User Type**, a clear **User Role Name** (e.g.
+"Registrar Staff"), and a **Role Description**. Leave **Status** on (Active). Only
+toggle **Is Default** if this role should apply automatically to new users of this
+type. Click **Submit** — the role appears in the User Role List.
+
+#### Assign pages to the role (User Role Menu tab)
+
+On the **User Role Menu** tab, select the role you just created, expand the modules
+in the tree view, and check the pages the role should access. Only checked items are
+visible to users with this role. Save when done.
+
+#### Assign the role to users (Bulk Link Assign tab)
+
+On the **Bulk Link Assign Department Wise** tab, select the **User Type**, tick the
+role under **Access Link**, and click **Show**. In the Details table, check the users
+to assign the role to, then click **Submit**. The role is active immediately —
+verify via the Role column or by logging in as an affected user.
+
+</Steps>
+
+## Editing or Deactivating a Role
+
+On the **User Role** tab, click the edit icon next to the role in the User Role List.
+Update the fields as needed, or toggle **Status** off to deactivate it without
+deleting. Click **Submit**.
+
+<Callout type="info">
+  Deactivating a role doesn't remove it from users who already have it — it only
+  prevents new assignments. To revoke a role from current users, use **Remove** in
+  the Bulk Link Assign tab.
+</Callout>
+
+## Frequently Asked Questions
+
+**A user has a role assigned but still sees no modules. What do I check?**
+First confirm pages are assigned to that role in the **User Role Menu** tab — a role
+with no page assignments shows a blank dashboard. If pages are assigned, verify the
+role's Status is **Active**. If both look correct, resubmit the role assignment in
+Bulk Link Assign.
+
+**Can I assign multiple roles to the same user?**
+Yes. A user can hold multiple roles, and their visible modules are the combined set
+of all pages assigned to each role.
+
+**When I select Student as the User Type, I only see Student-specific roles. Is that correct?**
+Yes, intentionally. The system filters roles to the selected User Type, which
+prevents assigning non-student roles (like Admin or Finance) to student accounts.
+
+**How do I remove a role from a user?**
+In **Bulk Link Assign Department Wise**, select the User Type, tick the role under
+Access Link, click **Show**, select the users, then click **Remove** (not Submit).
+
+**Can I deactivate a role instead of deleting it?**
+There's no delete option. Edit the role in the **User Role** tab, toggle **Status**
+off, and save. Deactivated roles stay in the list for reference but can't be newly
+assigned.
+
+**What's the difference between User Role Report and Log Report?**
+**User Role Report** shows the current state — which roles exist and what pages they
+access. **Log Report** shows the change history — what was added or removed, by whom,
+and when. Use Log Report for auditing.

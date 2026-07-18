@@ -1,0 +1,120 @@
+---
+title: Campus Master
+---
+
+# Campus Master
+
+## Overview
+
+The **Campus Master** page is the system's central record for managing institutional
+campuses. Administrators register campuses, define their contact and operational
+details, and control whether each campus is available across the SIS. Every campus
+configured here becomes selectable in enrollment, finance, and academic transaction
+pages throughout the system.
+
+<Callout type="important">
+  Setting a campus to **Inactive** removes it from all transaction pages across the
+  SIS. Only deactivate a campus when it's no longer accepting students or
+  transactions — not just to hide it temporarily.
+</Callout>
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation bar, click **University Setup**.
+3. Click **Campus Master**.
+
+## Understanding the Page
+
+The page has a **form at the top** for adding campuses and a **records table below**
+listing all registered campuses.
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Campus** | Yes | Full name of the campus (e.g. Quezon City Campus). |
+| **Campus Code** | Yes | Short alphanumeric code that uniquely identifies the campus (e.g. `01`). |
+| **Email** | Yes | Official campus email address. |
+| **Mobile No.** | Yes | Campus contact number (digits only). |
+| **Capacity** | Yes | Maximum student capacity (e.g. `10000`). |
+| **Address** | Yes | Complete physical address. |
+| **Permit Number** | No | Government-issued permit number, used in SHS reports that require it. |
+| **Status** | Yes | "Check if Active" toggle. Active = visible across the SIS; Inactive = hidden from all transaction pages. |
+
+The records table lists each campus (Campus, Code, Email, Mobile No., Capacity,
+Address, Permit Number, Status) with an edit icon in the **Action** column. Use
+**Search** to locate a campus and **Export** to download the list.
+
+## Adding a New Campus
+
+<Steps>
+
+#### Fill in the campus details
+
+Enter the **Campus** (full official name), a unique short **Campus Code** (e.g. `01`,
+`02`), the official **Email**, **Mobile No.** (digits only), **Capacity**, and
+complete **Address**. Fill in **Permit Number** only if the campus has one that must
+appear on SHS reports.
+
+#### Set the campus status
+
+The **Status** toggle defaults to **Active** — leave it enabled for an operational
+campus. Disable it only if the campus should not yet appear in transaction pages.
+
+#### Submit the record
+
+Click **Submit**. The campus appears in the table and becomes selectable across the
+SIS.
+
+</Steps>
+
+<Callout type="warning">
+  If the campus doesn't immediately appear in other SIS pages, wait a moment and
+  refresh. If it persists, confirm the Status is set to Active.
+</Callout>
+
+## Editing an Existing Campus
+
+<Steps>
+
+#### Find the campus
+
+Locate it in the records table (use **Search** to filter).
+
+#### Open for editing
+
+Click the **edit icon** in the **Action** column. The details load into the form
+above.
+
+#### Update and submit
+
+Make your changes and click **Submit**. To deactivate a campus, toggle **Status**
+off before submitting — it's then removed from all transaction dropdowns.
+
+</Steps>
+
+## Frequently Asked Questions
+
+**What happens when I set a campus to Inactive?**
+It's hidden from all transaction pages across the SIS — no longer appearing in
+dropdowns for enrollment, finance, scheduling, or other modules. The record isn't
+deleted and can be reactivated at any time.
+
+**Can I delete a campus record?**
+No. There's no delete option. To retire a campus, set its Status to Inactive — this
+preserves historical data while preventing new transactions.
+
+**What is the Permit Number field used for?**
+It's a government-issued identifier used to populate the permit number on SHS
+reports. If your campus doesn't need this, leave it blank.
+
+**Does the Campus Code need a specific format?**
+There's no system-enforced format, but codes should be short and consistent (e.g.
+`01`, `02`, `NCR`) and must be unique.
+
+**I set a campus to Inactive but it still appears on some transaction pages.**
+Reopen the record to confirm the status saved as Inactive, then clear your browser
+cache and refresh. If it persists, raise a support ticket with the campus name and
+affected page.
+
+**Can more than one campus be registered?**
+Yes. There's no limit, but each campus must have a unique Campus Code.

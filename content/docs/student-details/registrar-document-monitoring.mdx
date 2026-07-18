@@ -1,0 +1,113 @@
+---
+title: Registrar Document Monitoring
+---
+
+# Registrar Document Monitoring
+
+## Overview
+
+The **Registrar Document Monitoring** page is a dashboard that lets Registrars
+monitor, filter, and verify student document submissions across all campuses. It
+provides a compliance summary (Compliant, Partially Compliant, Non-Compliant) and
+lets Registrars review each student's uploaded documents and record verification
+decisions directly in the system.
+
+<Callout type="info">
+  This dashboard replaces manual tracking by giving Registrars a centralized view of
+  document compliance, with the ability to verify or reject individual documents and
+  export filtered lists for reporting.
+</Callout>
+
+## How to Access
+
+1. Log in to the PHINMA SIS.
+2. Select **Student Details** from the list of modules.
+3. Search for **Registrar Document Monitor** using the page search bar.
+4. Click the page link to open the dashboard.
+
+## Understanding the Page
+
+The dashboard has a **filter panel** at the top and a **student list** below.
+
+The filter panel requires **Intake**, **Campus**, **College**, **Study Level**, and
+**Course**. Click **Show** to load the list, **Export** to download the current
+filtered view as CSV, or **Cancel** to reset.
+
+After clicking **Show**, three counters appear:
+
+| Counter | Meaning |
+| --- | --- |
+| Compliant Students | All required documents submitted **and** verified by a Registrar. |
+| Partially Compliant | Some required documents submitted or verified, but not all. |
+| Non-Compliant | No required documents submitted. |
+
+The student list shows Sr. No., **Student ID** (a link that opens the Student Details
+popup), **Student Name** (also opens the popup), College, Course, and Semester Name.
+
+<Callout type="info">
+  The counters reflect the filtered population. Changing a filter and clicking
+  **Show** again refreshes the counts.
+</Callout>
+
+## Verifying Student Documents
+
+<Steps>
+
+#### Filter and load students
+
+Select the **Intake**, **Campus**, **College**, **Study Level**, and **Course**, then
+click **Show**.
+
+#### Open student details
+
+Click a student's row or Student ID. A **Student Details** popup opens with their ID
+and name, course and semester, and a document list.
+
+#### Review the document list
+
+The document table shows each mapped document with its **Mandatory** flag,
+**Uploaded** flag, a **View** (eye) icon to preview the file, **Status** (Pending /
+Verified / Rejected), **Verified By**, **Verified Date**, and **Remarks**.
+
+<Callout type="important">
+  An uploaded document is **not** automatically verified. Registrar verification is a
+  separate action, and original documents must be submitted to the Registrar for
+  verification.
+</Callout>
+
+#### Record your decision
+
+Check one or more documents, choose **Verified**, **Rejected**, or **Pending** in
+the **Status** dropdown, add notes in **Remarks** (max 100 characters), and click
+**Submit**. The Status, Verified By, and Verified Date columns update.
+
+#### Close or continue
+
+Click **Close** to return to the student list, and repeat for other students.
+
+</Steps>
+
+## Exporting the Filtered List
+
+After filtering and clicking **Show**, click **Export** to download the student list
+as CSV. The export honors the active filters and includes per-document submission and
+verification status.
+
+## Frequently Asked Questions
+
+**A student uploaded all their documents but still shows as Partially Compliant. Is this a bug?**
+No — uploading and verification are separate steps. A student is fully **Compliant**
+only once their required documents are both uploaded and verified by a Registrar.
+Complete the verification for any documents still Pending.
+
+**Can I verify multiple documents for the same student at once?**
+Yes. In the popup, select multiple documents, choose a Status, add Remarks, and click
+**Submit** — the same status and remarks apply to all selected documents.
+
+**Do the counters count documents or students?**
+They reflect compliance at the **student** level, but each student's status is
+computed from whether their individual required documents are submitted and verified.
+
+**My exported CSV is missing columns I expected. What should I include in a support ticket?**
+The filters you applied, a screenshot of the export, the expected columns, and your
+campus and role.
