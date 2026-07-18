@@ -73,6 +73,67 @@ main li {
   line-height: 1.75rem; /* matches `x:leading-7` on <p> */
 }
 
+/* Print / "Export to PDF" (the PDF option in app/_components/copy-page.tsx just
+   calls window.print()). Nextra ships almost no print CSS — only `print:hidden`
+   on the TOC — so strip the site chrome here and leave a clean, full-width
+   article for the browser's Save-as-PDF.
+
+   The `nextra-*` hooks are the stable ones (see CLAUDE.md); the pagination row
+   has no stable class, so it's matched by its compiled utility combo. If a
+   future Nextra renames that, the only fallback cost is prev/next links showing
+   up in the PDF — benign, not a broken page. */
+@media print {
+  .nextra-banner,
+  .nextra-navbar,
+  .nextra-sidebar,
+  .nextra-mobile-nav,
+  .nextra-toc,
+  .nextra-breadcrumb,
+  .nextra-search,
+  .phinma-copy-page,
+  /* the copy/export dropdown popover — headless-ui portals it to <body> as a
+     <ul role="listbox">, outside .phinma-copy-page, so hide it by its role.
+     It's open at the instant window.print() fires (see copy-page.tsx). */
+  [role='listbox'],
+  body::before,
+  footer,
+  /* pagination (prev/next) — best-effort, see note above */
+  main .nextra-border.x\:border-t {
+    display: none !important;
+  }
+
+  /* Use the whole print page, not the centred doc column. */
+  main article,
+  main .nextra-content-width {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* <Section> is a native <details>; print its contents even when collapsed so
+     nothing is silently dropped from the PDF. */
+  details > summary ~ * {
+    display: revert !important;
+  }
+  details > summary {
+    list-style: none;
+  }
+
+  /* Prose is muted on screen by design; darken it for ink/PDF legibility. */
+  main :is(p, li),
+  .dark main :is(p, li) {
+    color: black;
+  }
+
+  /* Keep headings and their following content from splitting across pages. */
+  main :is(h1, h2, h3, h4) {
+    break-after: avoid;
+  }
+  main :is(img, pre, table, details) {
+    break-inside: avoid;
+  }
+}
+
 /* An entry's title morphs from the feed into its permalink — `share="morph"` on
    the <ViewTransition> is what names this class. */
 ::view-transition-group(.morph) {

@@ -1,6 +1,7 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { ViewTransition } from 'react'
 import { useMDXComponents as getMDXComponents } from '../../mdx-components'
+import { CopyPage } from '../_components/copy-page'
 import {
   entryTitleTransition,
   formatDate,
@@ -48,12 +49,22 @@ export default async function Page(props: PageProps) {
 
   const content = <MDXContent {...props} params={params} />
 
+  // Our replacement for Nextra's built-in copy button (disabled in layout.tsx),
+  // adding an "Export to PDF" option. Only on normal docs pages: the changelog
+  // index renders a feed and the entries are body-only fragments — neither had a
+  // copy button before, and the index has no single `sourceCode` to copy.
+  const copyButton =
+    !isChangelogIndex && !isChangelogEntry && sourceCode ? (
+      <CopyPage sourceCode={sourceCode} />
+    ) : null
+
   return (
     <Wrapper
       toc={isChangelogIndex ? await getEntriesToc() : toc}
       metadata={metadata}
       sourceCode={sourceCode}
     >
+      {copyButton}
       {isChangelogEntry ? (
         <>
           {/* Pushed well clear of the breadcrumb: it and the date are both small

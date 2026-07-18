@@ -36,6 +36,9 @@ const RootLayout: FC<{ children: ReactNode }> = async ({ children }) => (
         pageMap={await getPageMap()}
         docsRepositoryBase="https://github.com/isletamj/msph-phinma-changelog/tree/main"
         editLink="Edit this page on GitHub"
+        // Disabled in favour of our own <CopyPage> (app/_components/copy-page.tsx),
+        // which adds an "Export to PDF" option the built-in can't be extended with.
+        copyPageButton={false}
       >
         {children}
       </Layout>
