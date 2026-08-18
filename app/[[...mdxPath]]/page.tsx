@@ -50,13 +50,13 @@ export default async function Page(props: PageProps) {
   const content = <MDXContent {...props} params={params} />
 
   // Our replacement for Nextra's built-in copy button (disabled in layout.tsx),
-  // adding an "Export to PDF" option. Only on normal docs pages: the changelog
-  // index renders a feed and the entries are body-only fragments — neither had a
-  // copy button before, and the index has no single `sourceCode` to copy.
+  // adding an "Export to PDF" option. Everywhere but the changelog index: that
+  // one renders a whole feed of entries via <ChangelogFeed />, so its own
+  // `sourceCode` is just the index file and would copy/print the wrong thing.
+  // An entry's `sourceCode` is its raw MDX, frontmatter included, so the copy
+  // carries the title even though the body is a heading-less fragment.
   const copyButton =
-    !isChangelogIndex && !isChangelogEntry && sourceCode ? (
-      <CopyPage sourceCode={sourceCode} />
-    ) : null
+    !isChangelogIndex && sourceCode ? <CopyPage sourceCode={sourceCode} /> : null
 
   return (
     <Wrapper
@@ -64,35 +64,47 @@ export default async function Page(props: PageProps) {
       metadata={metadata}
       sourceCode={sourceCode}
     >
-      {copyButton}
       {isChangelogEntry ? (
         <>
           {/* Pushed well clear of the breadcrumb: it and the date are both small
-              muted text, so close together they read as one block. */}
-          <header className="mt-8 mb-8">
-            <time
-              dateTime={date}
-              className="text-sm text-neutral-500 dark:text-neutral-400"
-            >
-              {formatDate(date)}
-            </time>
-            {/* Morphs from the matching <h2> in the feed. Colour is set
-                explicitly: our own elements would otherwise inherit the muted
-                body copy colour. */}
-            <ViewTransition
-              name={entryTitleTransition(params.mdxPath[1])}
-              share="morph"
-              default="none"
-            >
-              <h1 className="mt-1 text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
-                {metadata.title}
-              </h1>
-            </ViewTransition>
+              muted text, so close together they read as one block.
+
+              The copy/export control sits inside this row rather than above it,
+              as a flex sibling of the date+title: an entry supplies its own
+              header here, so the button has something to line up with. Its
+              `float-end` is simply ignored on a flex item, and the mobile FAB it
+              also renders is `fixed`, so out of flow — neither needs a special
+              case. */}
+          <header className="mt-8 mb-8 flex items-start justify-between gap-4">
+            <div>
+              <time
+                dateTime={date}
+                className="text-sm text-neutral-500 dark:text-neutral-400"
+              >
+                {formatDate(date)}
+              </time>
+              {/* Morphs from the matching <h2> in the feed. Colour is set
+                  explicitly: our own elements would otherwise inherit the muted
+                  body copy colour. */}
+              <ViewTransition
+                name={entryTitleTransition(params.mdxPath[1])}
+                share="morph"
+                default="none"
+              >
+                <h1 className="mt-1 text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+                  {metadata.title}
+                </h1>
+              </ViewTransition>
+            </div>
+            {copyButton}
           </header>
           {content}
         </>
       ) : (
-        content
+        <>
+          {copyButton}
+          {content}
+        </>
       )}
     </Wrapper>
   )

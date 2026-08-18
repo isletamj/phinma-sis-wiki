@@ -11,7 +11,7 @@ import {
   FileIcon,
   LinkArrowIcon
 } from 'nextra/icons'
-import type { FC, SVGProps } from 'react'
+import { useEffect, type FC, type SVGProps } from 'react'
 
 // A drop-in clone of nextra-theme-docs' built-in <CopyPage> (see
 // node_modules/nextra-theme-docs/dist/components/copy-page.js), reproduced here
@@ -46,6 +46,41 @@ export const CopyPage: FC<{ sourceCode: string }> = ({ sourceCode }) => {
   // `isCopied` flips true when the Copy-page option runs and auto-resets after
   // 2s (nextra's useCopy), driving the primary button's "Copied" feedback.
   const { copy, isCopied } = useCopy()
+
+  // Expand every collapsed <Section> for the duration of a print, so the PDF
+  // carries the accordion contents ("New", "Improvements", ...) instead of a row
+  // of closed headers.
+  //
+  // This has to be JS. <Section> is a native <details> (app/_components/section.tsx),
+  // and a closed one hides its panel in the *user agent's* own styles — Chrome
+  // exposes that as `::details-content { content-visibility: hidden }` — which no
+  // `display` rule of ours can reliably reach across browsers. The `open`
+  // attribute is the only lever that works everywhere.
+  //
+  // Bound to beforeprint/afterprint rather than to the Export-to-PDF handler so
+  // Ctrl+P and the browser's own print menu produce the same PDF. Safe to drive
+  // imperatively: <Section> is uncontrolled, so React has no `open` state to
+  // fight us over. Only the ones we opened are closed again, leaving whatever
+  // the reader had expanded exactly as it was.
+  useEffect(() => {
+    let opened: HTMLDetailsElement[] = []
+
+    const expand = () => {
+      opened = [...document.querySelectorAll('details')].filter(el => !el.open)
+      for (const el of opened) el.open = true
+    }
+    const collapse = () => {
+      for (const el of opened) el.open = false
+      opened = []
+    }
+
+    window.addEventListener('beforeprint', expand)
+    window.addEventListener('afterprint', collapse)
+    return () => {
+      window.removeEventListener('beforeprint', expand)
+      window.removeEventListener('afterprint', collapse)
+    }
+  }, [])
 
   // Shared by the desktop dropdown and the mobile FAB. The primary desktop
   // button prints directly; everything else routes through here.

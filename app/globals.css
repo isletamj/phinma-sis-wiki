@@ -110,11 +110,12 @@ main li {
     margin: 0 !important;
   }
 
-  /* <Section> is a native <details>; print its contents even when collapsed so
-     nothing is silently dropped from the PDF. */
-  details > summary ~ * {
-    display: revert !important;
-  }
+  /* Expanding a collapsed <Section> for the PDF is NOT done here — a closed
+     <details> hides its panel in the UA's own styles (Chrome:
+     `::details-content { content-visibility: hidden }`), so no author rule
+     reliably reopens it. copy-page.tsx sets the `open` attribute on
+     beforeprint instead. This only drops the disclosure marker the UA would
+     otherwise print on a plain <details> (<Section> already sets `list-none`). */
   details > summary {
     list-style: none;
   }
