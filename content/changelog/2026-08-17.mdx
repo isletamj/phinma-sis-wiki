@@ -1,0 +1,22 @@
+---
+title: AMS attendance integration
+date: 2026-08-17
+---
+
+This release connects PHINMA's Attendance Monitoring System (AMS) to the SIS, so
+attendance captured by the face recognition devices reaches the SIS through a
+nightly sync, starting with UI. It also removes the "Late and Excused" option
+from the Attendance by Faculty page.
+
+<Section title="New">
+- **AMS–SIS attendance integration:** Attendance now flows from the face recognition (FR) devices into the SIS by way of AMS — FR device → AMS → SIS, never FR directly to SIS. A new **Attendance Monitoring System Data** page shows the records received, and a scheduler pulls them in daily at 10:00 PM PHT. Rolled out to one college for now. *(UI)*
+- **AMS attendance – status mapping:** AMS returns Present, Absent, Late and Suspended; Late and Suspended are both recorded as **Present** in the SIS. Late enrollees come through as **NA**. The encoding faculty is taken from the record's `created_by` field.
+- **AMS attendance – sessions with no record:** A scheduled session that receives no AMS record defaults to **Absent**. An FR punch outside the subject's scheduled class time is never mapped to that session, so nothing is transmitted for it in the first place — no override handling is needed on the SIS side.
+- **AMS attendance – subjects with two sessions in a day:** AMS lets a teacher mark attendance only once per day for a subject, even where lecture and lab (or two sessions of the same subject) are scheduled on the same day. The SIS replicates that single record across both sessions rather than waiting for a second one.
+- **AMS attendance – precedence and locking:** AMS data takes precedence over what is already in the SIS: it fills in sessions with no attendance and overwrites those that already have it, whether the class is partly or fully marked. Once a subject has been synced, its attendance can no longer be edited in the SIS — the Submit button is withdrawn and a note explains why.
+- **AMS attendance – missing schedule configuration:** Where the class schedule configuration is missing for a session, attendance is not marked for that session.
+</Section>
+
+<Section title="Improvements">
+- **Attendance by Faculty – "Late and Excused" removed:** The **Late and Excused** option no longer appears in the attendance status dropdown on the Attendance by Faculty page. Students marked late are treated as present. Existing attendance records are unaffected.
+</Section>

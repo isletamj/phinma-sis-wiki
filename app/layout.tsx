@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   description: 'Changes and updates to the PHINMA SIS platform.'
 }
 
-const navbar = <Navbar logo={<b>PHINMA SIS</b>} />
+const navbar = <Navbar logo={<b>PHINMA SIS Wiki</b>} />
 
-const footer = <Footer>{new Date().getFullYear()} © PHINMA SIS.</Footer>
+const footer = <Footer>{new Date().getFullYear()} © PHINMA SIS Wiki | Mastersoft PH</Footer>
 
 const RootLayout: FC<{ children: ReactNode }> = async ({ children }) => (
   <html lang="en" dir="ltr" className={inter.variable} suppressHydrationWarning>
@@ -35,7 +35,8 @@ const RootLayout: FC<{ children: ReactNode }> = async ({ children }) => (
         footer={footer}
         pageMap={await getPageMap()}
         docsRepositoryBase="https://github.com/isletamj/msph-phinma-changelog/tree/main"
-        editLink="Edit this page on GitHub"
+        editLink={false}
+        feedback={{ content: false }}
         // Disabled in favour of our own <CopyPage> (app/_components/copy-page.tsx),
         // which adds an "Export to PDF" option the built-in can't be extended with.
         copyPageButton={false}
