@@ -1,0 +1,60 @@
+---
+title: AI Agent and retention policy
+date: 2026-08-12
+---
+
+This release introduces the AI Agent, an assistant that answers questions and
+runs reports for faculty and admin users through chat and voice, and delivers
+the Retention Policy engine that enforces deloading, disqualification, and
+shifting rules from grade history. It also brings the configurable Survey
+Module, a Registrar-side INC completion page, new finance and usage reporting,
+Cloudflare Turnstile on login, and a broad round of performance work on the
+pages that were timing out.
+
+<Section title="New">
+- **AI Agent – faculty module:** Faculty can now retrieve their class lists, view teaching schedules, check average attendance per course/section, mark attendance by voice command, and raise support tickets through the AI Agent, with validation and confirmation prompts before anything is submitted.
+- **AI Agent – admin module:** The AI Agent now covers the admin side of the SIS, answering on Class List Report, Student Ledger, Student Attendance, Course Campus Mapping, Enlistment Checklist Report, Student ORF, Receivables Projection, and Student Grade.
+- **AI Agent – report coverage:** Dedicated agents are now available for the Class List Report, Student ORF, and Receivables Projection Report, so these can be generated conversationally instead of through the report pages.
+- **AI Agent – master data selection:** The AI Agent walks the user through a guided selection of Session, Campus, College, Course, Scheme, Semester, Learning Modality, Subject, and Section, loading each list from the choices already made so only valid combinations can be reached.
+- **AI Agent – access configuration:** Administrators can now configure which users and roles have access to the AI Agent.
+- **Retention Policy:** Implemented the general retention policy for licensure-track programs per Learning Memorandum No. 2022-003 — the three-strike rule (shift after three failed attempts at the same subject), the fail-twice rule on a 4.0 grade, the prerequisite rule requiring at least 50% before a higher-level subject, year-level retention grades, and a cap of three retakes per subject. The system triggers advisories, blocks re-enrolment beyond the permitted attempts, and logs every retention action.
+- **Retention Policy – SWU tertiary programs:** Implemented the revised SY 2024–2025 policy for all tertiary programs except Law/JD and Medicine, covering deloading and disqualification thresholds, the write-off clause for subjects passed on a first or second retake, exclusions for PE, SSP, NSTP, Research, Clinics, MTAP and Special Topics, No Credit handling by year level, and the separate rules for shiftees, transferees, and returnees. *(SWU)*
+- **Retention Policy – board subjects and GRR remark:** The policy is applied to board subjects only, and students who fall below the GRR grade are now marked **PASSED – GRR** in the Remark column.
+- **Retention Policy report:** A new report lists students affected by the retention policy along with the rule that was applied.
+- **Survey/Feedback Module:** Delivered a new configurable Survey Module (CR-2026-0014) supporting multiple survey types (Course Teacher Feedback, General Feedback, Course Exit Feedback), objective (MCQ) and descriptive question setup with scoring logic, question-group-to-subject/course allocation, feedback scheduling (start/end date-time), and student survey submission through login.
+- **INC completion via Registrar panel:** A new Registrar page handles INC (Incomplete) completion end to end (CR-2026-0020) — search for a student, select the session where the INC was applied, review the subjects still marked INC, update the grades, then approve and release them. Released grades reflect in the student account and appear in the TOR under the re-exam column.
+- **Receivable Projections Summary report:** The Receivable Projections Summary is now available in the Finance module under Accounting Reports, matching the presentation used in AIMS.
+- **Monthly ERP Module Usage Dashboard:** A new school-level dashboard reports module usage month by month — new applicants, new admits, enlistment, fees, miscellaneous, cancelled receipts, class schedule, attendance, submitted-to-program and subject-released counts — alongside admin, faculty, student and other login counts, total and monthly active users, and mobile app usage, with a configurable date filter and summary KPI cards.
+- **Cloudflare Turnstile on login and OTP:** Cloudflare Turnstile CAPTCHA now protects the login page and OTP verification against automated attempts.
+- **Admin multiple logins with read-only access:** Users signing in through Admin Multiple Login now get a read-only session — all insert and update operations are blocked for the duration.
+- **User journey tracking:** The system now records and displays a user's navigation path through the portal.
+- **Email upload utility:** A new utility bulk-updates college email IDs or personal email IDs from an uploaded file, reporting back when no records matched or when the file format is invalid.
+- **Privacy Agreement and Consent Form – Excel export:** Student responses to the Privacy Agreement and Consent Form, including the option selected for every radio-button question, can now be exported to Excel from the frontend.
+- **Global subjects report:** A new report lists global subjects, delivered alongside a review of the existing reports that carry final grades.
+- **Migrated data report:** A new report covers records migrated through both routes — the migration utility and the backend — so the two can be reconciled in one place.
+- **Campus-wise summary report:** Added a campus-wise summary report for HK.
+- **Miscellaneous Fees Head – inactive option:** The **Inactive** option is back for Miscellaneous Fees Head (CR-2026-0004), so discontinued fees can be deactivated instead of deleted and stop appearing in transactions. *(UPang & PUCU)*
+- **Exam – session-wise transmutation table tagging:** A new utility tags transmutation tables per session, complementing the modality-wise setup already available under Exam Rule Configuration.
+</Section>
+
+<Section title="Improvements">
+- **Exam Rule Configuration – multi-select subject and semester:** The Subject and Semester fields on the Exam Rule Configuration page now accept multiple entries at once instead of one per save.
+- **Transmutation Table page – load time:** Editing a transmutation table record no longer takes minutes to populate. Indexing was added to the underlying grade-mapping procedure, and the page now indicates when data is still loading. *(AU)*
+- **Grade encoding – Excel upload optimization:** The grade encoding Excel upload has been optimized for faster processing on large files.
+- **Excel utilities – upload method:** The upload method used by the Excel utilities has been changed to avoid the server-side failures seen on larger files.
+- **Role-based access page – optimization:** The role-based access page has been optimized for faster loading.
+- **Main menu – loading indicator:** The main menu now shows a loader while it builds, on the admin, employee, and student versions of the page.
+- **Maintenance notification:** The system maintenance notification has been reworked with a configuration page and a clearer presentation on both the login page and inside the SIS.
+- **Attendance Monitoring Report – week-wise status:** The week-wise view now carries additional columns, including SSP Adviser and SSP Section.
+- **Historical Data Migration – validation:** Migration now blocks records from a different college, scheme, or semester being written into the same session.
+- **Historical Grade Data Migration – notes formatting:** The notes on the Historical Grade Data Migration page are now presented as a bulleted list.
+- **TOR Grading Scheme – Select All:** The Curriculum dropdown under TOR Grading Scheme now offers a Select All option, with individual entries still selectable and deselectable afterwards. *(COC)*
+- **Demand Cancellation page:** The Cancel DP Request page has been renamed **Demand Cancellation** to reflect that more than DP can be cancelled there, INC demand cancellation has been added, and an Academic Session selector now disambiguates repeating semesters.
+- **Cancel receivable – dual degree students:** Cancelling a receivable for a dual degree student no longer returns a "Demand not found" pop-up.
+- **Grade encoding extension – validation:** Faculty can now extend a grade encoding deadline whether or not grades have already been encoded, which was the point of the page but was previously blocked.
+- **OTP – time validation and attempt lockout:** The Change Password page now enforces OTP time validation and disables OTP after repeated incorrect attempts.
+- **User creation – audit log:** User creation is now written to the audit log.
+- **Crystal report generation logs:** Crystal report generation is now logged for troubleshooting and usage tracking.
+- **College and Course Wise Efficiency Summary – mandatory fields:** Mandatory fields on the College and Course Wise Efficiency Summary now extend down to course level rather than stopping at college. *(SJCDC)*
+- **Student Profile – ORF download validation:** Downloading an ORF for a student whose enlistment is complete but not yet approved by the adviser no longer produces a blank document; the system now explains that the ORF is available only after adviser approval.
+</Section>
