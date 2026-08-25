@@ -1,0 +1,389 @@
+---
+title: Survey / Feedback Module Process
+---
+
+# Survey / Feedback Module Process
+
+## Overview
+
+The **Survey / Feedback Module Process** is the end-to-end workflow for
+collecting structured feedback from students inside SIS — from the school admin
+defining feedback types and questions, through scheduling the survey window for
+the right college and courses, to students (or admins on their behalf) submitting
+responses and a supervisor reviewing the results on the dashboard or exporting
+the consolidated dataset.
+
+This guide is the map for the whole process. It shows how the pages connect, who
+acts at each stage, and what moves a survey forward from configuration to live
+response collection to reporting.
+
+<Callout type="important">
+  The stages run in strict sequence. Each stage's dropdowns are populated from the
+  records saved in the previous stage, so skipping a step — or leaving a parent
+  record **Inactive** — leaves downstream dropdowns empty and blocks the rest of
+  the workflow.
+</Callout>
+
+## The Pages in This Process
+
+The Survey / Feedback workflow spans five configuration and collection pages
+under **Academics**, plus the reporting pages used once responses start coming
+in.
+
+| Stage | SIS Page | Who Acts | What Happens |
+| --- | --- | --- | --- |
+| 1 — Define | Academics → **Feedback Type** | School Admin | Names the survey, classifies it under a Feedback Mode, and becomes the parent record for everything below |
+| 2 — Author | Academics → **Feedback Question Master** | School Admin | Writes the individual questions and their answer format |
+| 3 — Wire | Academics → **FeedBack Question Mapping** | School Admin | Attaches saved questions to a Feedback Type + Semester combination |
+| 4 — Schedule | Academics → **Feedback Activity** | School Admin | Sets when the survey is live and for which college, courses and semesters |
+| 5 — Collect | Academics → **FeedBack Form** | Student / Admin | Where responses are actually submitted |
+| 6 — Review | Academics → **Feedback Dashboard** · **Subject Registration Report** | Supervisor / Admin | Monitors completion and exports the response data |
+
+<Callout type="info">
+  Think of Stages 1–3 as building the survey from the ground up — a survey
+  definition (Type), then individual questions, then a wiring step that maps those
+  questions to a Type + Semester combination. Stage 4 is the schedule: when does
+  the survey go live, and for whom. Stage 5 is the live collection. Stage 6 is
+  where you read the results.
+</Callout>
+
+## The Survey / Feedback Process
+
+<Steps>
+
+#### School Admin defines a Feedback Type
+
+On **Feedback Type**, the admin creates the survey record that everything else
+hangs off.
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| **Feedback Type** | Yes | Free text — the name of this specific survey, as it will appear in the Feedback Type dropdowns on every page downstream (for example *Course Feedback SY 25-26 SEM II*) |
+| **Feedback Mode** | Yes | Picklist classifying what kind of survey this is — **Course Exit Feedback**, **Course Teacher Feedback**, or **General Feedback**. These three values are hardcoded; new Modes cannot be added from any configuration page |
+| **Active Status** | — | Checked by default. Controls whether this Type appears in downstream dropdowns |
+
+An optional **Add Note** sidebar accepts internal-reference text that does not
+surface to students; saved notes are read back through the **View** button in the
+**Note** column of the list below.
+
+The list below the form shows **Feedback Type**, **Feedback Mode**, **Active
+Status** and **Note** for every saved record, with **Search** and **Export**
+available.
+
+<Callout type="important">
+  Feedback Type and Feedback Mode are not the same thing. The **Type** is the name
+  you type in — one per survey you intend to run. The **Mode** is the category you
+  file it under, chosen from three fixed values. Several Types can share the same
+  Mode: three different course-feedback surveys across three sessions are three
+  Types, all set to **Course Teacher Feedback** Mode. You create as many Types as
+  you need, but the three Modes are fixed — there is no way to add a fourth.
+</Callout>
+
+<Callout type="important">
+  Only **Active** Types appear in the dropdowns on Feedback Question Master,
+  FeedBack Question Mapping, and Feedback Activity. To retire a survey without
+  losing its questions or response history, edit the Type and uncheck **Active
+  Status** rather than attempting deletion.
+</Callout>
+
+#### School Admin authors the questions
+
+The admin opens **Feedback Question Master**, picks a parent **Feedback Type**,
+and creates each question.
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| **Feedback Type** | Yes | The parent Type from Stage 1 — only Active Types appear |
+| **Ans. Option Type** | Yes | **Objective** for MCQ-style answers, **Descriptive** for free text |
+| **Feedback Question** | Yes | The question text as students will see it — maximum 500 characters |
+| **Sequence No.** | Yes | Controls the order questions appear in on the form |
+| **Check for Mandatory** | — | Checked by default. Makes the question required before a student can submit |
+| **Is Consider for Calculation?** | — | Checked by default. See the warning below |
+| **Active Status** | — | Checked by default. Unchecking takes the question out of circulation without deleting it |
+
+When **Ans. Option Type** is set to **Objective**, an **Answer Options** table
+appears where the admin defines each choice label and its internal value (for
+example `Excellent : 5`, `Good : 4`).
+
+The **Feedback Question List** below the form shows Feedback Type, Feedback
+Question, Ans. Option Type, Seq. No., Mandatory and Active Status for every saved
+question, with **Search** and **Export** available.
+
+For bulk authoring, the **Upload Feedback Question** sidebar provides a three-tab
+Excel template — **Feedback Questions** for the row data, **Feedback Type** for
+the picklist of valid types, and **Ans Option Type** for `Objective` /
+`Descriptive`. The Feedback Questions sheet uses six columns:
+
+| Column | Notes |
+| --- | --- |
+| **Feedback Type** | Must match a value on the Feedback Type tab |
+| **Feedback Question** | The question text as students will see it |
+| **Ans Option Type** | `Objective` or `Descriptive` |
+| **Sequence No** | Controls display order on the form |
+| **Check for Mandatory** | `TRUE` or `FALSE` |
+| **Answer Options** | Format `Text:Value;Text:Value` — e.g. `Excellent:5;Good:4;Average:3;Poor:2;Very Poor:1`. Leave blank for Descriptive rows |
+
+Download the blank sheet, populate it, and click **Upload (Excel)** to import all
+rows at once. Invalid or incomplete rows are rejected rather than creating partial
+question records.
+
+<Callout type="important">
+  The custom Answer Options saved here — whether entered on the form or imported
+  through the Excel upload — are what the student-facing FeedBack Form renders. If
+  a student reports seeing the wrong answer scale, check the options saved against
+  the question here first.
+</Callout>
+
+<Callout type="warning">
+  **"Is Consider for Calculation?" has no effect today.** The checkbox is present
+  and saves, but nothing reads it yet — the scoring logic behind it has not been
+  built for PHINMA. It arrives checked by default; leave it there, since the
+  outcome is the same either way.
+</Callout>
+
+#### School Admin maps questions to Type + Semester
+
+On **FeedBack Question Mapping**, the admin picks a **Feedback Type**, picks the
+target **Semester** (e.g. **Y1S1**, **Y1S2**, **Y2 Summer**), and uses the
+multi-select **Feedback Question** dropdown to attach one or more questions from
+Stage 2. The dropdown is filtered by Type, so only questions authored under the
+selected Type appear.
+
+The mapping is what determines which questions a Feedback Activity actually
+presents when it goes live for that Type + Semester combination.
+
+<Callout type="info">
+  A single question can be mapped to multiple semesters — one mapping row per
+  semester. This is how a school reuses a question like "How would you rate the
+  course content?" across Y1S1 and Y1S2 without re-authoring it.
+</Callout>
+
+<Callout type="important">
+  Saved Mappings also drive the **Semester** list on Feedback Activity. A Semester
+  only appears on Activity if at least one Mapping exists for the selected Type
+  and that Semester.
+</Callout>
+
+#### School Admin schedules a Feedback Activity
+
+On **Feedback Activity**, the admin selects the **Feedback Type** and **Session**,
+picks a **College**, chooses the target population from the **Course** and
+**Semester** listboxes, and sets the **Start Date / End Date / Start Time / End
+Time** window. Dates are entered as **DD/MM/YYYY**; both dates are required, and
+the time fields default to 12:00 AM.
+
+The two listboxes are gated by the selections above them:
+
+- **Course** shows *"Select College first"* until a College is chosen, then lists
+  that college's courses.
+- **Semester** shows *"Select Feedback Type"* until a Type is chosen, then lists
+  only semesters that have at least one Mapping under that Type.
+
+The **Activity Status** toggle controls whether the survey is live. When set to
+**Started**, students in the mapped college, courses and semesters see the form
+between the start and end times. When set to **Stopped**, the form is blocked even
+inside the date window.
+
+After submission, the activity appears in the **Feedback Activity List** below the
+form, showing Feedback Type, College, Session, the date and time window, and
+Activity Status. The **Show** (expand) icon on each row reveals the mapped Course
+and Semester rows so the admin can verify the scope before the window opens.
+
+<Callout type="info">
+  One activity covers one college. The Course listbox is filtered by the selected
+  College, so you can pick multiple courses within a college but not span
+  colleges. To cover several colleges, create one Feedback Activity per college
+  using the same Feedback Type and date window.
+</Callout>
+
+#### Student or admin submits responses
+
+**FeedBack Form** is the live collection page. The page looks slightly different
+depending on who opens it.
+
+**Student view.** When a student logs in to their own SIS account, the form
+surfaces automatically for any active activity assigned to their college, course
+and semester. Their own details are already loaded, so there is no search row —
+the page opens straight onto the detail cards and the questions.
+
+**Admin view.** An admin submitting on behalf of a student gets a **Search Student
+by Reg No** row at the top of the page. Enter the student's registration number
+(format `##-####-######`) and click **Search**; **Clear** resets the page. Two
+detail cards then render — Student ID, Student Name and College on the left,
+Courses, Session and Semester on the right — which should be checked against the
+student who made the request. The admin then picks the **Session** and **Feedback
+Type** from the dropdowns below, completes each question, and clicks **Submit
+Feedback**.
+
+The **Student Feedback** section is single-column and stacked: each question
+renders as a `* Q N.` block with an **Ans:** line directly beneath capturing the
+response. Objective questions display their saved Answer Options as horizontal
+radio buttons; Descriptive questions render a text input. A **Completion Status**
+bar above the questions starts empty and fills as answers are entered, so a
+half-finished form reads 50%.
+
+Two buttons sit below the last question. **Save Draft** stores the answers entered
+so far without submitting, so the form can be picked up and finished later.
+**Submit Feedback** records the response and closes it.
+
+<Callout type="info">
+  A long survey does not have to be completed in one sitting. **Save Draft** is the
+  right button when a student runs out of time or an admin is interrupted
+  mid-entry — the draft holds the answers and the Completion Status bar picks up
+  where it left off. Only **Submit Feedback** records the response for reporting,
+  so a survey left in draft when the activity window closes counts as unsubmitted.
+</Callout>
+
+<Callout type="important">
+  The form only renders questions that were mapped in Stage 3 for the student's
+  Type and Semester combination, and only while the matching Feedback Activity is
+  **Started** and inside its date and time window. A "missing" question on a
+  student's form almost always means the mapping or the activity scope needs
+  revisiting — not a fault on the form itself.
+</Callout>
+
+#### Supervisor reviews and exports the results
+
+There are three reporting paths, each answering a different question.
+
+**Monitoring completion while the window is open — Feedback Dashboard.**
+**Academics → Feedback Dashboard** shows how far along collection is. The **Course
+Wise Report** lists each course with its submitted count against total eligible
+students and a **Completion %** column, calculated as Submitted / Total Eligible ×
+100. The report can be reviewed on screen or exported to Excel. This is the page
+to use when the question is *"who still needs to be followed up before the window
+closes?"*
+
+**Pulling the full raw dataset — Excel Report on Feedback Activity.** The **Excel
+Report** button on **Feedback Activity** downloads the complete response dataset
+across every Type, Session, College and Course.
+
+<Callout type="warning">
+  **The dropdowns on Feedback Activity do not filter the export.** The Type /
+  Session / College / Course selectors on that page are scheduling controls for
+  creating an activity. The Excel Report always exports the full dataset — apply
+  filters in Excel after download to slice it down.
+</Callout>
+
+**Generating the formatted report — Feedback Report.** **Academics → Subject
+Registration Report** with **Report Type** set to **Feedback Report** generates a
+multi-sheet workbook for a chosen **Session**, **Campus** and **College**, with
+optional **Course**, **Semester**, **Subject Type** and **Subjects** filters. The
+workbook contains a **Feedback Report** sheet alongside per-type sheets such as
+**Course Teacher Feedback** and **General Feedback**. This is the output used for
+faculty review and accreditation submissions.
+
+</Steps>
+
+## What Happens When a Question or Activity Needs to Change
+
+The process has no formal "withdraw and resubmit" path the way other SIS
+workflows do. Course corrections happen one of three ways, depending on what needs
+to change.
+
+**The wording of a question is wrong → edit the question.** Editing a question on
+Feedback Question Master updates it for future submissions. Responses already
+recorded against the original wording are retained as-is and continue to display
+under the original text in the export. If both versions need to be reportable side
+by side, create a new question and deactivate the old one instead of editing in
+place.
+
+**A question needs to be added mid-cycle → author it, then map it.** If a
+department head requests a new question while an activity is already live, the
+admin authors it on Feedback Question Master and then maps it to the same Type +
+Semester on FeedBack Question Mapping. The new mapping takes effect immediately
+for any student who has not yet submitted. Students who already submitted are not
+re-prompted.
+
+**An activity needs to be paused → flip Activity Status to Stopped.** Setting
+**Activity Status** to **Stopped** on Feedback Activity blocks new submissions
+even if the current date is still inside the window. This is the right action when
+a question turns out to be miswritten, a wrong cohort was mapped, or the school
+needs to halt collection for any reason. Flip back to **Started** when ready to
+resume — the date and time window does not need to be re-entered.
+
+<Callout type="info">
+  Records on Feedback Type, Feedback Question Master and FeedBack Question Mapping
+  are not deleted by design — deletion would orphan historical responses. To take a
+  record out of circulation without losing history, edit it and uncheck **Active
+  Status**.
+</Callout>
+
+## Frequently Asked Questions
+
+**What is the difference between Feedback Type and Feedback Mode?**
+The **Feedback Type** is the name you type in on the Feedback Type page — one
+record per survey you intend to run, and the value that every downstream page
+filters on. The **Feedback Mode** is the category that Type is filed under, picked
+from three hardcoded values: Course Exit Feedback, Course Teacher Feedback, and
+General Feedback. Multiple Types can share one Mode. New Modes cannot be added —
+there is no configuration page behind that list, so if none of the three fits,
+pick the closest and distinguish the survey by its Type name.
+
+**Who needs to act first before any feedback can be collected?**
+The school admin. Nothing on FeedBack Form works until the full chain is in place —
+Feedback Type → Feedback Question Master → FeedBack Question Mapping → Feedback
+Activity. Empty dropdowns at any stage almost always mean the previous stage was
+skipped, or a parent record is set to **Inactive**.
+
+**A student says a question is missing from their form. Is that a bug?**
+Usually not. The form only shows questions mapped for that student's Feedback Type
+and Semester, and only while the activity is **Started** and inside its window.
+Check the Mapping for that Type + Semester first, then check the activity's
+college, course and semester scope.
+
+**Can I bulk-upload questions instead of adding them one at a time?**
+Yes. Use the **Upload Feedback Question** sidebar on Feedback Question Master.
+Download the blank Excel template — it has three tabs: **Feedback Questions** (your
+row data), **Feedback Type** (the picklist of valid types from your saved
+records), and **Ans Option Type** (Objective / Descriptive). Populate the Feedback
+Questions sheet using the six columns provided, noting that **Answer Options** uses
+the format `Text:Value;Text:Value` and is left blank for Descriptive rows, then
+click **Upload (Excel)**.
+
+**If I stop an activity mid-window, can a student still submit by working around the toggle?**
+No. When **Activity Status** is set to **Stopped**, students cannot submit even if
+the current date and time fall inside the activity's window.
+
+**What happens to existing responses if I edit a question's wording after some students have already submitted?**
+Editing updates the question for future submissions only. Responses already
+recorded against the original wording are retained as-is and continue to display
+under the original text in the export. If both versions need to be reportable side
+by side, create a new question and deactivate the old one instead of editing in
+place.
+
+**Does a student have to finish the survey in one sitting?**
+No. **Save Draft** stores the answers entered so far without submitting, and the
+form resumes with the Completion Status bar where it left off. Only **Submit
+Feedback** records the response — a survey still sitting in draft when the activity
+window closes counts as unsubmitted and will not appear in the reports.
+
+**Can an admin submit feedback on behalf of a student?**
+Yes. On FeedBack Form, search for the student by registration number, confirm the
+student details card matches the right student, pick the Session and Feedback
+Type, complete the questions, and click **Submit Feedback**. The response is
+recorded against the student's ID.
+
+**Can I assign one activity to multiple colleges?**
+Not in a single record. The Course listbox on Feedback Activity is filtered by the
+selected College, so you can pick multiple courses within one college per activity
+but not span colleges. To cover multiple colleges, create one Feedback Activity per
+college using the same Feedback Type and date window.
+
+**Why does the Excel Report on Feedback Activity download the full dataset even when I have a College selected?**
+The Type / Session / College / Course dropdowns on Feedback Activity are
+**scheduling controls** for creating an activity — they do not narrow the export.
+That button always exports the complete response dataset. If you need a filtered,
+formatted output, generate the **Feedback Report** from Academics → Subject
+Registration Report instead, or apply filters in Excel after download.
+
+**What is the difference between the Feedback Dashboard and the Feedback Report?**
+The Dashboard answers *"how far along are we?"* — completion counts and percentages
+per course while the window is open. The Feedback Report answers *"what did they
+say?"* — the actual response data, formatted for review and submission.
+
+**Does the "Is Consider for Calculation?" toggle affect feedback scores?**
+No. The toggle is wired into the UI and saves, but the backend scoring logic that
+reads this flag has not been deployed for PHINMA. Setting it has no effect on any
+score, so it can be left at the default. This guide will be updated if the
+calculation feature ships.
