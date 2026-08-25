@@ -1,0 +1,324 @@
+---
+title: SWU Retention Policy
+---
+
+# SWU Retention Policy
+
+## Overview
+
+The **SWU Retention Policy** pages are used to configure SWU's revised Academic
+Eligibility Policy for tertiary programs and to notify students who fall under
+it. Once a policy is configured, the system evaluates each student's failed
+subjects at enlistment and applies one of two outcomes automatically:
+**deloading** (a warning or probation, plus a forced drop of one or two subjects)
+or **disqualification** (the student is blocked from enlisting and advised to
+shift to another program).
+
+<Callout type="info">
+  This page covers **SWU's** Academic Eligibility (Retention) Policy, which runs
+  on its own configuration and reminder pages. All other PHINMA Education Network
+  (PEN) schools use the standard
+  [Retention Policy](/docs/academics/retention-policy) page, which has a different
+  rule set.
+</Callout>
+
+<Callout type="important">
+  The configuration page stores the **policy scope and exclusions** only.
+  Enforcement happens downstream at **Enlistment By Student**, and the remediation
+  path for disqualified students is the **Course Transfer** page.
+</Callout>
+
+## Prerequisites
+
+- The **Intake**, **Campus**, **College**, **Study Level**, and **Course** are
+  already configured in the system.
+- **Grade encoding for previous semesters is complete.** Every rule counts failed
+  subjects from grade history — missing or unposted grades will silently
+  under-count a student's failures.
+- For transferees and shiftees, **prior-school or prior-program grades have been
+  migrated and credited**. Failures that were never migrated cannot be counted.
+- Student emails are populated if you plan to use the reminders page.
+
+## How to Access
+
+The policy uses two separate pages under the **Academics** module.
+
+**Retention Configuration** — where the policy itself is set up.
+
+1. Log in to the PHINMA SIS portal as **Admin**.
+2. From the list of modules, click **Academics**.
+3. Open **Enlistment Management → Retention Configuration**.
+
+**Retention Reminders** — a separate page, where affected students are notified.
+
+1. From the list of modules, click **Academics**.
+2. Open **Enlistment Management → Retention Reminders**.
+
+<Callout type="info">
+  Both pages are commonly referred to in shorthand as **Academics → Retention
+  Configuration** and **Academics → Retention Reminders**.
+</Callout>
+
+## Understanding the Page
+
+The configuration page is a form at the top with a saved-records grid at the
+bottom.
+
+Form fields:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Intake** | Yes | Admission batch the policy applies to (e.g., 2024-2025). The policy is scoped by intake, not by academic session. |
+| **Campus** | Yes | Campus where the policy is enforced. |
+| **College** | Yes | College within the campus. |
+| **Study Level** | Yes | Study level the policy covers (tertiary). |
+| **Course** | Yes | The specific program the policy covers. |
+| **Starting Study Level / Year** | Yes | The year level from which the policy begins to apply. |
+| **Excluded Subjects** | No | Subject classifications that are exempt from the fail count (see *Excluded Subjects* below). |
+
+Grid columns for saved configurations:
+
+| Column | Description |
+| --- | --- |
+| **Intake · Campus · College · Study Level · Course** | The academic scope the row was saved against |
+| **Starting Study Level** | Year level the policy applies from |
+| **Excluded Subjects** | Classifications exempted from the fail count |
+| **Created By** | User who saved the row |
+| **Created Date** | Date the configuration was saved |
+
+<Callout type="info">
+  Use the **Search** box to filter the grid, and **Export** to download the saved
+  configuration list.
+</Callout>
+
+## Scope and Applicability
+
+| | |
+| --- | --- |
+| **Applies to** | All SWU tertiary programs |
+| **Excludes** | Bachelor of Laws / Juris Doctor, and Doctor of Medicine |
+| **Effective** | SY 2024–2025 |
+| **Source policy** | SWU PHINMA Learning Memorandum No. 1 – 2024 (*Policy Amendment and Renaming to "Academic Eligibility"*) |
+
+## How the Rules Work
+
+Every rule counts **failed subjects** from the student's grade history within the
+configured scope. There are two tiers of consequence — deloading and
+disqualification — plus a write-off clause that can reverse a count.
+
+<Callout type="important">
+  "Deloading" means the system **drops** subjects from the student's next-semester
+  enlistment. Drops are taken from the **regular panel subjects only**.
+</Callout>
+
+### Deloading Rules
+
+| Trigger | Consequence |
+| --- | --- |
+| Failed **2 different subjects** | **Written warning** (sent by email) + **1 subject dropped** next semester |
+| Failed **3 different subjects** | **Probation** + **2 subjects dropped** next semester |
+| Failed the **same subject twice** | **Probation** + **2 subjects dropped** next semester |
+
+### Disqualification Rules
+
+| Trigger | Consequence |
+| --- | --- |
+| Failed **4 different subjects** | Advised to **shift to another program** (if the subjects are not critical) |
+| Failed the **same subject 3 times** (3-strike) | Advised to **shift to another program** (if the subjects are not critical) |
+
+A disqualified student cannot complete enlistment — the **Submit and Next** button
+is removed — and must be routed through the **Course Transfer** page.
+
+### Write-off Clause
+
+If a student **passes a failed subject on the 1st or 2nd retake**, that subject is
+**removed from the disqualification count**. A student who recovers a subject
+early therefore does not carry it forward toward the 4-subject or 3-strike
+thresholds.
+
+### Excluded Subjects
+
+The following subject classifications have **no impact** on either deloading or
+disqualification:
+
+- Physical Education
+- SSP
+- NSTP
+- Research
+- Clinics (Dentistry, Optometry, Veterinary Medicine)
+- MTAP and Special Topics for MT
+
+### No Credit (NC) Policy
+
+| Student | Does an NC count? |
+| --- | --- |
+| **First-year student** | **No** — the student may simply retake the subject. NC does not count toward deloading or disqualification. |
+| **Upper-year student** | **Yes** — NC is counted, **even if the subject is a first-year subject**. |
+
+## Special Admission Types
+
+### Shiftees and Transferee-Shiftees
+
+If the failed subjects are **critical / board subjects**, the general policy
+applies and the student is placed on **probationary status**.
+
+### Transferees
+
+Transferees must meet the **residency requirement — 2 years or 4 semesters**,
+including OJT/internship.
+
+| Prior-school record (same program) | Outcome |
+| --- | --- |
+| **2 failures** | Accepted **on probation** + **2 subjects deloaded** |
+| **3 or more failures** | **Not accepted** — advised to enroll in another program |
+
+<Callout type="info">
+  Special rules apply for **Optometry, Dentistry, and Veterinary Medicine** — check
+  with the Dean before processing these programs.
+</Callout>
+
+### Returnees
+
+Returnees must follow the **latest curriculum** in effect at the time of return.
+
+- The **Dean evaluates** the old curriculum for creditable subjects.
+- The student must complete the latest curriculum's requirements.
+- Refer to **Academics Memo 2007-06**.
+
+## Configuring the SWU Retention Policy
+
+<Steps>
+
+#### Open Retention Configuration
+
+Go to **Academics → Retention Configuration**.
+
+#### Set the academic scope
+
+Select **Intake**, **Campus**, **College**, **Study Level**, and **Course**, then
+set the **Starting Study Level** — the year level from which the policy begins to
+apply.
+
+#### Set the excluded subjects
+
+Select the subject classifications that should be exempt from the fail count. If
+you leave this blank, all subjects in the student's grade history will be counted.
+
+<Callout type="warning">
+  Excluded subjects are the most common source of wrong outcomes. If PE, NSTP,
+  SSP, Research, Clinics, or MTAP/Special Topics are not excluded on the
+  configuration, students will be deloaded or disqualified on subjects that policy
+  says should never count.
+</Callout>
+
+#### Submit
+
+Click **Submit**. The saved configuration appears in the grid below the form.
+
+<Callout type="warning">
+  **After submitting:** If a configuration already exists for the same academic
+  scope, the system rejects the save with a *record already exists* message.
+  Locate the existing row rather than creating a duplicate.
+</Callout>
+
+</Steps>
+
+## Sending Retention Reminders
+
+1. Open the **Academics → Retention Reminders** page as **Admin**.
+2. Filter by the applicable academic scope to populate the at-risk list.
+3. Tick the students you want to notify and click **Send Reminder**.
+4. Refresh and confirm the send is recorded — **Email Status**, **Sent By**, and
+   **Sent On** are stamped on the row.
+
+The advisory email tells the student they are not eligible to enroll in the next
+semester of the same course, names their curriculum and the affected subjects and
+subject codes, and directs them to coordinate with the Registrar for a transfer.
+
+<Callout type="info">
+  The reminder template is currently **fixed** — the wording cannot be edited per
+  school or per case. A separate ticket has been raised to make the template
+  customisable.
+</Callout>
+
+## Generating the Retention Policy Report
+
+To get the at-risk list as an export for the Registrar's caseload:
+
+1. Open the reports page and select the report type **Retention Policy Report
+   SWU**.
+2. Select the **Intake**, **Campus**, **College**, and optionally the **Course** —
+   the report is filtered by intake, not by academic session.
+3. Generate and download the report.
+
+The export lists the affected students with their rule, subject, and status
+details, and covers deloading, disqualification, and
+transferee/shiftee/returnee cases.
+
+## Downstream Behavior at Enlistment
+
+Enforcement happens on **Student Details → Enlistment By Student**.
+
+**If the student falls under a deloading rule:** a note appears indicating the
+student is under the deloading rules, and the system prompts for the required
+subject drops — one subject for a written warning, two for probation. Drops are
+taken from the regular panel subjects only.
+
+**If the student falls under a disqualification rule:** an alert advises a shift
+to another program, and the **Submit and Next** button is removed so enlistment
+cannot be completed. The student must go to the Registrar, who processes a
+transfer on the **Course Transfer** page with a clear remark such as *"due to
+retention policy."*
+
+<Callout type="warning">
+  Course transfers cannot be undone once completed. Verify the target program and
+  curriculum before confirming.
+</Callout>
+
+## Common Errors
+
+**Required fields are not selected.**
+Submit was clicked before the academic scope was fully selected. Complete every
+required dropdown — Intake, Campus, College, Study Level, Course, and Starting
+Study Level — then submit again.
+
+**A duplicate configuration is rejected.**
+A configuration already exists for the same academic scope. Cancel the form, find
+the existing row in the grid, and work from it instead of creating a second row.
+
+**A student was deloaded on a subject that should not count.**
+The subject's classification was not added to **Excluded Subjects** on the
+configuration. Check the configuration row for the student's scope, confirm PE /
+SSP / NSTP / Research / Clinics / MTAP-Special Topics are all excluded, and
+correct the row. Then re-check the student at enlistment.
+
+## Frequently Asked Questions
+
+**Why doesn't this look like the Retention Policy page the other schools use?**
+Because it isn't. SWU's Academic Eligibility Policy is a different policy with a
+different rule set — deloading and disqualification instead of Three-Strike /
+Fail-Twice / GRR — so it was built as a separate page with its own configuration,
+reminders, and report.
+
+**Does a failed PE or NSTP subject count against a student?**
+No, provided those classifications were added to **Excluded Subjects** on the
+configuration. The exclusions are applied from the configuration row, not
+hard-coded, so a missing exclusion will cause the subject to be counted.
+
+**The student failed the same subject twice. Is that deloading or disqualification?**
+Deloading. Failing the same subject **twice** puts the student on probation with
+two subjects dropped. It becomes disqualification at the **third** failure of the
+same subject.
+
+**A student passed a failed subject on retake — do they still carry the failure?**
+Not for disqualification. Under the Write-off Clause, passing on the 1st or 2nd
+retake removes that subject from the disqualification count.
+
+**Do failures from a previous school or a previous program count?**
+Yes, provided the records have been migrated and credited. Transferee and shiftee
+failures count toward the retention triggers once they exist in the system — if
+the grades were never migrated, the system cannot see them.
+
+**Can I edit the reminder email wording?**
+Not currently. The template is fixed; a separate ticket has been raised to make it
+customisable.

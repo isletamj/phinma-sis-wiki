@@ -1,0 +1,455 @@
+---
+title: Retention Policy
+---
+
+# Retention Policy
+
+## Overview
+
+The **Retention Policy** page is used to configure which retention rules apply to
+a given Intake, Campus, College, Course, and Study Level — and to send advisory
+reminders to students who are about to be blocked by those rules. Once a rule is
+configured and a student violates it, the system flags the student during
+enlistment, blocks course re-enrollment, and surfaces the student in the
+**Retention Policy Report** so the school can advise a course transfer.
+
+<Callout type="info">
+  This page is the standard Retention Policy used by PHINMA Education Network
+  (PEN) schools, which implements Learning Memorandum No. 2022-003. **SWU runs on
+  a separate Retention Policy page** with its own rules, configuration,
+  reminders, and report — see
+  [SWU Retention Policy](/docs/academics/swu-retention-policy).
+</Callout>
+
+<Callout type="important">
+  The page only stores the **policy configuration** and the **reminder
+  mechanism**. Actual enforcement happens downstream — at **Enlistment By
+  Student** (the policy blocks enlistment in the same course) and **Course
+  Transfer Within Same Study Level** (the remediation path when a student must
+  shift).
+</Callout>
+
+## Prerequisites
+
+- The **Intake**, **Campus**, **College**, **Course**, and **Curriculum** are
+  already configured in the system.
+- **Grade encoding for previous semesters** is complete — the rules evaluate
+  against historical grades (GRR, 4.0 / NC, attempt count), so missing or
+  unposted grades will cause students to be incorrectly excluded from the policy.
+- Student emails are populated if you plan to use the **Retention Policy
+  Reminders** tab.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the list of modules, click **Academics**.
+3. Use the search bar or the dropdown to find and click **Retention Policy**.
+
+## Understanding the Page
+
+The Retention Policy page is divided into two tabs: **Retention Policy
+Configuration** and **Retention Policy Reminders**.
+
+### Retention Policy Configuration
+
+This tab is where the policy is defined for a specific Intake + Campus + College
++ Study Level + Course (+ optional Semester Onwards). At least one of the three
+rule checkboxes must be ticked before submission.
+
+Form fields:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Intake** | Yes | Academic year (e.g., 2025-2026). Determines which student batches the policy applies to. |
+| **Campus** | Yes | Campus where the policy is enforced. |
+| **College** | Yes | College within the campus. |
+| **Study Level** | Yes | Study level (e.g., College, Senior High). |
+| **Course** | Yes | The specific course/program the policy covers. |
+| **Semester (Onwards)** | No | If set, the policy applies starting from this semester forward; if blank, applies from the start of the intake. |
+| **Three Strike Rule** | Conditional | Tick to apply the Three-Strike Rule. At least one of the three rule checkboxes is required. |
+| **Fail-Twice Rule** | Conditional | Tick to apply the Fail-Twice Rule. |
+| **Retention Grades by Year** | Conditional | Tick to apply Grade Retention Requirement (GRR) thresholds per year level. |
+
+<Callout type="info">
+  Hover over each rule label to see the system tooltip describing the rule (exact
+  wording is captured in the **How the Rules Work** section below).
+</Callout>
+
+Table columns at the bottom of the tab, listing existing configurations:
+
+| Column | Description |
+| --- | --- |
+| **Intake** | Intake the configuration was saved against |
+| **Campus** | Campus |
+| **College** | College |
+| **Study Level** | Study level |
+| **Course** | Course |
+| **Semester (Onwards)** | Semester filter, if any |
+| **Three Strike Rule** | **Applied** (green) or **Not Applied** (red) |
+| **Fail-Twice Rule** | **Applied** / **Not Applied** |
+| **Retention Grades by Year** | **Applied** / **Not Applied** |
+| **Created By** | Username that created the row (e.g., `admin`) |
+| **Created Date** | Date the configuration was saved |
+
+<Callout type="info">
+  Use the **Search** box (top-right of the table) to filter by campus or course.
+  Use **Export** to download the current configuration list.
+</Callout>
+
+### Retention Policy Reminders
+
+This tab lists students who are at risk under the configured rules so the school
+can send an advisory email before the next enlistment cycle.
+
+Form fields:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Intake** | Yes | Intake to filter the at-risk list |
+| **Campus** | Yes | Campus filter |
+| **College** | Yes | College filter |
+| **Course** | No | Optional course filter — leave blank to pull all courses under the selected college |
+
+Table columns:
+
+| Column | Description |
+| --- | --- |
+| ☐ (checkbox) | Select one or more students to send a reminder to |
+| **Student ID** | Student registration number |
+| **Student Name** | Full name |
+| **Course** | Current course |
+| **Email Status** | **Sent** if a reminder has already been sent; blank otherwise |
+| **Sent By** | User who last sent the reminder |
+| **Sent On** | Date the reminder was last sent |
+
+Available actions:
+
+- **Send Reminder** — Sends the standard retention-policy advisory email to the
+  selected student(s).
+- **Email Status Report** — Generates a status export for tracking outreach.
+- **Cancel** — Clears the selection.
+
+## How the Rules Work
+
+The Retention Policy page supports three rules that can be combined per
+configuration. The exact tooltip text shown on the page is reproduced below,
+followed by the implementation details from the internal *Course-Wise Retention &
+Grading Policy* document and from UAT testing.
+
+<Callout type="important">
+  A **failing grade** in all three rules is defined as **4.0 or NC**. All three
+  rules evaluate attempts **within the same admission batch (intake)** — confirmed
+  during UAT on 2026-01-29. Grades earned under a different intake are not counted
+  toward Three-Strike or Fail-Twice tallies.
+</Callout>
+
+<Callout type="important">
+  **Scope — board subjects only:** All three rules — Three-Strike, Fail-Twice, and
+  Retention Grades by Year (GRR) — apply **only to board / board-related
+  subjects**. Failing grades on general-education or other non-board subjects are
+  not counted toward any rule. This narrowing was requested by PHINMA during IUAT
+  and is now in effect. The canonical board-subject list for BSA is in **Appendix
+  A of the BSA Course Bible**.
+</Callout>
+
+### Three Strike Rule
+
+*"A student who fails to get a passing grade in a subject after taking it thrice
+will no longer be allowed to enroll under the said course."*
+
+- **Applies to all courses** as the general rule, but only fires where the
+  configuration has the rule ticked.
+- Triggers when the student has accumulated **3 failed attempts** of the same
+  subject (4.0 or NC) within the same intake.
+- Once triggered, the student is **blocked from enlisting in the same course** and
+  must be routed through **Course Transfer Within Same Study Level**.
+
+### Fail-Twice Rule
+
+*"A student who fails to get a passing grade in a subject after taking two
+consecutive failing grades (4.0 / NC) will no longer be allowed to enroll under
+the said course."*
+
+- Triggers when the student receives a **4.0 or NC** in the same subject **twice
+  consecutively**.
+- A passed retake **breaks the streak** — the rule only fires while the failures
+  remain consecutive.
+- **BSA edge case (from internal policy doc):** if 1st take = fail (4.0), 2nd take
+  = below GRR, 3rd take = still below GRR, the student must shift. In other words,
+  two below-GRR retakes following an initial fail are treated as terminal even if
+  no individual grade was a 4.0/NC.
+
+### Retention Grades by Year (GRR)
+
+*"Students who fail to meet the GRR may re-enroll the subject."*
+
+The Grade Retention Requirement is evaluated per year level. The thresholds below
+come from the **BSA** template in the internal *Course-Wise Retention & Grading
+Policy* doc — and per Implementation Note 1 in that doc, GRR enforcement is
+currently **applicable to BSA only**.
+
+| Year Level | GRR Threshold | Equivalent Grade |
+| --- | --- | --- |
+| Year 1 | ≥ 50 % | 3.0 |
+| Year 2 | ≥ 66.8 % | 2.25 |
+| Year 3 | ≥ 72.4 % | 2.0 |
+| Year 4 (incl. mock boards) | ≥ 75 % | 2.0 |
+
+A BSA student who falls below the GRR for their year level may re-enroll the
+affected subject **up to 2 retakes** (3 attempts total). On the **3rd attempt
+still below GRR**, the student must shift.
+
+<Callout type="important">
+  Per the BSA Course Bible (Section B.1, *Effective 1st semester of SY
+  2022-2023*), GRR enforcement applies **only to board and board-related
+  subjects** — the canonical list is in **Appendix A of the BSA Course Bible**
+  (e.g., ACC 102, ACC 103, ACC 106-109, ACC 110-115, ACC 118, ACC 120, ACC 122,
+  ACC 139-143, ACC 177-178, BAM 026, BAM 031, BAM 200, BAM 208, BAM 213, BAM
+  241-242, ECO 007, FIN 072-073, FIN 081). General-education and other non-board
+  subjects do **not** count toward GRR.
+</Callout>
+
+<Callout type="info">
+  On the **Enlistment By Student** page for BSA students, board/board-related
+  subjects where the previous grade fell below the year-specific GRR are displayed
+  as **compulsory enlistment** — the student cannot complete enlistment without
+  re-enrolling them.
+</Callout>
+
+### Pre-Requisite Rule (BSA, system-enforced — no checkbox)
+
+The internal policy doc and the UAT test summary (2026-01-29) both confirm a
+fourth rule: **higher-level BSA subjects are only available if the pre-requisite
+subject was passed with ≥ 50 % (Grade 3.0).** This is enforced by the system at
+enlistment but does **not** appear as a separate checkbox on the Retention Policy
+Configuration tab — it is implicit for BSA where Retention Grades by Year is
+ticked.
+
+### How the rules apply per course (per internal policy doc)
+
+| Course | Three-Strike | Fail-Twice | Retention Grades by Year (GRR) | Pre-Requisite |
+| --- | --- | --- | --- | --- |
+| **BSA (Accountancy)** | ✓ | ✓ | ✓ (all 4 years) | ✓ |
+| **BS Criminology** | ✓ from **Y2 S2 onwards** (Learning Memo 2022-003) | — | — | — |
+| **BS Engineering & BS Architecture** | ✓ (general 3-attempt cap per subject) | — | — | — |
+| **BS Nursing** | ✓ for **Year 2–4** (Learning Memo 2022-003) | — | — | — |
+
+<Callout type="info">
+  SWU does **not** use this page. SWU's Academic Eligibility (Retention) Policy
+  runs on a separate configuration page with a different rule set — deloading,
+  disqualification, and a write-off clause instead of Three-Strike / Fail-Twice /
+  GRR. See [SWU Retention Policy](/docs/academics/swu-retention-policy).
+</Callout>
+
+## Configuring a Retention Policy
+
+<Steps>
+
+#### Open the Retention Policy Configuration tab
+
+This tab is the default tab when you open the page.
+
+#### Fill in the academic scope
+
+Select the values that scope the policy: **Intake**, **Campus**, **College**,
+**Study Level**, **Course**. Optionally set **Semester (Onwards)** if you want the
+policy to begin from a specific semester rather than the start of the intake.
+
+#### Tick at least one rule
+
+Tick one or more of: **Three Strike Rule**, **Fail-Twice Rule**, **Retention
+Grades by Year**. The combination is up to school policy — most BSA-style programs
+tick all three.
+
+<Callout type="warning">
+  Submitting without ticking any rule will fail with the message *"Please select
+  atleast one rule."*
+</Callout>
+
+#### Submit
+
+Click **Submit**. The new configuration appears in the table at the bottom of the
+tab.
+
+<Callout type="warning">
+  **After submitting:** If the same Intake + Campus + College + Study Level +
+  Course combination already exists, you will see *"Record already exists."*
+  Cancel and edit the existing row instead of creating a duplicate.
+</Callout>
+
+</Steps>
+
+## Sending Retention Reminders
+
+<Steps>
+
+#### Open the Retention Policy Reminders tab
+
+Switch to the **Retention Policy Reminders** tab at the top of the page.
+
+#### Filter the at-risk list
+
+Select **Intake**, **Campus**, **College**, and optionally **Course**. The grid
+populates with students who currently breach one or more of the configured rules.
+
+#### Select students and send
+
+Tick the checkbox next to each student you want to notify, then click **Send
+Reminder**. A modal opens with the standard advisory:
+
+<Callout type="info">
+  Dear Student
+
+  This is to inform you that, as per the retention policy, you are not eligible to
+  enroll in the next semester of the same course. You are required to shift to
+  another course. Kindly coordinate with your registrar for transferring to
+  another course, since you have received a GRR/Fail grade in the following
+  subjects:
+
+  Curriculum: ###
+
+  Subjects: ###
+
+  Subject Codes: ###
+
+  Thank you
+</Callout>
+
+The `###` placeholders are populated with the student's actual values when sent.
+Click **Send** to dispatch the email — the **Email Status** column flips to
+**Sent**, and **Sent By** and **Sent On** are stamped.
+
+<Callout type="info">
+  **PASSED – GRR remark:** Where a remark or status is displayed, students are
+  tagged **PASSED** when they are at or above the year-level GRR and **PASSED –
+  GRR** when they are below it. The `PASSED – GRR` tag marks an advisory case —
+  the student passed the subject but did not meet the retention threshold — as
+  distinct from a terminal Three-Strike or Fail-Twice case.
+</Callout>
+
+#### Export the email status report
+
+Optionally, click **Email Status Report** to download a worksheet that tracks who
+has been notified.
+
+</Steps>
+
+## Generating the Retention Policy Report
+
+To get the at-risk list as an Excel export (e.g., for the Registrar's transfer
+caseload):
+
+1. From the **Academics** module, open **Subject Registration Report**.
+2. In **Report Type**, select **Retention Policy Report**.
+3. Select the **Intake**, **Campus**, **College**, and optionally **Course**.
+4. Click **Report**.
+
+The Excel output contains: **Student ID · Name · Campus Name · College · Course ·
+Subject Code · Subject Name · Three-Strike Rule (Attempts)**. Rows that have
+already hit the rule are highlighted.
+
+<Callout type="info">
+  **Report scope:** The board-subject narrowing and the **PASSED – GRR** remark
+  apply to this report as well — rows reflect board-subject failures only, and
+  GRR-only students are tagged `PASSED – GRR` rather than shown as terminal cases.
+</Callout>
+
+## Downstream Behavior
+
+Once a student violates a configured rule, the system enforces the policy
+automatically across two pages:
+
+### At Enlistment By Student
+
+When the registrar opens Step 1 (Student Details) for an affected student, a red
+note appears: *"The student is against the retention policy as per the applicable
+Three-Strike rule."*
+
+If the registrar attempts to continue, the system blocks enlistment with a
+confirmation dialog: *"As per Retention Policy, the student must shift to another
+course!"*
+
+### At Course Transfer Within Same Study Level
+
+This is the remediation path. The registrar opens **Course Transfer Within Same
+Study Level**, searches the student, and fills the **Transfer Course Details**
+(Campus, College, Course, Curriculum Name) with the new program. A free-text
+**Remark** field (e.g., *"due to retention policy"*) is mandatory.
+
+<Callout type="warning">
+  The transfer confirmation states *"This action cannot be undone once transfer is
+  completed!"* Verify the curriculum and campus before clicking **Yes**.
+</Callout>
+
+## Known Limitations and Pending Refinements
+
+The following items are known gaps raised during UAT and not yet addressed. They
+are logged as improvement items rather than blockers.
+
+| Item | Workaround |
+| --- | --- |
+| **No edit capability for existing configurations** — once saved, a configuration row cannot be edited in place. Re-submitting the same combination returns *"Record already exists."* | Delete the row and recreate it with the corrected rule set. |
+| **No "Last Edited By" / "Last Edited Time" columns** in the configuration table. Created Date shows the date only, with no time. | Track configuration changes outside the system if an audit trail is required. |
+| **Field-validation loading loop** — submitting with missing required selections, dismissing the warning, then editing fields can leave the page in an indefinite loading state. | Refresh the page and re-enter the configuration cleanly. |
+| **GRR thresholds are not configurable per program** — the year-level thresholds are fixed to the BSA template. | Raised as an enhancement during the 2026-06-23 UAT sign-off. |
+| **Reminder email template is not editable** — the advisory wording is fixed and cannot be customised the way payment reminder templates can. | Raised as an enhancement during the 2026-06-23 UAT sign-off. |
+
+## Common Errors
+
+**"Please select atleast one rule."**
+The Submit button was clicked without ticking any of the three rule checkboxes.
+Tick **at least one** of Three Strike Rule, Fail-Twice Rule, or Retention Grades
+by Year, then click **Submit** again.
+
+**"Record already exists."**
+A configuration with the same Intake + Campus + College + Study Level + Course (+
+Semester Onwards) is already saved. Click **OK** to dismiss, click **Cancel** on
+the form, then find the existing row in the table at the bottom and edit it in
+place rather than creating a duplicate.
+
+## Frequently Asked Questions
+
+**Do I need to tick all three rules?**
+No. At least one rule must be ticked, but schools can mix and match. PHINMA's
+BSA-style licensure programs typically tick all three (Three-Strike + Fail-Twice +
+GRR), while non-licensure programs may use only the GRR.
+
+**What happens to existing affected students if I change the rules mid-intake?**
+All three rules evaluate against attempts **within the same admission batch
+(intake)** — confirmed during UAT on 2026-01-29. Use the **Semester (Onwards)**
+field if you want the new rule set to apply from a specific semester forward
+within the intake rather than from the start. Note that configuration rows
+currently cannot be edited in place (see *Known Limitations* above) — delete and
+recreate to change a saved row's rule set.
+
+**Why doesn't the Fail-Twice Rule trigger for a student who failed twice but not consecutively?**
+The tooltip specifies *"two consecutive failing grades."* A passed retake between
+the two failures breaks the streak. If the school policy is to count any two
+failures (consecutive or not), that is a different rule and must be raised as a
+separate enhancement.
+
+**Can I send a reminder to a student who has already received one?**
+Yes — the Email Status column will show **Sent** and the row will not be cleared.
+Ticking the checkbox and clicking Send Reminder re-sends the same templated email
+and updates the Sent On timestamp.
+
+**Where does the system get the attempt count from?**
+The Three-Strike Rule counts posted final grades for the subject **within the same
+admission batch (intake)** — per UAT confirmation on 2026-01-29. Attempts from a
+different intake are not counted by the rule engine.
+
+**How does the attempt count work for transferees and shiftees?**
+The BSA Course Bible (Section A.2) states that a transferee or shiftee may have
+grades in board-related subjects from their previous school or program **credited
+based on the validation of the Program Head and Dean**. Subjects that are credited
+carry over and their grades count toward Three-Strike / Fail-Twice / GRR
+evaluation. Subjects that are **not** credited must be re-enrolled by the
+transferee, and the attempt counter starts fresh in the new intake. There is no
+system-side residency or prior-failure check on this page — that gating happens
+during admission and credit evaluation upstream.
+
+**Is the Retention Policy Report the same as the Retention Report mentioned in older tickets?**
+No. The **Retention Policy Report** (Subject Registration Report → Retention
+Policy Report) lists students who have hit a retention rule. An older **Retention
+Report** raised under a separate legacy ticket referred to a
+not-yet-enrolled-students breakdown and is a different deliverable.
