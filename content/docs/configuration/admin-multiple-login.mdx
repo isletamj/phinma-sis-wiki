@@ -1,0 +1,196 @@
+---
+title: Admin Multiple Login
+---
+
+# Admin Multiple Login
+
+## Overview
+
+The **Admin Multiple Login** page lets an authorized administrator or support
+user open another user's SIS account and see the system the way that user sees
+it. It is used for checking, troubleshooting, and validating a reported issue
+without asking the user for their password. Access granted through this page is
+**read-only** — pages can be opened, searched, and viewed, but records cannot be
+added, saved, or updated. Every login requires a stated **Purpose For Login** and
+OTP verification, so each access is deliberate and traceable.
+
+<Callout type="important">
+  Read-only is enforced by the system, not by convention. If something actually
+  needs to be changed on a user's behalf, exit the session and make the change
+  from your own account on the relevant page.
+</Callout>
+
+## Prerequisites
+
+- Your account has the **Admin** role (or another role granted access to
+  Configuration → Admin Multiple Login).
+- Your own account has a working email address on file — the OTP required to
+  complete the login is sent there.
+- You know the **user type** and **username** of the account you need to open.
+  The search will not return results without both.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the list of modules, click **Configuration**.
+3. Click **Admin Multiple Login**.
+
+## Understanding the Page
+
+The page is a **search panel** at the top and a **Users Account Info List** grid
+below it. You search for one account, set a purpose for opening it, then log in
+as that account through an OTP-verified step.
+
+### Search fields
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **User Type** | Yes | The account category to search — for example Faculty or Student. The username you enter must belong to the type selected here. |
+| **Enter User Name** | Yes | The SIS username of the account you want to open. Leaving this blank stops the search. |
+
+Click **Search** to run the search.
+
+### Users Account Info List
+
+| Column | Description |
+| --- | --- |
+| **Username** | The SIS login ID of the matching account. |
+| **Name** | The full name registered on that account. |
+| **Action** | The **Login As** icon, which opens the selected account after OTP verification. |
+
+Two controls sit alongside the result before you can proceed:
+
+- **Purpose For Login** — a dropdown where you select why the account is being
+  opened. This is mandatory; **Login As** will not proceed without it.
+- **Add New Purpose** — used when none of the existing options describes your
+  reason. The purpose you add becomes available for later use.
+
+<Callout type="info">
+  The search returns one account at a time, matched on User Type plus username.
+  It is not a browsable list of all users — use
+  [User Creation](/docs/configuration/user-creation) if you need to look up who
+  exists.
+</Callout>
+
+## Opening a User Account
+
+<Steps>
+
+#### Search for the account
+
+Select the **User Type**, type the **username** into **Enter User Name**, and
+click **Search**. The matching account appears in the Users Account Info List
+with its Username and Name.
+
+#### Set the Purpose For Login
+
+Select a **Purpose For Login** from the dropdown. If no existing option fits, use
+**Add New Purpose** to create one, then select it.
+
+<Callout type="warning">
+  Clicking **Login As** before a purpose is set returns **"Kindly submit the
+  Purpose for Login."** and the login does not proceed.
+</Callout>
+
+#### Click Login As
+
+Click the **Login As** icon on the account's row. The system sends an OTP and
+displays an alert confirming it has been sent. Click **OK**.
+
+#### Verify the OTP
+
+The **Verify OTP** dialog opens with a single OTP field and a countdown timer.
+Enter the OTP from your email and click **Verify OTP** before the timer expires.
+
+#### Work in the session
+
+The selected user's dashboard opens. You can navigate modules, open pages, run
+searches, and view records exactly as that user would — all of it read-only.
+
+</Steps>
+
+## What Read-Only Access Means
+
+While you are inside a session opened through Admin Multiple Login:
+
+| You can | You cannot |
+| --- | --- |
+| Open any page the user can open | Submit a new entry (for example an enlistment, application, or photo/signature upload) |
+| Search, filter, and page through grids | Save or update an existing record |
+| View reports, grades, schedules, and profile information | Upload files or confirm any transaction |
+| Move between modules and tabs freely | Approve, assign, promote, or cancel anything |
+
+Submit-type controls — **Submit**, **Submit & Next**, **Apply**, **Assign**, and
+their equivalents — are disabled or non-clickable during the session, and no
+record is created or changed if one is clicked.
+
+<Callout type="info">
+  Some pages may still let you type into a field or tick a checkbox during a
+  read-only session. Nothing typed this way is saved. Treat anything you enter as
+  scratch input and leave the page without submitting.
+</Callout>
+
+## Common Errors
+
+**"Please Enter User Name"**
+The search was submitted with the **Enter User Name** field blank. Type the exact
+SIS username into **Enter User Name** and click **Search** again. Both **User
+Type** and **Enter User Name** are mandatory — a user type alone is not enough.
+
+**"No Records Found"**
+No account matches the combination of User Type and username entered. Check the
+username spelling against [User Creation](/docs/configuration/user-creation), and
+confirm the **User Type** matches the account — a faculty username searched under
+Student returns no result. If the account was created very recently, confirm it
+was saved successfully before searching again.
+
+**"Kindly submit the Purpose for Login."**
+**Login As** was clicked before a Purpose For Login was selected. Select a
+purpose from the **Purpose For Login** dropdown, or create one with **Add New
+Purpose**, then click **Login As** again.
+
+**The OTP timer expires before the code is entered.**
+The OTP is time-limited and the countdown in the Verify OTP dialog ran out. Close
+the dialog and start the **Login As** step again to receive a new OTP. Have your
+mailbox open before clicking **Login As** so the code can be entered within the
+time limit. If the OTP never arrives, verify the email address on your own
+account and raise a ticket if it is correct.
+
+## Frequently Asked Questions
+
+**Can I fix something for the user while I am logged in as them?**
+No. The session is read-only by design — submit and save actions are blocked for
+every user type. Make the correction from your own account on the page that owns
+the record.
+
+**Why can I still type into fields if the session is read-only?**
+Input fields on some pages remain typeable, but the action that would save them
+is blocked, so nothing is written to the record. This was raised during UAT and
+field-level disabling is being addressed — until then, treat typed values as
+scratch input and do not attempt to submit.
+
+**Does this work for student accounts too, or only faculty and staff?**
+Both. The same read-only restriction applies regardless of the user type opened —
+a student account behaves exactly like a faculty account in this respect.
+
+**Why do I need to enter an OTP to open someone else's account?**
+The OTP confirms that the person triggering the access is the account holder of
+the admin account, not someone using an unattended session. Together with the
+Purpose For Login, it makes each access attributable.
+
+**What happens to the purpose I select — is it kept?**
+Purposes are stored as selectable options, and a new one added through **Add New
+Purpose** stays available for later logins. Choose a purpose that describes the
+actual reason, since it is the record of why the account was opened.
+
+**Is my activity inside the session recorded?**
+Page-level activity is captured by the SIS activity features — see
+[User Journey](/docs/configuration/user-journey) for the sequence of pages
+visited and [User Log Details](/docs/configuration/user-log-details) for
+session-level login records.
+
+**The account I need does not appear in the search. What now?**
+Confirm the username and user type first. If the account exists in
+[User Creation](/docs/configuration/user-creation) and is active but still
+returns "No Records Found", raise a support ticket with the username and user
+type, the campus and school instance, and a screenshot of the search result.

@@ -10,5 +10,8 @@ export default {
   'terms-and-conditions-configuration': 'Terms & Conditions Configuration',
   'change-password': 'Change Password',
   'user-log-details': 'User Log Details',
-  'role-based-access': 'Role-Based Access'
+  'user-journey': 'User Journey',
+  'admin-multiple-login': 'Admin Multiple Login',
+  'role-based-access': 'Role-Based Access',
+  'ai-agent-access-configuration': 'AI Agent Access Configuration'
 }

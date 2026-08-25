@@ -1,0 +1,249 @@
+---
+title: User Journey
+---
+
+# User Journey
+
+## Overview
+
+The **User Journey** page lets authorized administrators review what a user did
+inside the SIS over a selected date range. It shows the pages a user visited and
+the order they visited them in, the module each page belongs to, the browser and
+operating system used, the originating IP address, how each login session is
+grouped, and the total time spent per session. Activity can be reviewed from two
+directions: by user on the **User Journey** tab, or by page on the **Page List**
+tab.
+
+<Callout type="important">
+  This page is read-only. It reports activity that has already been recorded — it
+  does not change user accounts, permissions, or any student or employee record.
+</Callout>
+
+## Prerequisites
+
+- Your account has the **Admin** role (or another role granted access to
+  Configuration → User Journey).
+- The user you want to review has actually logged in and navigated SIS pages
+  within the date range you plan to search. Activity is only recorded from the
+  point the feature went live.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the list of modules, click **Configuration**.
+3. Click **User Journey**.
+
+## Understanding the Page
+
+The User Journey page is divided into two tabs — **User Journey** (activity for
+one user) and **Page List** (activity for one page). Each tab has its own filter
+row and its own results area.
+
+### User Journey Tab
+
+Filter fields:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **User Type** | Yes | The account category to search — Admin, Faculty, or Student. |
+| **User Name** | Yes | For Admin and Faculty, select the account from the dropdown. For Student, this field becomes a **Student ID / Student Name** search box — type the ID or name and pick the matching result. |
+| **Start-End Date** | Yes | The date range to review. Only activity inside this range is returned. |
+
+Click **Show** to load the timeline. Click **Cancel** to clear the filters.
+
+Once a user is selected, a user information panel appears above the results
+showing **USER NAME**, **FULL NAME**, and **DESCRIPTION**.
+
+Activity timeline layout:
+
+| Area | What it shows |
+| --- | --- |
+| **Date pills** (left column) | One pill per active date in the range (e.g., 04/21/2026). Click a pill to switch the timeline to that date. |
+| **Date : …** header | The date currently being displayed. |
+| **Session : all** filter | Narrows the timeline to a single session number, or shows every session when set back to **all**. |
+| **Session summary row** | The **Time Spend** for that session (e.g., `25 m 28 s 540 ms`) and the **Session** number. |
+| **Activity cards** | One card per page visit, in the order the pages were accessed. |
+
+Activity card fields:
+
+| Field | Description |
+| --- | --- |
+| **Time badge** | The time the page was accessed. |
+| **Module** | The SIS module the page belongs to (e.g., Academics, Examinations). |
+| **Page Name** | The specific page that was opened. |
+| **Browser** | The browser used for that visit (e.g., Chrome, Edge, Firefox). |
+| **Operating System** | The operating system of the device used. |
+| **IP Address** | The IP address the session originated from. |
+
+<Callout type="info">
+  A separate session is created each time the user logs out and logs back in —
+  including when they log in again from a different browser. One user can
+  therefore have several numbered sessions on the same date.
+</Callout>
+
+### Page List Tab
+
+Use this tab when you want to know who visited a particular page, rather than
+what one person did.
+
+Filter fields:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Start-End Date** | Yes | The date range to review. |
+| **Page List** | Yes | The SIS page to report on, selected from the dropdown. |
+
+Results grid columns:
+
+| Column | Description |
+| --- | --- |
+| **SRNO** | Row number. |
+| **DATE** | The date of the recorded activity. |
+| **PAGE NAME** | The page selected in the filter. |
+| **USER NAME** | The SIS username of the person who accessed the page. |
+| **USER FULLNAME** | That user's full name. |
+| **COUNT** | How many times that user opened the page within the date range. |
+| **LOGIN TIME** | When the user's session started. |
+| **LOGOUT TIME** | When the user's session ended. |
+| **DETAILS** | **Show Details** opens the Page Activity Details modal for that row. |
+
+<Callout type="info">
+  The grid has **Show N entries**, a **Search** box, and **Previous / Next**
+  paging. Searching filters across the visible columns and updates the footer
+  count (for example, "Showing 1 to 3 of 3 entries (filtered from 50 total
+  entries)").
+</Callout>
+
+### Page Activity Details Modal
+
+Opened from the **Show Details** button in the Page List grid. It breaks a single
+**COUNT** value down into the individual visits behind it:
+
+| Column | Description |
+| --- | --- |
+| **SRNO** | Row number. |
+| **LOGINTIME** | The time of each individual visit to the page. |
+
+The modal has its own **Show N entries**, **Search**, and paging controls. Click
+**Close** (or **X**) to return to the Page List grid, which stays loaded behind
+the modal.
+
+## Reviewing a User's Activity
+
+<Steps>
+
+#### Select the user
+
+Set the filters at the top of the **User Journey** tab:
+
+| Field | Notes |
+| --- | --- |
+| **User Type** | Choose Admin, Faculty, or Student first — it determines how the next field behaves. |
+| **User Name** | Dropdown for Admin and Faculty; a **Student ID / Student Name** search box for Student. |
+
+Confirm the user information panel shows the **USER NAME**, **FULL NAME**, and
+**DESCRIPTION** you expect before continuing. This is the quickest way to catch a
+wrong selection when two accounts have similar names.
+
+#### Set the date range
+
+Enter the **Start-End Date** range you want to review. Keep the range tight — a
+narrow range makes the timeline far easier to read than a full month.
+
+#### Click Show
+
+The timeline loads with one date pill per active date. If no activity was
+recorded for the criteria, **No Data Found** is displayed instead.
+
+#### Read the timeline
+
+Click a date pill to display that date. Review the session summary row for **Time
+Spend** and the **Session** number, then read the activity cards from top to
+bottom — they appear in the order the pages were accessed.
+
+To isolate a single login period, set the **Session** filter to that session
+number. Set it back to **all** to see the full day again.
+
+</Steps>
+
+## Reviewing Activity by Page
+
+Use this when the question is "who opened this page?" rather than "what did this
+person do?"
+
+1. Open the **Page List** tab.
+2. Select a **Start-End Date** range.
+3. Select the page from the **Page List** dropdown.
+4. Review the grid — each row is one user's activity on that page, with a
+   **COUNT** of how many times they opened it.
+5. Click **Show Details** on any row to open the **Page Activity Details** modal
+   and see the individual visit times behind the count.
+6. Click **Close** to return to the grid.
+
+<Callout type="info">
+  If the grid is long, type a username or full name into the **Search** box to
+  jump straight to one person's rows.
+</Callout>
+
+## Common Errors
+
+**"Please Select User Type !" / "Please Select User Name !"**
+You clicked **Show** on the User Journey tab before setting one or both of the
+mandatory filters. Select a **User Type** first, then a **User Name**, then click
+**Show** again. The page deliberately blocks the search rather than loading
+partial or unrelated activity.
+
+**"Please Enter Student ID / Student Name !"**
+**User Type** is set to Student but the **Student ID / Student Name** search box
+is empty. Type the student's ID or name into the search box and select the
+matching result from the suggestions. Confirm the user information panel updates
+to that student before clicking **Show**.
+
+**"No Data Found"**
+The filters are valid, but no activity matches them. This is a normal result, not
+an error. Widen the **Start-End Date** range — the user may not have logged in on
+the date you selected. Confirm you selected the correct account, especially where
+two users have similar names. On the **Page List** tab, confirm the page you
+picked from the dropdown is the one you meant. If activity is definitely expected
+and still does not appear, raise a support ticket with the username or student
+ID, the tab and page used, and the date range applied.
+
+## Frequently Asked Questions
+
+**How is this different from User Log Details?**
+[User Log Details](/docs/configuration/user-log-details) is session-level — it
+lists login and logout times, IP address, and MAC address per session. User
+Journey is page-level — it shows the sequence of pages visited inside those
+sessions, grouped by date and session, with time spent. Use User Log Details to
+answer "when did they log in?" and User Journey to answer "what did they do while
+logged in?"
+
+**I can't find a student in the User Name dropdown. Where are they?**
+Students are not in the dropdown. When you set **User Type = Student**, the User
+Name field turns into a **Student ID / Student Name** search box — type the ID or
+name and select the matching result.
+
+**Why does one user have several sessions on the same day?**
+A new session is created each time the user logs out and logs back in, including
+when they log in from a different browser. Each session gets its own number, its
+own summary row, and its own **Time Spend**. Use the **Session** filter to look at
+one at a time.
+
+**What exactly does Time Spend measure?**
+The duration of that login session — from the start of the session to its end —
+shown down to milliseconds (e.g., `25 m 28 s 540 ms`). It is a session total, not
+a per-page figure.
+
+**Does this page show what a user changed, not just where they went?**
+No. User Journey records navigation — which pages were opened and when. It does
+not capture the data a user added, edited, or deleted on those pages.
+
+**Can I export the timeline or the Page List grid?**
+There is no built-in export button on either tab. If you need an exportable
+record — for an audit, for example — coordinate with your CSE team to request it
+through the standard report channel.
+
+**How far back does the history go?**
+Activity is only available from the point this feature went live on your
+instance, and beyond that depends on your school's retention settings. If records
+older than expected are missing, contact your CSE support representative.

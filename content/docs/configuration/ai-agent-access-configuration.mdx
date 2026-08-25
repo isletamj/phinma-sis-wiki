@@ -1,0 +1,204 @@
+---
+title: AI Agent Access Configuration
+---
+
+# AI Agent Access Configuration
+
+## Overview
+
+The **AI Agent Access Configuration** page controls which AI agents each SIS user
+can use inside the chatbot. An administrator selects a user, assigns one or more
+agents to them — such as Registrar, Faculty, Dean, Finance, or Exam Agent — and
+saves the mapping. From that point on, the user sees only the agents assigned to
+them when they open the chatbot.
+
+<Callout type="important">
+  This page is not the same as the page that grants a user AI access in the first
+  place. That page decides **who** can use the AI; this page decides **which
+  agents** they get once they can. A user who has not been granted AI access will
+  not see the chatbot at all, no matter what is mapped here.
+</Callout>
+
+## Prerequisites
+
+- The target user already has an active SIS account (created via
+  [User Creation](/docs/configuration/user-creation)).
+- The user has been granted AI access through the existing AI access setup —
+  mapping agents here does not by itself turn the chatbot on.
+- The agents you intend to assign are available in the AI agent selection list.
+  If an agent is missing from the list, it has not been made available in the
+  environment yet — see **Common Errors** below.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the list of modules, click **Configuration**.
+3. Click **AI Agent Access Configuration**.
+
+## Understanding the Page
+
+The page is laid out as a form at the top and a mapping grid below it. The form
+creates or updates a single user-to-agents mapping; the grid lists every mapping
+already saved.
+
+### Form fields
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **User Type** | Yes | The category of user you are mapping (e.g. Admin, Faculty). Determines which names appear in the User Name list. |
+| **User Name** | Yes | The specific user receiving the agent access. Populates based on the User Type selected above. |
+| **AI Agent** | Yes | Multi-select list of available agents (e.g. Academic Agent, Finance Agent, Exam Agent, Faculty, Registrar, Dean, PL, CSDL). Use **Select All** to grant the full set. |
+| **Status** | Yes | **Active** or **Inactive**. An inactive mapping does not surface its agents in the user's chatbot. |
+
+### Mapping grid columns
+
+| Column | Description |
+| --- | --- |
+| **Action** | Edit icon (✏️) to modify an existing mapping |
+| **User Type** | The user type of the mapped record |
+| **User Name** | The user the agents are assigned to |
+| **AI Agent** | The agents currently assigned to that user |
+| **Status** | **Active** (green badge) or **Inactive** (red badge) |
+
+### Action buttons
+
+| Button | What it does |
+| --- | --- |
+| **Submit** | Saves the mapping and refreshes the grid |
+| **Search** | Filters the grid — useful for finding one user in a long list |
+| **Export** | Downloads the current grid for offline reference or audit |
+| **Cancel** | Clears the form without saving |
+
+<Callout type="info">
+  Each user should appear once in the grid. To give a user an additional agent,
+  edit their existing row rather than creating a second mapping — the system
+  blocks duplicate user-and-agent records.
+</Callout>
+
+## Assigning AI Agents to a User
+
+<Steps>
+
+#### Select the user
+
+Choose the **User Type**, then pick the target user from **User Name**. The User
+Name list only shows users belonging to the selected type, so if a name is
+missing, check that you have the right type selected.
+
+#### Select the agents
+
+In the **AI Agent** field, tick every agent this user should be able to use.
+Assign only what the user's job actually requires — each agent carries its own
+expertise and data scope, so an over-broad mapping exposes information the user
+does not need.
+
+| Situation | Suggested selection |
+| --- | --- |
+| Registrar staff | Registrar, Academic Agent |
+| Faculty member | Faculty, Academic Agent, Exam Agent |
+| Finance staff | Finance Agent |
+| Full administrative access | **Select All** |
+
+#### Set the status and submit
+
+Leave **Status** set to **Active** for a mapping that should take effect
+immediately, then click **Submit**. The new record appears in the grid with the
+user and their assigned agents.
+
+<Callout type="warning">
+  **After submitting:** The mapping is applied to the user's chatbot, but a user
+  who is already logged in may need to refresh or sign in again before the change
+  appears in their agent list.
+</Callout>
+
+</Steps>
+
+## Editing or Removing Agent Access
+
+To change what a user can reach:
+
+1. Use **Search** to find the user's row in the grid.
+2. Click the edit icon (✏️) on that row.
+3. Untick the agents to revoke, tick any new ones, or toggle **Status** to
+   **Inactive** to suspend all agent access for that user.
+4. Click **Submit**.
+
+<Callout type="info">
+  Removing an agent from the mapping removes it from the user's agent list in the
+  chatbot — it does not delete the agent from the system. Setting the whole
+  mapping to **Inactive** is the cleanest way to suspend a user's AI access
+  without losing the record of what they previously had.
+</Callout>
+
+## What the User Sees
+
+Once a mapping is active, the user opens the chatbot and is shown either **Quick
+Prompts** or the prompt **Select agent to continue chat...**, followed by the list
+of agents assigned to them. After they pick one, the selected agent's name
+appears beside the chat input so they can see which agent is answering.
+
+A user with no active mapping sees no agent list. This is expected behaviour, not
+an error — it is how unauthorised AI access is prevented.
+
+## Common Errors
+
+**An agent is missing from the AI Agent selection list.**
+The agent has not been made available in the environment. This was seen during
+pre-live testing, where the Academic Agent and Exam Agent were absent from the
+dropdown on both admin and faculty logins — the root cause was that those agents
+had never been assigned, not a fault in this page. Confirm the agent is genuinely
+missing from the list rather than assigned but inactive, and check whether it
+appears for another user type. If it appears nowhere, it is an environment-level
+gap — raise a ticket with the agent name, the user type you were mapping, and a
+screenshot of the dropdown so the team can assign the agent at the environment
+level.
+
+**"Record already exists" when submitting.**
+A mapping for that user and agent combination is already saved in the grid. The
+system blocks duplicates to prevent conflicting access rules. Search the grid for
+the user's name, then open the existing row with the edit icon and adjust the
+agent selection there instead of creating a new record.
+
+**Submit does nothing, or fields highlight red.**
+One or more required fields — User Type, User Name, or AI Agent — has not been
+filled in. Complete every required field, then submit again. If the User Name
+list is empty, confirm you have selected a User Type first.
+
+**The user still sees the old agent list.**
+The user's session was open when the mapping changed. Ask the user to refresh the
+page or log out and log back in. If the old list persists after a fresh login,
+confirm the mapping's **Status** is **Active** in the grid.
+
+## Frequently Asked Questions
+
+**I mapped agents to a user but they say they can't see the chatbot at all. What's wrong?**
+Mapping agents here does not grant AI access — it only decides which agents a
+user with access can reach. Check that the user has been granted AI access
+through the existing AI access setup first, then confirm their mapping here is
+Active.
+
+**Can one user be assigned multiple agents?**
+Yes. Tick as many agents as the user needs in a single mapping, or use **Select
+All** for full access. Keep it to one record per user rather than creating a
+separate row per agent.
+
+**Does this page control what the AI agent can actually see or answer?**
+No. This page controls which agents appear in the user's chatbot. Each agent's
+own data scope and the accuracy of its answers are governed separately — if an
+agent returns something unexpected, that is a question for the agent's own
+ticket, not this configuration.
+
+**How do I revoke a user's AI access entirely?**
+Edit their row and set **Status** to **Inactive**. Their agent list disappears
+from the chatbot while the record stays in the grid, so you can restore the same
+access later without re-selecting every agent.
+
+**Can I see who currently has which agents?**
+Yes. The grid lists every mapping, and **Export** downloads it for review —
+useful for periodic access audits.
+
+**A user who should not have access can see an agent. What do I check?**
+Search for that user in the grid. If a mapping exists, edit it to remove the
+agent or set it Inactive. If no mapping exists for them, capture a screenshot of
+what they see and raise a ticket, since that would indicate agent visibility
+outside the configured mapping.
