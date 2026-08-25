@@ -1,0 +1,339 @@
+---
+title: INC Application By Registrar
+---
+
+# INC Application By Registrar
+
+## Overview
+
+The **INC Application By Registrar** page lets the Registrar complete an
+Incomplete (INC) grade directly from the Registrar panel — searching the student,
+applying the completion for the correct session and subject, encoding the
+completion marks, and releasing the final grade, all from one page. It exists for
+urgent or exceptional INC cases that previously needed a backend request or the
+full student → faculty → Dean routing.
+
+The completed grade updates the student's **Grade** tab and appears in the TOR
+under the re-exam column, exactly as it would through the standard workflow.
+
+<Callout type="important">
+  Marks cannot be edited once the Dean has released the grades. Encode and
+  double-check the completion marks *before* releasing — after release, any
+  correction must go through the formal Grade Correction process.
+</Callout>
+
+## Prerequisites
+
+- You are signed in with a **Registrar** account. Faculty and Student accounts
+  cannot see or open this page.
+- The student has an **INC** grade in the academic session you intend to
+  complete. Subjects with no INC, or whose final grade is already released, will
+  not appear.
+- An **INC Completion Period** setup for the student's scope (Campus, College,
+  Course, Semester) supplies the dates and per-subject fee shown in the
+  application modal.
+
+<Callout type="important">
+  You do **not** need the INC payment collected before you start. Applying from
+  this page *raises* the INC demand; Finance then collects it. The collection is
+  what gates the **mark encoding** step, not the apply step. Zero-fee cases skip
+  the collection entirely.
+</Callout>
+
+<Callout type="info">
+  Unlike the student-facing flow, **the INC completion period does not gate this
+  page.** The Registrar can apply a completion even when the application window
+  has already closed — that is deliberate, since this page exists for cases that
+  fall outside the normal window.
+</Callout>
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal using your Registrar account.
+2. From the list of modules, click **Examinations**.
+3. From the dropdown (or the search bar), click **INC Application By Registrar**.
+
+## Understanding the Page
+
+The page has a **search area** at the top and a **results table** below it.
+Nothing loads until you pick a session and a student.
+
+### Search and toolbar controls
+
+| Control | Description |
+| --- | --- |
+| **Session** | The academic session in which the INC grade was received (e.g. SY 25-26 SEM I). Determines which subjects are searched. |
+| **Search Student** | Type to search and select the student. Only students with an INC grade in the selected session can be selected. |
+| **Cancel** | Clears the current selection so you can search a different student. |
+| **Search** | Filters the loaded results table. |
+| **Export** | Downloads the current results table for offline reference. |
+
+### Results table columns
+
+| Column | Description |
+| --- | --- |
+| **Reg No** | The student's registration number. Click it (or the row) to open the application. |
+| **Session** | The academic session the INC belongs to. |
+| **Student** | Student name. |
+| **Subject Code** | Code of the subject carrying the INC. |
+| **Subject Name** | Full subject name. |
+| **Status** | Where the request currently sits — see the status list below. |
+
+### Status values you will see
+
+| Status | Meaning |
+| --- | --- |
+| **Not Applied** | The INC exists but no completion request has been filed yet. This is your starting point. |
+| **Pending by Faculty** | The completion has been applied and is at the marks-encoding stage. Marks are still editable here. |
+| **Pending by Dean** | Marks are encoded and approved; the request is ready for final grade release. |
+| **Released** | The final grade has been released. The row is locked and drops out of the pending list. |
+
+<Callout type="info">
+  The page is not limited to subjects sitting at **Not Applied**. A student who
+  already has an INC application in progress — including one they filed themselves
+  through **INC Completion Apply** — also appears here, so the Registrar can pick a
+  request up mid-flow and carry it through to release.
+</Callout>
+
+<Callout type="info">
+  A standing note is displayed on the page: **"Marks cannot be edited once the
+  dean has released the grades."** Treat it as the hard boundary of this page.
+</Callout>
+
+## Completing an INC from the Registrar Panel
+
+The full path is four steps on one page: **search → apply → encode marks →
+release**.
+
+<Steps>
+
+#### Load the student's INC subject
+
+1. Select the **Session** where the INC grade exists.
+2. In **Search Student**, search for and select the student.
+3. Review the results table and confirm the INC subject appears with the expected
+   **Subject Code**, **Subject Name**, and a status of **Not Applied**.
+
+<Callout type="info">
+  If the student returns no rows, the student most likely has no INC in that
+  session — or the grade for that subject has already been released. Check the
+  session first before assuming it is a system issue.
+</Callout>
+
+#### Apply the INC completion
+
+Click the row (or the **Reg No**) to open the application modal.
+
+The modal shows the configured window and fee from the INC Completion Period
+setup:
+
+| Field | Notes |
+| --- | --- |
+| **Start Date** / **End Date** | The application window for the student's scope. |
+| **Faculty Approval End Date** | Deadline for the marks-encoding stage. |
+| **Dean Approval End Date** | Deadline for the final grade release stage. |
+| **Amount** | The configured INC fee per subject. |
+
+Below that is the subject table — **checkbox**, **Subject Code**, **Subject
+Name**, **Teacher**, **Grades**, and **Status**.
+
+1. Tick the checkbox for the subject to be completed. If the student has more
+   than one INC subject, you can tick several at once.
+2. Confirm **Total Fees** — it is the configured amount multiplied by the number
+   of subjects selected.
+3. Click **Apply**.
+
+<Callout type="warning">
+  **After applying:** The **Apply** button becomes disabled for that subject so
+  the same request cannot be submitted twice, and the main table status moves from
+  **Not Applied** to **Pending by Faculty**. Applying also **raises the INC
+  demand** for the amount shown, which Finance collects before you can encode
+  marks. Zero-fee setups skip the demand and go straight through.
+</Callout>
+
+<Callout type="info">
+  If the student already filed the application themselves, the row will already
+  show **Pending by Faculty**. Skip this step and go straight to encoding the
+  marks.
+</Callout>
+
+#### Encode the completion marks
+
+With the row at **Pending by Faculty**, open it again to display the **Mark
+Entry** modal.
+
+<Callout type="warning">
+  **Collection must be done first.** Marks can only be updated once the INC
+  payment collection has been completed for the subject (or the case is zero-fee).
+  If you applied a moment ago, coordinate with Finance before returning to this
+  step.
+</Callout>
+
+1. Review the component fields — typically **P1 - CS**, **P1 - PE**, **P2 - CS**,
+   **P2 - PE**, **P3 - CS**, and **P3 - PE**.
+2. Replace the outstanding **INC** component with the completed mark.
+3. Click **Approved**.
+
+Invalid entries (out of range or non-numeric) are rejected with a validation
+message and will not save. Saved marks remain visible when the row is reopened,
+and can still be corrected at this stage.
+
+<Callout type="warning">
+  **This is your last chance to edit.** Once the row moves to **Pending by Dean**
+  and you release the grade in the next step, the marks lock permanently.
+</Callout>
+
+#### Release the final grade and run Result Process
+
+With the row at **Pending by Dean**, open it to review the final grade summary —
+**Subject Code**, **Subject Name**, **Teacher Name**, **Campus Name**,
+**Semester**, **P1**, **P2**, **P3**, **TOTAL**, and **GRADE**.
+
+1. Confirm the component totals and the computed **GRADE** match the marks you
+   entered.
+2. Click **Final Grade Released**.
+3. Click **Result Process**.
+
+<Callout type="warning">
+  **Both actions are required.** Releasing the final grade makes it visible;
+  **Result Process** is what pushes it into the student's official record. If you
+  skip Result Process, the student's record can still show **INC** even though the
+  grade was released.
+</Callout>
+
+</Steps>
+
+## Where the Completed Grade Appears
+
+After Result Process finishes, verify the result in two places:
+
+- **Student Grade tab** — open the student's **Grade** tab for the same academic
+  session; the completed grade replaces the INC.
+- **TOR** — generate the student's TOR for the same session; the completed grade
+  appears under the **re-exam column**.
+
+If either one still shows INC, the most common cause is that **Result Process**
+was not run.
+
+## How This Differs from the Standard INC Completion Workflow
+
+The standard INC completion process is a four-stage relay across four pages and
+three roles: the Registrar opens the window on **INC Completion Period**, the
+student files and pays on **INC Completion Apply**, the assigned faculty encodes
+the marks on **INC Approval**, and the Dean releases the grade on **INC Approval
+By Dean**.
+
+**INC Application By Registrar collapses stages 2 through 4 into a single page
+operated by one role.** The Registrar files the application on the student's
+behalf, encodes the completion marks, and performs the release — no hand-offs, no
+waiting on faculty or Dean action.
+
+| | Standard INC workflow | INC Application By Registrar |
+| --- | --- | --- |
+| **Pages involved** | 4 (Period → Apply → Approval → Approval By Dean) | 1 (plus the Period setup) |
+| **Who acts** | Registrar, student, faculty, Dean | Registrar only |
+| **How it starts** | The student files the application | The Registrar files it for the student |
+| **Who encodes the marks** | The assigned faculty | The Registrar |
+| **Who releases the grade** | The Dean | The Registrar |
+| **Rejection paths** | Faculty rejects → back to student; Dean rejects → back to faculty | None — the request does not leave the Registrar |
+| **Best for** | Normal-volume, in-window INC completions | Urgent or exceptional cases that would otherwise need a backend request |
+
+What stays the same: the **INC Completion Period** setup still governs the dates
+and the per-subject fee, the payment or collection condition still applies, the
+same approval states are recorded, and the grade lands in the student's record
+and TOR through the same result processing.
+
+<Callout type="important">
+  This page is an exception path, not a replacement for the standard workflow.
+  Because it bypasses faculty and Dean review entirely, use it only where the case
+  genuinely warrants it and the completion marks have been confirmed with the
+  subject's teacher.
+</Callout>
+
+## Common Errors
+
+**The student cannot be selected, or returns no INC subjects.**
+There is no INC grade for that student in the selected session, or the only INC
+subject has already had its final grade released. Confirm the **Session** — INC
+grades are session-specific, and the student may have received the INC in an
+earlier semester. Check the student's Grade tab to confirm the subject is still
+flagged INC. If the grade was already released, the record is complete and no
+action is needed here.
+
+**The marks cannot be encoded after applying.**
+The INC payment collection for that subject has not been completed yet. Applying
+raises the demand; encoding waits on the collection. Check with Finance that the
+INC demand raised by the apply step has been collected for the student, subject,
+and session, and confirm the case is not meant to be zero-fee — if it is and the
+demand still appeared, raise a ticket. A **closed or expired completion period is
+not the cause**: the window does not block this page, so do not reopen the period
+to try to clear it.
+
+**A validation message appears when you click Apply.**
+A required condition on the application itself has not been met — for example no
+INC Completion Period configuration exists for the student's scope, so the modal
+has no amount or dates to read. Confirm an INC Completion Period configuration
+exists for that Campus, College, Course, and Semester, and confirm the subject
+still carries an INC and has not already been released. Note that an expired
+window is **not** a cause here — raise a ticket if the message points at dates.
+
+**The Apply button is disabled.**
+The completion has already been applied for that subject. The button is disabled
+deliberately so the same request cannot be filed twice. Close the modal and check
+the row status in the main table — it should read **Pending by Faculty** or later.
+Continue from the corresponding step rather than reapplying.
+
+**The marks cannot be edited.**
+The final grade has already been released for that subject, and the page locks
+marks after release. Confirm the row status is **Released**, then route the change
+through the formal Grade Correction process. It cannot be undone from this page.
+
+## Frequently Asked Questions
+
+**Does the INC completion period have to be open for me to use this page?**
+No. The completion period window is not enforced here — that is the point of the
+page. It still supplies the dates and the per-subject fee shown in the application
+modal, but an expired window does not stop the Registrar from applying.
+
+**Does the student have to pay before I can apply?**
+No. Applying raises the INC demand for the configured amount. Finance collects it,
+and only then can you encode the completion marks. So the order is apply → collect
+→ encode → release. Zero-fee cases skip the collection step.
+
+**The student already applied for the INC completion themselves. Can I finish it here?**
+Yes. Students with an application already in progress appear on this page too,
+with their current status. Open the row, encode the marks, and release — the
+student, Registrar, and Dean views stay in sync throughout.
+
+**Does the faculty member or the Dean need to do anything?**
+No. This page performs the encoding and the release itself. That is exactly why it
+should be used only for cases that warrant bypassing the normal review — confirm
+the marks with the subject teacher before you encode them.
+
+**Can I complete more than one INC subject at a time?**
+Yes. Tick multiple subjects in the application modal and confirm Total Fees sums
+correctly across them before applying. Each subject then moves through mark entry
+and release on its own row.
+
+**The grade was released but the student's record still shows INC. What happened?**
+**Result Process** was most likely not run. Releasing the final grade and running
+Result Process are two separate clicks, and only the second one writes the grade
+into the official record. Reopen the row and run Result Process.
+
+**I released the wrong grade. Can I undo it?**
+Not from this page. Once the grade is released, marks are locked. The correction
+has to go through the formal Grade Correction process, so review the final grade
+summary carefully before clicking Final Grade Released.
+
+**Can faculty or students see this page?**
+No. It is restricted to the Registrar role. Faculty and Student accounts will not
+find it in the Examinations menu.
+
+**The student is not proceeding with the INC completion after the demand was raised. What happens to the charge?**
+Finance cancels it on the **Demand Cancellation** page, selecting the **INC - INC**
+receipt type and the correct session. The completion can be re-applied afterwards
+if the student changes course.
+
+**Will the completed grade show on the TOR?**
+Yes — under the **re-exam column** for that subject and session, once Result
+Process has completed.
