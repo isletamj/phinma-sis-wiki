@@ -1,0 +1,295 @@
+---
+title: Sectioning
+---
+
+# Sectioning
+
+## Overview
+
+The **Sectioning** page is where section codes are created and tied to the programs
+that use them. It allows registrars and scheduling administrators to maintain the
+master list of section names, map those sections to a specific Campus, College and
+Course, and maintain the batch labels used to group off-term, summer and special
+class offerings.
+
+<Callout type="important">
+  Creating a section is only half the job. A section that exists on the **Section**
+  tab but has not been mapped on the **Section Mapping** tab will not be attached to
+  any campus, college or course, so it will not surface where schedulers expect it.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- **Campus**, **College** and **Course** records already exist in the system — all
+  three drive the Section Mapping dropdowns.
+- The section codes you intend to map have already been created on the **Section**
+  tab.
+- You have access to **Sectioning → Sectioning**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Sectioning**.
+3. From the dropdown, select **Sectioning**.
+
+## Understanding the Page
+
+The Sectioning page is divided into three tabs: **Section**, **Section Mapping**,
+and **Batch**. Each tab follows the same shape — a short form at the top for
+creating or editing a record, and a records table underneath showing everything
+already saved.
+
+Unlike some other setup pages, these three tabs are not a strict sequence.
+**Section** and **Batch** are independent lists. **Section Mapping** is the one that
+depends on the others: it can only map sections that already exist on the Section
+tab.
+
+<Callout type="info">
+  Every tab's table carries the same controls — a **Show entries** selector (10 / 25
+  / 50 / 100), a **Search** box that filters the visible rows, an **Export to
+  Excel** button, and pagination at the bottom. There is no delete action anywhere
+  on this page; records are retired by switching their status to inactive instead.
+</Callout>
+
+### Section
+
+The master list of section codes. This is where a section name such as *ABM 12-A*
+first comes into existence.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Section** | Yes | The section code, typed free-form (placeholder: *e.g. ABM 12-A*). Follow your campus naming convention — these codes appear verbatim in every downstream dropdown and report. |
+| **Status** | Yes | **Check if Active** toggle. Enabled by default on a new record. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Action** | ✏️ Edit icon — loads the section back into the form above for renaming or status change. |
+| **Section** | The section code. |
+| **Status** | **Active** (green badge) or **Inactive** (red badge). |
+
+### Section Mapping
+
+Ties one or more existing sections to a Campus + College + Course combination. One
+row in the table represents one such combination, with all of its sections listed
+side by side and separated by a `|` character.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Campus** | Yes | Searchable dropdown. Selecting a campus is what enables the College dropdown. |
+| **College** | Yes | Searchable dropdown, populated from the selected Campus. Enables the Courses dropdown. |
+| **Courses** | Yes | Searchable dropdown, populated from the selected College. |
+| **Section** | Yes | Multi-select. Type to filter the list, or choose **Select All**. Each section you pick is added as a chip with an **×** for removing it. |
+| **Status** | Yes | **Check if Active** toggle. Enabled by default on a new record. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Action** | ✏️ Edit icon — loads the mapping back into the form. |
+| **Campus** | The campus the mapping belongs to. |
+| **College** | The college within that campus. |
+| **Courses** | The course the sections are mapped to. |
+| **Section** | Every section in the mapping, separated by `\|`. |
+| **Status** | **Active** or **Inactive**. |
+
+<Callout type="info">
+  The **Section** dropdown is *not* filtered by the Campus, College or Course you
+  selected above it — it always offers the full master list from the Section tab.
+  Filter by typing the section code rather than scrolling, and check the code
+  carefully before adding it.
+</Callout>
+
+<Callout type="warning">
+  When you open an existing mapping with the edit icon, **Campus**, **College** and
+  **Courses** are locked and cannot be changed. Only the section list and the status
+  are editable. To move sections to a different course, edit them out of this
+  mapping and add them to the correct one.
+</Callout>
+
+### Batch
+
+A simple list of batch labels — used to tag off-term, summer and other special
+offerings so they can be grouped and reported on separately.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Batch** | Yes | The batch label, typed free-form (placeholder: *e.g. Batch-A*). |
+| **Status** | Yes | **Check if Active** toggle. Enabled by default on a new record. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Action** | ✏️ Edit icon — loads the batch back into the form. |
+| **Batch** | The batch label. Sortable. |
+| **Status** | **Active** or **Inactive**. Sortable. |
+
+## Creating a Section
+
+<Steps>
+
+#### Open the Section tab
+
+The **Section** tab is selected by default when the page opens. If you have moved
+away from it, click **Section**.
+
+#### Enter the section code
+
+Type the code in the **Section** field, following your campus naming convention.
+Leave **Check if Active** on so the section is immediately available for mapping.
+
+#### Submit
+
+Click **Submit**. The new section appears in the table below and becomes selectable
+in the **Section Mapping** tab's Section dropdown.
+
+</Steps>
+
+<Callout type="info">
+  **Cancel** clears the form and returns it to a blank new record. Use it whenever
+  you have opened a record for editing and want to start over instead of overwriting
+  it.
+</Callout>
+
+## Mapping Sections to a Course
+
+<Steps>
+
+#### Set the scope
+
+On the **Section Mapping** tab, choose **Campus**, then **College**, then
+**Courses**, in that order. Each dropdown only populates once the one before it has
+a value.
+
+#### Add the sections
+
+Open the **Section** dropdown and type part of the section code to narrow the list,
+then click each section you want. Selected sections appear as chips; click the **×**
+on a chip to remove one. **Select All** adds the entire master list — use it
+deliberately.
+
+#### Submit
+
+Confirm the **Check if Active** toggle is set the way you want, then click
+**Submit**. The mapping appears as a single row in the table, with all of its
+sections listed in the Section column.
+
+</Steps>
+
+<Callout type="warning">
+  Each Campus + College + Course combination is a single mapping. To add a section
+  to a combination that already exists, edit that row rather than creating a second
+  one.
+</Callout>
+
+## Adding a Section to an Existing Mapping
+
+1. Find the mapping in the table — use the **Search** box to filter by campus,
+   college or course.
+2. Click the ✏️ edit icon on that row. The form loads with Campus, College and
+   Courses locked, and the existing sections shown as chips.
+3. Open the **Section** dropdown and add the new section, or click the **×** on a
+   chip to remove one.
+4. Click **Submit** to save the revised list.
+
+## Creating a Batch
+
+1. Open the **Batch** tab.
+2. Type the label in the **Batch** field.
+3. Leave **Check if Active** on, then click **Submit**.
+
+## Retiring a Record
+
+There is no delete option on any of the three tabs. To take a section, mapping or
+batch out of circulation:
+
+1. Click the ✏️ edit icon on the record.
+2. Switch **Check if Active** off.
+3. Click **Submit**. The status badge changes to **Inactive** and the record stops
+   being offered in downstream dropdowns, while its history is preserved.
+
+## Key Scenarios
+
+**Scenario 1 — Opening a new section mid-enrollment**
+A first-year course fills up and the College needs an additional section. The
+registrar creates the new code on the **Section** tab, then opens the **Section
+Mapping** tab, finds the existing Campus + College + Course row, edits it, and
+adds the new section to the chip list. The section is then available for
+scheduling and enlistment without a second mapping row being created.
+
+**Scenario 2 — A section that "doesn't exist" downstream**
+A scheduler reports that a section they can see on the Section tab is missing
+from their own page. The section was created but never mapped. The registrar
+opens **Section Mapping**, selects the right Campus, College and Course, adds
+the section, and submits — the section appears where it is expected.
+
+**Scenario 3 — Retiring last year's off-term batch**
+An off-term batch from the previous academic year is no longer in use. Rather
+than deleting it, the administrator edits the batch on the **Batch** tab,
+switches **Check if Active** off and submits, so the label stops appearing in
+new transactions but historical records that reference it stay intact.
+
+## Common Errors
+
+**The College or Courses dropdown is empty**
+The dropdown above it has not been set. Section Mapping cascades Campus → College →
+Courses. Select a **Campus** first, then **College**, then **Courses**. If a college
+or course you expect is still missing after selecting the level above it, the record
+does not exist for that campus — have it created in the relevant master page first.
+
+**Campus, College and Courses cannot be changed while editing**
+This is by design. An existing mapping's scope is fixed; only the section list and
+status can be edited. Remove the section from the current mapping and add it to the
+correct Campus + College + Course mapping instead. If no mapping exists for that
+combination yet, click **Cancel** to clear the form and create it as a new mapping.
+
+**A section appears under the wrong course**
+The Section dropdown offers the whole master list regardless of the Campus, College
+and Course selected, so a similarly named code can be added to the wrong mapping.
+Edit the mapping that wrongly contains it and click the **×** on that section's
+chip, then add the section to the correct mapping.
+
+## Frequently Asked Questions
+
+**I created a section but it is not showing up anywhere. What did I miss?**
+It almost certainly has not been mapped. A section on the **Section** tab is only a
+code; it becomes usable once it is attached to a Campus, College and Course on the
+**Section Mapping** tab.
+
+**Can I delete a section, mapping or batch?**
+No. There is no delete action on this page. Switch the record's **Check if Active**
+toggle off and submit — it becomes Inactive and drops out of new transactions while
+existing records that reference it are preserved.
+
+**Why does the Section dropdown show sections from other campuses?**
+The dropdown is fed by the full master list from the Section tab and is not filtered
+by the Campus, College or Course above it. Type the code to filter, and double-check
+it before submitting.
+
+**I need to move a section to a different course. How?**
+Edit the mapping it currently sits in, remove it with the **×** on its chip and
+submit, then edit (or create) the mapping for the correct course and add it there.
+The Campus, College and Courses fields cannot be changed on an existing mapping.
+
+**What does "Select All" do in the Section field?**
+It adds every section in the master list to the mapping at once. On an instance with
+thousands of sections this is rarely what you want — use the type-ahead filter and
+pick sections individually.
+
+**Can two mappings exist for the same Campus, College and Course?**
+They should not. Treat each combination as a single row and edit it when the section
+list changes, rather than creating a duplicate.
+
+**Who do I contact if a section still will not appear after mapping it?**
+Raise a support ticket with the section code, the campus, college and course it was
+mapped to, and a screenshot of the mapping row.

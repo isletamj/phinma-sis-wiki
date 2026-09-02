@@ -1,0 +1,262 @@
+---
+title: Section Offering
+---
+
+# Section Offering
+
+## Overview
+
+The **Section Offering** page is where existing sections are opened for a specific
+academic session. It allows registrars and scheduling administrators to attach a
+shift, slot, modality, capacity and sequence to each section for that term, and to
+publish the section so students can see it during enlistment. Sectioning creates the
+section; Section Offering decides whether and how it runs this term.
+
+<Callout type="important">
+  The offering details are stored **per section per academic session**, not per
+  course. A section shared by several courses carries one shift, one slot, one
+  modality and one capacity for all of them — change it under one course and every
+  other course sharing that section sees the same change.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The sections exist and have been mapped to the right Campus, College and Course on
+  the **Sectioning** page. Section Offering can only list sections that are already
+  mapped.
+- The **Shift** and **Slot Name** values you need have been set up on **Sectioning →
+  Time Slot Configurations**. The dropdowns on this page read directly from there.
+- The **Academic Session** you are offering for exists and is available in the
+  session list.
+- You have access to **Sectioning → Section Offering**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Sectioning**.
+3. From the dropdown, select **Section Offering**.
+
+## Understanding the Page
+
+The Section Offering page is divided into two tabs: **Section Offering** and
+**Single Section**. Both produce the same editable grid — they differ only in how
+you reach the rows. Use **Section Offering** to work through a whole course at once,
+and **Single Section** when you already know the one section code you need to fix.
+
+Neither tab shows anything until you set the filters and click **Show**.
+
+### Section Offering
+
+Lists every section mapped to the selected course on the selected campus, for the
+selected session.
+
+**Filters:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | Searchable dropdown of terms, most recent first (semesters and summer terms). |
+| **Campus** | Yes | Searchable dropdown. Selecting a campus is what enables the Course dropdown. |
+| **Course** | Yes | Searchable dropdown, populated from the selected Campus. |
+
+**Buttons:**
+
+| Button | What it does |
+| --- | --- |
+| **Show** | Loads the sections matching the filters into the grid below. |
+| **Submit** | Saves the offering details entered in the grid. |
+| **Cancel** | Clears the filters and the grid, returning the page to its starting state. |
+| **Excel Report** | Downloads every course offering for the selected **Academic Session** as an Excel file — not just the filtered Campus/Course, and not just the loaded grid. Columns: SESSION, CAMPUS, COLLEGE, COURSE, COURSE_CODE, SHIFT, SLOT, MODALITY, SECTION, CAPACITY, SEQUENCENO, PUBLISH FOR STUDENTS. |
+
+### Single Section
+
+Same grid, reached by section code instead of by course — useful when a scheduler
+reports one section that is wrong and you do not want to load a hundred rows to fix
+it.
+
+**Filters:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | Same session list as the other tab. |
+| **Campus** | Yes | Searchable dropdown. |
+| **Section** | Yes | Free-text box. Matches on part of the code as well as the whole thing — typing *BSBA-FM4* finds *BSBA-FM4-M1*. |
+
+This tab has **Show**, **Submit** and **Cancel** only; there is no Excel Report.
+
+### The offering grid
+
+Both tabs return the same columns. Every row is editable in place — there is no
+separate edit screen.
+
+| Column | Description |
+| --- | --- |
+| **(checkbox)** | Selects the row. The checkbox in the header selects every row at once. |
+| **Section** | The section code. Read-only here — codes are created on the **Sectioning** page. |
+| **Shift** | Dropdown of the shifts defined on **Time Slot Configurations → Shift**. |
+| **Slot Name** | Dropdown of slots. It stays empty until a **Shift** is chosen on the same row, then it lists the slots belonging to that shift. |
+| **Modality** | Dropdown of the delivery modes configured for the school (for example FLEX and FLEX REMOTE). |
+| **Capacity** | The seat limit for the section. Numbers only, up to three digits. |
+| **Sequence** | The display order of the section in downstream lists. |
+| **Course** | Every course the section is shared with, shown as short codes. Codes appear in **black** when the section is offered under that course, and in **red** when it is not offered under that course. The colour is a property of the course-and-section pair, not of the course you filtered by — the same code shows the same colour no matter which course's grid you are viewing. |
+| **Publish** | **Publish for Students** toggle. Off means the section is set up but not yet visible to students. |
+
+The grid also carries its own **Search** box, which filters the rows already loaded,
+and an **Export** button for the visible list.
+
+<Callout type="info">
+  A row whose Shift, Slot Name and Modality all read *Please Select*, with Capacity
+  and Sequence blank and the Publish toggle off, is a section that has **not** been
+  offered for the selected session yet. That is how you spot what is still
+  outstanding for a term.
+</Callout>
+
+## Offering Sections for a Term
+
+<Steps>
+
+#### Set the filters
+
+On the **Section Offering** tab, choose the **Academic Session**, then the
+**Campus**, then the **Course**. The Course dropdown only populates once a campus is
+selected.
+
+#### Load the sections
+
+Click **Show**. Every section mapped to that course on that campus loads into the
+grid.
+
+<Callout type="warning">
+  If nothing loads, clicking Show with a filter left blank raises a stacked warning
+  naming each missing one — *Please Select Academic Session !!!*, *Please Select
+  Campus !!!*, *Please Select Course !!!*. If all three are set and the grid is
+  still empty, the sections have not been mapped to that course on the
+  **Sectioning** page.
+</Callout>
+
+#### Fill in the offering details
+
+For each section you are opening, set **Shift** first — **Slot Name** stays empty
+until you do — then **Slot Name**, **Modality**, **Capacity** and **Sequence**.
+
+#### Select and submit
+
+Tick the checkbox on each row you have filled in, or use the header checkbox to
+select them all, then click **Submit**.
+
+</Steps>
+
+<Callout type="info">
+  Use the grid's **Search** box to narrow a long list to one year level or one
+  program before working through it — for example typing *1-MAIN* to bring up only
+  the first-year Main Campus sections.
+</Callout>
+
+## Offering or Correcting a Single Section
+
+1. Open the **Single Section** tab.
+2. Choose the **Academic Session** and **Campus**, then type the section code (or
+   part of it) in the **Section** box.
+3. Click **Show**. The matching section loads as a single row, showing whatever is
+   already saved for that session.
+4. Change the Shift, Slot Name, Modality, Capacity or Sequence as needed.
+5. Tick the row and click **Submit**.
+
+## Publishing Sections to Students
+
+The **Publish for Students** toggle controls whether the section is visible to
+students. Set up the offering details first, then switch the toggle on for the rows
+you are ready to release and submit.
+
+<Callout type="warning">
+  Leaving the toggle off does not stop the section from being configured — it only
+  keeps it out of the students' view. Sections that look correctly set up but that
+  students cannot see are almost always unpublished rows.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — Opening a term for one program**
+Ahead of enlistment, the registrar sets the session, campus and course, clicks
+Show, and works down the grid setting the shift, slot, modality and capacity for
+each section the program will run. The rows are ticked and submitted, and the
+Publish toggle is switched on once the schedule is confirmed.
+
+**Scenario 2 — A capacity change requested by a dean**
+A dean asks for ten more seats in one section. Rather than loading the whole
+course, the administrator opens the **Single Section** tab, types the section
+code, clicks Show, edits the Capacity on the one row, ticks it and submits.
+
+**Scenario 3 — A shared section changed under the wrong course**
+A section listed under several courses in the Course column has its capacity
+reduced while the administrator is working in one program's list. Because the
+offering is stored per section per session, every course sharing that section
+now sees the smaller capacity. The fix is to agree the number across the
+affected programs before changing it, not to re-enter it under each course.
+
+## Common Errors
+
+**"Please Select Academic Session !!! / Please Select Campus !!! / Please Select Course !!!"**
+Show was clicked before all the required filters were set. Each missing filter gets
+its own line in the warning. Set the filters in order — Academic Session, then
+Campus, then Course. On the Single Section tab, the third filter is the Section box,
+which must contain at least part of a section code.
+
+**The Slot Name dropdown is empty**
+No **Shift** has been chosen on that row. Slot Name is filled from the shift
+selected beside it. Choose the Shift on the same row first, then reopen Slot Name.
+If the slot you need is still missing after choosing the shift, it has not been
+created for that shift on **Time Slot Configurations → Slot Master**.
+
+**Show returns no rows for a course you expect to see**
+The sections are not mapped to that Campus, College and Course. Open the
+**Sectioning** page, go to the **Section Mapping** tab, and check the mapping for
+that combination. Add the missing sections to the mapping, then come back and click
+Show again.
+
+**Students cannot see a section that is set up**
+The row's **Publish for Students** toggle is off. Load the section, switch the
+toggle on, tick the row and submit. If it is already on and students still cannot
+see it, raise a ticket with the section code, campus, course and session.
+
+## Frequently Asked Questions
+
+**What is the difference between the Sectioning page and this one?**
+Sectioning creates section codes and maps them to a Campus, College and Course —
+that setup carries across terms. Section Offering decides, for one academic session,
+which of those sections actually run and with what shift, slot, modality and
+capacity.
+
+**Why do I have to pick a Shift before Slot Name will work?**
+Slots belong to shifts. The Slot Name dropdown is filled from the slots defined
+under the shift you selected on that row, on the Time Slot Configurations page.
+
+**I changed a section's capacity under one course and it changed under another. Is that a bug?**
+No. The offering details are held against the section for that session, not against
+the course. Any course that shares the section shares the same shift, slot,
+modality, capacity and sequence.
+
+**What are the short codes in the Course column?**
+They are the courses the section is shared with. They are informational on this page
+— the mapping behind them is maintained on the Sectioning page's Section Mapping
+tab. The colour of each code tells you whether the section is offered under that
+course: **black** means it is, **red** means it is not.
+
+**Do I have to tick the checkboxes before submitting?**
+Yes — tick each row you have edited, or use the header checkbox to select the whole
+grid, then click Submit.
+
+**How many seats can I enter in Capacity?**
+Up to three digits, numbers only.
+
+**What is the difference between Excel Report and the Export button?**
+**Excel Report**, beside the Show and Submit buttons, downloads every course
+offering for the whole selected **Academic Session** — a session-wide export, not
+limited to the Campus/Course you filtered by. **Export**, above the grid, downloads
+only the rows currently loaded and filtered in the grid.
+
+**Can I remove an offering once it has been submitted?**
+There is no delete on this page. Switch the section's **Publish for Students**
+toggle off so students cannot see it, and raise a ticket if the offering itself has
+to be reversed.

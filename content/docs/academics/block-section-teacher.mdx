@@ -1,0 +1,379 @@
+---
+title: Block Section Teacher
+---
+
+# Block Section Teacher
+
+## Overview
+
+The **Block Section Teacher** page is where a faculty member is assigned to every
+subject a block section carries in a given term. Registrars and college scheduling
+staff use it once a section has been created and offered, so that each subject in
+the block has a named teacher and, where a subject is team-taught, one or more
+co-teachers.
+
+<Callout type="important">
+  This page is what makes a faculty member *the* teacher of a subject-section for
+  the whole term. Until a teacher is assigned here, the subject-section has no owner
+  downstream — it does not reach **Teacher Student Allotment**, it produces no
+  draggable subject card on **Create Class Schedule**, and no one can take
+  attendance or encode grades against it.
+</Callout>
+
+<Callout type="info">
+  The menu item reads **Block Section Teacher** (singular); the heading on the page
+  itself reads **Block Section Teachers**. They are the same page.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The section exists and is mapped to the correct Campus, College and Course on the
+  **Sectioning** page. The **Block Section** dropdown reads from that mapping.
+- The section has been offered for the term on **Section Offering**. A section that
+  is not offered for the selected Academic Session will not load subjects.
+- The curriculum has subjects defined for the year-semester you are working on —
+  those subjects are the rows of the grid.
+- The faculty members you intend to assign already have employee records in the
+  system, so they appear in the teacher roster.
+- You have access to **Sectioning → Block Section Teacher**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Sectioning**.
+3. From the dropdown, select **Block Section Teacher**.
+
+## Understanding the Page
+
+The page is divided into two tabs:
+
+| Tab | What it is for |
+| --- | --- |
+| **Block Section Teachers** | Assigning and changing the teacher and co-teachers for each subject in a block section. This is the tab you will use most. |
+| **Cancel Block Section Teachers** | Removing an allotment that has already been saved. |
+
+Both tabs work the same way: set the filters, click **Show**, then act on the grid
+that loads. Nothing is displayed before **Show** is clicked.
+
+### Block Section Teachers
+
+**Filters:**
+
+The six filters are a strict cascade — each one stays empty until the one above it
+is set, and changing a filter clears everything below it.
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | The term you are assigning for. Lists semesters and summer terms, most recent first. |
+| **Campus** | Yes | Selecting a campus is what populates the College list. |
+| **College** | Yes | Colleges available on the selected campus. |
+| **Course** | Yes | This is the **curriculum**, not just the program — entries read as *college abbreviation - program - curriculum year* (for example *CCJE - Bachelor of Science in Criminology - 23-24*). A program with several curriculum versions appears once per version. |
+| **Semester** | Yes | The curriculum's own year-semester code (**Y1S1**, **Y2S1**, and so on) — not the academic session. Only the year-semesters that have sections offered for the selected session appear. |
+| **Block Section** | Yes | The section code to assign teachers for. |
+
+**Buttons:**
+
+| Button | What it does |
+| --- | --- |
+| **Show** | Loads the subjects for the selected block section into the grid. |
+| **Submit** | Saves the teacher and co-teacher selections made in the grid. |
+| **Cancel** | Clears the filters and the grid, returning the tab to its starting state. |
+
+<Callout type="info">
+  The **Block Section** dropdown is not strictly filtered by the Course above it —
+  sections belonging to other programs can appear in the list. Check the section code
+  before loading it, and see the FAQ if the section you expect is missing.
+</Callout>
+
+### The allotment grid
+
+One row per subject in the block. There is no separate edit screen — the row *is*
+the editor, whether the subject is being assigned for the first time or reassigned.
+
+| Column | Description |
+| --- | --- |
+| **Subject Code** | The subject code and its descriptive title, for example *GEN 001 - Purposive Communication*. Read-only. |
+| **Type** | How the subject is delivered — **Lecture**, or **Lecture and Laboratory**. Read-only, and taken from the curriculum. |
+| **Units** | Credit units for the subject. Read-only. |
+| **Batch** | The batch this row applies to. Active only for subjects set to **Batchwise** allotment; shows **-** for sectionwise subjects. |
+| **Teacher** | Searchable single-select of faculty for the campus. Names are listed alphabetically. This is the main teacher. A subject may be left unassigned, but once a teacher has been saved the field cannot be emptied again — see the note below. |
+| **Co-Teacher** | Searchable multi-select drawn from the same roster, used for team-taught subjects. Optional, and more than one name can be picked. |
+| **Batch Capacity** | The student capacity of the batch. Active only for **Batchwise** subjects; shows **-** for sectionwise subjects. |
+| **Add Batch** | Adds another batch to the subject. Active only for **Batchwise** subjects; shows **-** for sectionwise subjects. |
+
+<Callout type="warning">
+  **A saved teacher cannot be cleared here.** You can submit the grid with some
+  subjects left unassigned, but once a subject has a teacher, setting it back to
+  **Please Select** does nothing — there is no error message; the grid simply
+  refreshes with the original teacher still in place. Removing a teacher is done on
+  the **Cancel Block Section Teachers** tab.
+</Callout>
+
+<Callout type="info">
+  The **Co-Teacher** list for a row always excludes whoever is currently selected as
+  that row's **Teacher**, and it updates the moment the Teacher is changed. The same
+  person cannot hold both roles on one subject.
+</Callout>
+
+<Callout type="info">
+  Whether the three batch columns do anything is decided per subject, not on this
+  page. It comes from the **Subject Allotment Category** on **University Setup →
+  Subject Masters → Subject Type**: subjects set to *Sectionwise* show **-** in all
+  three columns, and subjects set to *Batchwise* get the dropdown and the controls.
+  Most subjects are sectionwise, so seeing **-** across the whole grid is normal.
+</Callout>
+
+### Cancel Block Section Teachers
+
+Use this tab to take an allotment off a subject. It exists because a teacher, once
+saved, cannot be cleared from the main tab — so this is the only way to return a
+subject to unassigned without naming a replacement (PHIN-00351).
+
+The filters are the same cascade as the first tab (Academic Session → Campus →
+College → Course → Semester → Block Section), followed by **Show**.
+
+| Column | Description |
+| --- | --- |
+| **(checkbox)** | Selects the row for cancellation. The checkbox in the header selects every row at once. |
+| **Subject Code** | Subject code and title. Read-only. |
+| **Type** | Lecture, or Lecture and Laboratory. Read-only. |
+| **Teacher** | The currently assigned main teacher. Read-only — this tab does not reassign, it only removes. |
+| **Co-Teacher** | Currently assigned co-teachers, or **-** if none. Read-only. |
+| **Section** | The block section code the allotment belongs to. |
+| **Batch** | The batch the allotment applies to, or **-**. |
+
+**Show** loads the current allotments, **Submit** cancels the ticked rows, and
+**Cancel** clears the tab.
+
+<Callout type="warning">
+  The header checkbox selects every subject in the block at once. Submitting with it
+  ticked strips the teacher from every subject in that section, not just the one you
+  meant to change.
+</Callout>
+
+## Assigning Teachers to a Block Section
+
+<Steps>
+
+#### Narrow down to the section
+
+On the **Block Section Teachers** tab, work down the filters in order:
+
+| Field | Notes |
+| --- | --- |
+| **Academic Session** | The term being loaded. |
+| **Campus** | Enables the College list. |
+| **College** | Enables the Course list. |
+| **Course** | Pick the curriculum version the section follows, not just the program name. |
+| **Semester** | The curriculum year-semester (Y1S1, Y2S1, …). |
+| **Block Section** | The section code. |
+
+Each selection reloads the list below it, so give the page a moment between choices.
+Going back and changing a filter higher up clears everything under it and you will
+need to re-pick.
+
+#### Load the subjects
+
+Click **Show**. The grid fills with one row per subject in the block, showing the
+subject code, its type and its units.
+
+If the grid comes back empty, do not re-click **Show** — see **Common Errors** below.
+
+#### Set the teacher on each row
+
+In the **Teacher** column, pick the main faculty member for that subject. The
+dropdown is searchable, so type part of the surname rather than scrolling the full
+roster.
+
+Repeat for every row. A subject can be left on **Please Select** and submitted
+unassigned, but be deliberate about it — once a teacher is saved on a row, the only
+way back to unassigned is the **Cancel Block Section Teachers** tab.
+
+#### Add co-teachers where the subject is team-taught
+
+In the **Co-Teacher** column, pick one or more additional faculty for any subject
+that is shared. Leave it empty for subjects with a single teacher.
+
+The person already chosen as the row's **Teacher** will not appear in that row's
+Co-Teacher list.
+
+#### Submit
+
+Click **Submit** to save the whole grid.
+
+</Steps>
+
+<Callout type="warning">
+  After submitting, the allotments take effect immediately for the section and flow
+  through to **Teacher Student Allotment** and to the subject cards on **Create
+  Class Schedule**. Nothing typed into the grid is saved until Submit is clicked —
+  switching tabs or changing a filter first discards it.
+</Callout>
+
+## Removing a Teacher Allotment
+
+Use this when a section is dissolved, a faculty member leaves mid-term, or a load
+was assigned to the wrong person and there is no replacement to name yet.
+
+<Callout type="warning">
+  **A class schedule blocks cancellation.** An allotment cannot be cancelled once a
+  class schedule has been submitted for that subject-section. Remove or amend the
+  schedule first through **Cancel Class Schedule** or **Class Schedule Revision**,
+  then cancel the allotment.
+</Callout>
+
+1. Open the **Cancel Block Section Teachers** tab.
+2. Set the same six filters for the section concerned and click **Show**.
+3. Tick the checkbox on each subject row whose allotment should be removed.
+4. Click **Submit**.
+
+<Callout type="info">
+  If you already know who the replacement teacher is, you do not need this tab at
+  all — just change the name in the **Teacher** column on the first tab and submit.
+  Cancelling is only for leaving a subject genuinely unassigned.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — Setting up a newly opened block section**
+A registrar has just created and offered a new first-year block for the incoming
+term. She filters down to the section on the Block Section Teachers tab, clicks
+Show, and gets a row for each of the seven subjects in the curriculum's first
+semester. She sets a main teacher on every row, leaves Co-Teacher blank
+throughout, and submits. The scheduler can now build the section's timetable,
+because each subject finally has a teacher card to drag onto the grid.
+
+**Scenario 2 — A dissolved section leaves a faculty member holding a load**
+A section is dissolved a few weeks in because too few students enrolled, and the
+dean needs the load taken off the assigned professor's record. Because the main
+tab will not accept a blank teacher, the registrar opens the Cancel Block
+Section Teachers tab, filters to the dissolved section, ticks the affected
+subject rows and submits. The allotment is removed without having to park the
+subject under a placeholder name.
+
+**Scenario 3 — A subject reassigned mid-term does not reach every student**
+A professor is replaced on a subject and the registrar updates the Teacher
+column and submits. Regular students in the block pick up the new name on
+Teacher Student Allotment straight away, but a handful of irregular students
+still show the old professor, because they sit on a different curriculum and
+semester from the block. The registrar raises this with support rather than
+re-submitting, since the block-level change has already saved correctly
+(PHIN-00441).
+
+## Common Errors
+
+**The grid is blank after clicking Show**
+The section loaded, but no subjects came back for it — so there is nothing to assign
+teachers to. Reported repeatedly on Live (PHIN-02555, PHIN-02595), where the section
+itself was visible in Sectioning, Section Mapping, Section Offering and in this
+page's dropdown, yet the grid stayed empty. Confirm the **Semester** matches a
+year-semester that actually has subjects in the selected curriculum — a Y1S1 section
+filtered under Y2S2 returns nothing. Confirm the section has been offered for the
+selected **Academic Session** on **Section Offering**; a mapped-but-not-offered
+section can appear in the dropdown and still carry no subjects. Check that the
+**Course** you picked is the curriculum version the section actually follows. If all
+three check out, raise a ticket — the subjects will not be allottable to faculty
+until it is fixed, so this blocks scheduling, attendance and grading for that
+section.
+
+**The section is missing from the Block Section dropdown**
+The section is mapped to a different course from the one selected. In PHIN-01781 a
+section that was invisible under one program turned out to be mapped to another
+program's course entirely, even though it appeared normally in other pages' section
+dropdowns. Open **Sectioning** and check which Campus, College and Course the section
+is actually mapped to, then come back and select that Course here. If the mapping
+itself is wrong, correct it on **Sectioning** first — the section will appear here
+once the mapping is right. Remember that this dropdown also shows sections from
+other programs, so a code that looks close to the one you want may not be it. Match
+the full code.
+
+**Both Flex and Flex Remote subjects appear for one section**
+The grid lists the subjects the curriculum defines for the section, without
+splitting them by learning modality, so a registrar sees subjects for both
+modalities even when the section is tagged to only one of them (PHIN-00582). Check
+the section's modality on **Section Offering** and assign teachers only to the rows
+that belong to it. If you are unsure which rows apply, confirm the section's
+modality with the college before submitting.
+
+**Setting a teacher back to "Please Select" does nothing**
+This is by design, not a fault. A subject can be submitted with no teacher at all,
+but once a teacher has been saved it cannot be cleared from this tab. There is no
+error message — the grid just refreshes with the original teacher still showing. To
+swap teachers, pick the new name and submit; that works normally. To leave the
+subject genuinely unassigned, use the **Cancel Block Section Teachers** tab
+(PHIN-00351).
+
+**The allotment will not cancel**
+A class schedule has already been submitted for that subject-section. The schedule
+depends on the allotment, so the allotment cannot be pulled out from under it.
+Remove or amend the schedule first, through **Cancel Class Schedule** or **Class
+Schedule Revision**, then come back and cancel the allotment. If the goal is only to
+change who teaches the subject, do not cancel at all — change the name in the
+**Teacher** column on the first tab and submit. Reassigning does not require
+touching the schedule.
+
+## Frequently Asked Questions
+
+**What is the difference between Teacher and Co-Teacher?**
+**Teacher** is the single main faculty member responsible for the subject-section
+and is required. **Co-Teacher** is an optional multi-select for team-taught
+subjects. A person cannot be both on the same row — whoever is selected as Teacher
+is removed from that row's Co-Teacher list automatically.
+
+**I assigned a teacher here, so why is the subject still not showing on Create Class Schedule?**
+Check that you submitted, and that the teacher is set on the exact section and
+curriculum the scheduler is loading. The subject cards on Create Class Schedule are
+generated from Block Section Teacher, and a subject with no teacher configured here
+produces no card — even if the class has already been scheduled through someone
+else's card.
+
+**Can I assign one teacher to several sections at once?**
+Not from this tab. The grid is scoped to one block section at a time, so a teacher
+who handles the same subject across four sections has to be set on each section
+separately.
+
+**Why does the Semester dropdown show Y1S1 rather than the term I picked?**
+**Semester** here is the *curriculum's* year-semester code, which is how the
+curriculum sequences its subjects. The term itself is the **Academic Session** at
+the top of the filters. Only year-semesters with sections offered for that session
+appear in the list.
+
+**Why does the teacher list include faculty from other colleges?**
+The roster is the campus's faculty list, not the college's, so cross-college
+teaching assignments are possible. Type the surname to filter — the list is sorted
+alphabetically and searchable for exactly this reason (PHIN-00140).
+
+**I changed the professor and regular students updated, but irregular students still show the old one. What do I do?**
+The block-level change has saved correctly. Irregular students sit on a different
+curriculum and semester from the block, so they are not always picked up by the same
+update — this was raised in PHIN-00441. Raise a support ticket with the section,
+subject and affected student numbers rather than re-submitting the grid.
+
+**Why can I not cancel an allotment?**
+A class schedule has already been submitted for that subject-section. Clear or amend
+the schedule on **Cancel Class Schedule** or **Class Schedule Revision** first. If
+you only need to change who teaches it, reassign on the first tab instead — that
+does not require touching the schedule.
+
+**Do I have to allot students to teachers separately after this?**
+No. Assigning a teacher here attaches them to the subject and section, and a student
+is allotted automatically the moment they enlist in that subject-section. **Teacher
+Student Allotment** is a view of the result, used for rechecking — it is not a
+second step you have to perform.
+
+**Why are the Batch columns always showing a dash?**
+The subject is set to *Sectionwise* allotment. The batch columns only become active
+for subjects whose **Subject Allotment Category** is *Batchwise*, which is set on
+**University Setup → Subject Masters → Subject Type**. Most subjects are
+sectionwise.
+
+**Who do I contact if a section loads no subjects at all?**
+Raise a support ticket with the **Block Section code**; the **Academic Session,
+Campus, College, Course and Semester** selected in the filters; the **subject code**
+and **faculty name** involved, if the issue is on a specific row; a description of
+what you tried to do and what happened; and a screenshot of the filters and the
+grid, including any error message. Until it is resolved the subjects cannot be
+allotted to faculty, which in turn blocks the section's schedule, attendance and
+grades.

@@ -1,0 +1,359 @@
+---
+title: Subject Wise Capacity Change
+---
+
+# Subject Wise Capacity Change
+
+## Overview
+
+The **Subject Wise Capacity Change** page sets the seat limit of a **single subject
+inside a section**, without disturbing the other subjects that section is taking. By
+default a section's capacity applies to every subject taught to it — a section with
+a capacity of 62 gives all of its subjects 62 seats — and changing it at the section
+level moves all of them together. This page is the exception: registrars and
+scheduling administrators use it when one subject in a section needs a different
+limit from the rest, most often in upper years where a lab, a room or a shared
+general-education subject cannot take the whole block.
+
+<Callout type="important">
+  The page opens under the heading **Change Request** — that is the same page as the
+  **Subject Wise Capacity Change** menu item, not a different one.
+</Callout>
+
+<Callout type="info">
+  Nothing on this page changes the section's own capacity. It only records a
+  subject-level override, which the grid shows in the **Updated Capacity** column
+  beside the section's **Actual Capacity**.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The section is already offered for the academic session and campus on **Sectioning
+  → Section Offering**, with a capacity saved. That capacity is what the page shows
+  as **Actual Capacity**.
+- The subject is part of what the section is taking, so that it appears in the
+  **Subject** list for that section.
+- You have access to **Sectioning → Subject Wise Capacity Change**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Sectioning**.
+3. From the dropdown, select **Subject Wise Capacity Change**.
+
+## Understanding the Page
+
+The page is a single screen: a five-field form across the top, the **Show**,
+**Submit** and **Cancel** buttons beneath it, and a records grid that appears once
+you click Show.
+
+**The first three fields are filters, not entries.** Academic Session, Campus and
+Section narrow the page down to one section; **Show** then lists every subject under
+it with its current numbers. That grid is where the work happens — you pick the
+subject by clicking the edit icon on its row, not by hunting through the Subject
+dropdown.
+
+**Subject** and **Capacity** are the entry pair. In normal use you never touch the
+Subject dropdown at all: the edit icon fills it in for you, and you only type the
+capacity.
+
+The filters are cascading: choosing a Campus rebuilds the **Section** list, and
+choosing a Section rebuilds the **Subject** list.
+
+### Form fields
+
+| Field | Role | Description |
+| --- | --- | --- |
+| **Academic Session** | Filter | The session the capacity applies to. Sessions are listed newest first. |
+| **Campus** | Filter | The campus whose sections you want. Changing it rebuilds the Section list. |
+| **Section** | Filter | The section code. The list is empty until a Campus is chosen, and can run to several hundred entries. |
+| **Subject** | Entry | Shown as **code – subject name**. Filled in for you when you click a row's edit icon. Not used by **Show**, which clears it every time it runs. |
+| **Capacity** | Entry | The new seat limit for the chosen subject. Up to three characters, positive whole numbers only — letters and negatives can be typed in, but the save rejects them. |
+
+### Buttons
+
+| Button | What it does |
+| --- | --- |
+| **Show** | Loads the current capacities of every subject the chosen section is taking into the grid. Checks only Academic Session, Campus and Section. |
+| **Submit** | Saves the value in **Capacity** as the subject-level limit for the chosen Subject. Checks all five fields. |
+| **Update** | Replaces **Submit** when the row you opened **already has** an Updated Capacity. Saves the revised figure. |
+| **Cancel** | Reloads the page to its blank starting state — all fields cleared, grid gone, and **Update** back to **Submit**. |
+| **Export** | Above the grid. Downloads the loaded rows for offline reference. |
+
+### The records grid
+
+| Column | Description |
+| --- | --- |
+| **Action** | Edit icon (✏️). Loads that row into the form so its capacity can be revised. |
+| **Academic Session** | The session the row belongs to. |
+| **Campus** | The campus the row belongs to. |
+| **Section** | The section the row belongs to. |
+| **Subject** | The subject code and name. |
+| **Actual Capacity** | The section's own capacity, carried from **Section Offering**. It is the same on every row, and this page never changes it. |
+| **Total Registered** | How many students are currently enlisted in that subject in that section. |
+| **Updated Capacity** | The subject-level limit set on this page. **Blank means no override** — that subject is running on the Actual Capacity. |
+
+The grid has no page links. Every row loads at once into a scrolling body with the
+header fixed at the top and **Updated Capacity** pinned at the right edge; the
+middle columns scroll sideways. Above it are a **Search** box, which filters the
+rows already loaded, and the **Export** button.
+
+<Callout type="info">
+  The grid runs to a hundred rows or more, but only a fraction of them are subjects
+  the section is really taking. Once a term is under way, those are the rows carrying
+  a non-zero **Total Registered** — sort or scan on that column, or type the subject
+  code into the **Search** box. Early in a term, before anyone has enlisted, every
+  row reads 0 and you will need the class schedule to tell them apart.
+</Callout>
+
+<Callout type="info">
+  **Total Registered** can legitimately be higher than **Actual Capacity**. That is
+  what an override looks like after the fact: the section's own limit was 62, the
+  subject's limit was raised, and the extra students went in against the raised
+  number.
+</Callout>
+
+## Reviewing the Capacities of a Section
+
+Do this before changing anything. It is the only place that shows the section's
+capacity, the enrolment and any existing override side by side.
+
+<Steps>
+
+#### Choose the session and campus
+
+Select the **Academic Session**, then the **Campus**. The **Section** list rebuilds
+each time the campus changes.
+
+#### Choose the section
+
+Select the **Section** you want to look at. Leave **Subject** and **Capacity** alone
+— Show does not use them.
+
+#### Click Show
+
+The grid loads with one row per subject in that section.
+
+<Callout type="warning">
+  If nothing loaded, clicking Show with any of the three required fields blank
+  raises a single message listing each one that is missing — *Please Select Academic
+  Session / Please Select Campus / Please Select Section*. Fill them in and click
+  Show again. Note that Show also resets the **Subject** field back to *Please
+  Select* every time it runs.
+</Callout>
+
+</Steps>
+
+## Changing the Capacity of a Subject
+
+Work from the grid. Everything you need to choose a sensible number — the section's
+own limit and how many students are already in — is on the row itself.
+
+<Steps>
+
+#### Filter down to the section
+
+Choose the **Academic Session**, **Campus** and **Section**, then click **Show**.
+Leave Subject and Capacity alone.
+
+#### Find the subject's row
+
+Scroll or use the **Search** box to bring up the subject you want. Read the row
+before you change anything: **Actual Capacity** is the section's limit, **Total
+Registered** is how many students are already enlisted, and **Updated Capacity**
+shows an override if one is already in place.
+
+#### Click the edit icon
+
+Click the edit icon (✏️) in the **Action** column. The **Subject** field fills in
+with that row's subject and the four dropdowns grey out, leaving **Capacity** as the
+only thing you can change.
+
+<Callout type="info">
+  The button tells you which case you are in. If it still reads **Submit**, that
+  subject has no override yet and you are creating one — the Capacity box opens
+  blank. If it now reads **Update**, an override already exists and the box is
+  pre-filled with it.
+</Callout>
+
+#### Enter the capacity
+
+Type the new seat limit. This is the total number of seats for that subject in that
+section — not the number of extra seats you are adding.
+
+Only whole numbers are accepted. The box will let you type letters, but the save
+refuses them with *Please enter numeric value for Capacity !!!*, and a negative
+number is rejected as well.
+
+<Callout type="warning">
+  **The new capacity cannot be lower than the number already registered.** The save
+  is refused with *Please enter Capacity Greater than Total Registered Students Count
+  !!!*. Read **Total Registered** on the row first — that figure is the floor for
+  anything you type. This is deliberate: students already enlisted are never removed
+  by a change made here, so the system will not let a subject be cut below the people
+  already in it.
+</Callout>
+
+#### Save
+
+Click **Submit** (or **Update**). On success the message **Record Submitted
+Successfully** appears.
+
+</Steps>
+
+<Callout type="warning">
+  After saving, click **Show** again for the same section and check the **Updated
+  Capacity** column on that subject's row. The grid on screen is the one loaded
+  before the save, so it will not show the new value on its own.
+</Callout>
+
+<Callout type="warning">
+  **One subject at a time.** The four dropdowns stay locked after a save. To work on
+  another subject, click **Cancel** — which clears the page completely — or run
+  **Show** again for the section.
+</Callout>
+
+## Setting a Capacity Without Loading the Grid
+
+The Subject dropdown can be used directly: choose the Academic Session, Campus and
+Section, pick the **Subject**, type the **Capacity**, and click **Submit**. All five
+fields are required, and the save behaves exactly as above.
+
+<Callout type="info">
+  This route is quicker but blind. You cannot see the section's Actual Capacity, how
+  many students are already registered, or whether an override is already in place —
+  and the Subject dropdown lists far more subjects than the section actually takes,
+  with nothing to distinguish them. Loading the grid first is the safer habit.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — One subject in a block needs more seats**
+An upper-year section of 62 has a general-education subject that a few students
+from other blocks also need to join. Rather than raising the section's capacity
+— which would open up every subject the section takes — the registrar loads the
+section, picks that one subject, sets its capacity to 70 and submits. The other
+subjects keep the section's limit of 62.
+
+**Scenario 2 — Working out why one subject is full and the others are not**
+A student cannot be enlisted into a section for one particular subject, though
+the section clearly has room. The administrator runs **Show** on that section
+and reads the row: **Total Registered** has reached the **Updated Capacity** set
+for that subject, even though it is below the section's Actual Capacity. The
+override is the constraint, and raising it on this page is the fix.
+
+**Scenario 3 — Holding a laboratory subject below the block size**
+A section of 62 has one subject that is taught in a room that seats 40. The
+scheduling administrator sets that subject's capacity to 40 here, so enlistment
+stops at the room's limit while the rest of the section's subjects continue to
+take the full block.
+
+## Common Errors
+
+**"Please Select Academic Session / Please Select Campus / Please Select Section"**
+**Show** was clicked with one or more of its three required fields still on *Please
+Select*. All the missing ones are listed together in a single message. Fill in each
+field named in the message and click **Show** again. Remember the fields are
+cascading — the Section list stays empty until a Campus is chosen.
+
+**"Please Select Subject" / "Please Enter Capacity"**
+**Submit** was clicked without a subject chosen, or with the Capacity box empty.
+Unlike Show, Submit needs all five fields. Choose the subject and type the new
+limit, then submit again. If the Subject box has reset itself to *Please Select*,
+that is because **Show** clears it — reselect the subject after every Show.
+
+**"Please enter numeric value for Capacity !!!"**
+Something other than a positive whole number was typed into **Capacity** — letters,
+or a negative value. The box itself does not block them; the check happens when you
+save. Clear the field and enter digits only, then submit again.
+
+**"Please enter Capacity Greater than Total Registered Students Count !!!"**
+The figure typed is below the subject's **Total Registered**. A subject cannot be
+cut below the students already enlisted in it. Read **Total Registered** on that row
+and use it as the lowest figure you can set. If the subject genuinely needs to
+shrink, the students have to be moved out first — through **Change Section** or the
+relevant add/drop process — and the capacity lowered afterwards.
+
+**The subject is not in the Subject list**
+The subject is not part of what that section is taking in that academic session, so
+there is no section-and-subject pairing to set a capacity against. Check you have
+the right section and the right academic session. Confirm the subject is offered and
+scheduled to that section on the **Class Schedule** and **Section Offering** pages,
+then come back.
+
+**The Updated Capacity column is still blank after submitting**
+You are looking at the grid that was loaded before the save. It does not refresh
+itself. Click **Show** again for the same section and read the row.
+
+**The capacity was raised but the section still does not appear for the student**
+The override saved, but the section is not being offered to the student during
+enlistment. Run **Show** and confirm the **Updated Capacity** really is on the row,
+and that **Total Registered** is below it. Check the section is published and
+offered for that session on **Section Offering**, and that the student's course and
+year map to it. If the numbers are right and the section still does not appear,
+raise a ticket with the academic session, campus, section, subject code and a sample
+student number. This behaviour has been reported and fixed before, so support will
+want to check whether it has recurred.
+
+## Frequently Asked Questions
+
+**What is the difference between Actual Capacity and Updated Capacity?**
+**Actual Capacity** is the section's own limit, carried from **Section Offering** —
+it is the same on every row of the grid. **Updated Capacity** is the limit set for
+that one subject on this page. Where Updated Capacity is blank, the subject runs on
+the Actual Capacity.
+
+**Does this change the section's capacity?**
+No. It changes one subject inside the section. If you want to move all of the
+section's subjects together, change the section's capacity on **Section Offering**
+instead.
+
+**Do I have to pick the subject from the dropdown?**
+No, and normally you should not. Filter to the section, click **Show**, and use the
+edit icon on the subject's row — the dropdown fills itself in. Working from the grid
+also puts the section's capacity and the current enrolment in front of you before
+you choose a number.
+
+**Why does the Subject dropdown list subjects the section clearly is not taking?**
+The list is wider than the section's real subjects. This is the main reason to
+select from the grid instead: the row shows you **Total Registered**, so you can
+tell a subject the section is actually taking from one it is not.
+
+**How do I tell whether a subject already has an override?**
+Look at **Updated Capacity** on its row — blank means none. The button confirms it
+after you click the edit icon: **Submit** means you are creating a new override,
+**Update** means you are revising one that exists.
+
+**Total Registered is higher than Actual Capacity. Is that a data error?**
+Usually not. It means an **Updated Capacity** above the section's limit was set for
+that subject and students enlisted against it. Check the Updated Capacity on the
+same row before treating it as a problem.
+
+**Can I set a capacity lower than the number of students already registered?**
+No. The save is refused with *Please enter Capacity Greater than Total Registered
+Students Count !!!*. **Total Registered** is the floor for whatever you type,
+because a change here never removes students who are already enlisted. To shrink a
+subject below its current enrolment, the students have to be moved out first and the
+capacity lowered afterwards.
+
+**What happens if I set the capacity to 0?**
+On a subject with nobody enlisted, it saves and closes the subject to further
+enlistment. On a subject that already has students, 0 is below the enrolment like
+any other figure and is refused with *Please enter Capacity Greater than Total
+Registered Students Count !!!*. Either way, do not use 0 as a way of clearing an
+override — see the next question for that.
+
+**How do I remove an override so the subject goes back to the section's capacity?**
+Edit the row and set the capacity back to the section's **Actual Capacity**. There
+is no delete action on the grid, and this is the accepted way to do it — the subject
+is then on the same limit as the rest of the section.
+
+**Do I have to do this again next semester?**
+Yes. The override is stored against the academic session, campus, section and
+subject, so a new session starts from the section's capacity again.
+
+**Can I set several subjects at once?**
+No. The page saves one subject at a time. Use **Show** once, then work down the rows
+you need, reselecting the subject and capacity for each.

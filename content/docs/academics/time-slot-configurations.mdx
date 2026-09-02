@@ -1,0 +1,422 @@
+---
+title: Time Slot Configurations
+---
+
+# Time Slot Configurations
+
+## Overview
+
+The **Time Slot Configurations** page is where the building blocks of the class
+timetable are defined — the shifts a campus runs, the slot patterns inside those
+shifts, the actual period start and end times per college and study level, and the
+groups that bundle those time slots together for use on the Class Schedule page. It
+allows registrars and scheduling administrators to set up the timetable skeleton
+once, so that Class Schedule only has to pick from it.
+
+<Callout type="important">
+  The four tabs are sequential, not independent. A Shift must exist before a Slot
+  can point to it, a Slot must exist before periods can be configured, and periods
+  must exist before they can be grouped. Setting them up out of order will leave
+  dropdowns empty on the later tabs.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- **College** and **Study Level** records already exist in the system — the Time
+  Configuration and Time Group Mapping tabs both require them.
+- You have access to **Sectioning → Time Slot Configurations**.
+- For a group to be usable on Class Schedule, the corresponding session must
+  already be mapped in **Section Offering**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Sectioning**.
+3. From the dropdown, select **Time Slot Configurations**.
+
+## Understanding the Page
+
+The Time Slot Configurations page is divided into four tabs: **Shift**, **Slot
+Master**, **Time Configuration**, and **Time Slot Group**. Think of it as building a
+timetable from the outside in — first the shift (which days of the week are
+covered), then the slot (the named pattern inside that shift), then the individual
+periods with real clock times, and finally the group that bundles selected periods
+so schedulers can apply them in one action.
+
+### Shift
+
+Defines a named working pattern and the days of the week it covers — for example
+*Shift A Full F2F* running Monday to Sunday, or *Shift C Flex* running Monday,
+Tuesday, Thursday, Friday, Saturday.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Shift Name** | Yes | Full name of the shift (e.g., Shift A Full F2F, Shift B Flex, Regular Shift). |
+| **Short Name** | Yes | Abbreviated label used in compact displays and dropdowns (e.g., Shift A FF, RAD, BECED SJ). |
+| **Day** | Yes | Multi-select list of the days the shift covers. Use **Select All** to tick Monday through Sunday at once, or tick individual days. |
+| **Status** | — | **Check if Active** toggle. Enabled by default on new records. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Action** | ✏️ Edit icon to modify an existing shift. |
+| **Shift Name** | The full shift name. |
+| **Short Name** | The abbreviated shift label. |
+| **Day** | The days covered, shown pipe-separated (e.g., Monday \| Tuesday \| Wednesday). |
+| **Status** | **Active** (green badge) or inactive. |
+
+### Slot Master
+
+Defines a named slot within a shift. The slot is what colleges and programs are
+actually scheduled against — for example *A Whole Day*, *CRIM MAIN*, or *BSCE
+SOUTH* under a given shift.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Shift Name** | Yes | The shift this slot belongs to. Populated from the Shift tab. |
+| **Slot Name** | Yes | Name of the slot (e.g., A Whole Day, CRIM MAIN, BSBA SJ). |
+| **Time Slot** | Yes | The broad time band the slot covers (e.g., AM PM). |
+| **Status** | — | **Check if Active** toggle. Enabled by default. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Action** | ✏️ Edit icon to modify an existing slot. |
+| **Shift** | The parent shift. |
+| **Slot Name** | The slot's name. |
+| **Time Slot** | The time band assigned to the slot. |
+| **Status** | **Active** (green badge) or inactive. |
+
+### Time Configuration
+
+Where the actual clock times live. For a given Shift + Slot + College + Study Level
+combination, you define the individual periods — their names, start and end times,
+display order, and whether the period is a break.
+
+**Header fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Shift Name** | Yes | The shift the periods belong to. |
+| **Slot Name** | Yes | The slot the periods belong to. |
+| **College** | Yes | The college these period times apply to. Times can differ per college. |
+| **Study Level** | Yes | Graduate, College, Senior High School, Certificate, or ETEEAP. |
+
+**Period rows:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Period Name** | Yes | Label for the period (e.g., AP1, AP2, AP 50). |
+| **Time From** | Yes | Start time, entered with the time picker. |
+| **Time To** | Yes | End time, entered with the time picker. |
+| **Sequence** | Yes | Display order of the period within the slot. |
+| **Break** | — | Tick if the period is a break rather than a teaching period. |
+| **Status** | — | **Check if Active** toggle. Enabled by default. |
+
+<Callout type="info">
+  Use the **+** button at the right of the period header row to add another period
+  row before submitting, so a whole day can be configured in one pass.
+</Callout>
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Action** | ✏️ Edit icon to modify an existing period. |
+| **Shift** | The parent shift. |
+| **Slot** | The parent slot. |
+| **College** | The college the period applies to. |
+| **Study Level** | The study level the period applies to. |
+| **Period Name** | The period's label. |
+| **Time From** / **Time To** | The period's start and end times. |
+| **Sequence** | The period's display order. |
+| **Break** | **Yes** or **No** badge. |
+| **Status** | **Active** (green badge) or inactive. |
+
+### Time Slot Group
+
+Bundles time slots under a single named group so that schedulers can apply a whole
+set of periods on the Class Schedule page in one selection. The tab has two modes,
+selected by the radio buttons at the top:
+
+**Group Master** — create and maintain the group names themselves.
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Group Name** | Yes | Name of the group (e.g., CCJE Shift Flex, GRADSCHOOL SHIFT, FLEX Remote). |
+| **Status** | — | **Check if Active** toggle. Enabled by default. |
+
+| Column | Description |
+| --- | --- |
+| **Action** | ✏️ Edit icon to rename a group or change its status. |
+| **Group Name** | The group's name. |
+| **Active Status** | **Active** or **De-Active**. |
+| **Created By** | The user who created the group. |
+
+**Time Group Mapping** — assign configured time slots to a group.
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Shift Name** | Yes | The shift whose time slots you want to map. |
+| **Slot Name** | Yes | The slot whose time slots you want to map. |
+| **College** | Yes | The college the time slots belong to. |
+| **Study Level** | Yes | The study level the time slots belong to. |
+| **Group Name** | Yes | The group the selected time slots will belong to. Populated from Group Master. |
+
+Buttons: **Show** lists every time slot configured for the selected Shift + Slot +
+College + Study Level (whether or not it is already mapped to a group), **Submit**
+assigns the ticked rows to the **Group Name** entered above, **Excel** exports the
+listed rows, and **Cancel** clears the form.
+
+**Results table columns:** a row checkbox in the **Action** column, **Time Slot**,
+**Time From**, **Time To**, **Group Name**, and **Created By**. Group Name and
+Created By show **-** for any time slot that has not yet been mapped to a group;
+after a successful Submit, both columns populate — Group Name with the name you
+mapped it to, Created By with your username.
+
+<Callout type="info">
+  Changing **Shift Name** clears every field below it. Re-select Slot Name, College,
+  Study Level, and Group Name before clicking Show.
+</Callout>
+
+## Creating a Shift
+
+<Steps>
+
+#### Enter the shift details
+
+On the **Shift** tab, fill in the required fields:
+
+| Field | Notes |
+| --- | --- |
+| **Shift Name** | Use the naming pattern already in the table so the list stays sortable (e.g., Shift A Full F2F, Shift B Flex). |
+| **Short Name** | Keep it short — this is what appears in narrow dropdowns. |
+| **Day** | Tick every day the shift operates, or use **Select All** for a seven-day shift. |
+
+#### Submit
+
+Leave **Check if Active** on and click **Submit**.
+
+</Steps>
+
+<Callout type="warning">
+  After submitting, the shift appears in the table below and immediately becomes
+  selectable in the Slot Master and Time Configuration tabs. It does not yet have
+  any times attached to it.
+</Callout>
+
+## Creating a Slot
+
+<Steps>
+
+#### Select the shift
+
+On the **Slot Master** tab, choose the **Shift Name** the slot belongs to.
+
+#### Name the slot and set the time band
+
+Enter the **Slot Name** and select the **Time Slot** band. Leave **Check if Active**
+on.
+
+#### Submit
+
+Click **Submit**. The slot appears in the table and becomes available in the Time
+Configuration and Time Group Mapping tabs.
+
+</Steps>
+
+## Configuring Period Times
+
+<Steps>
+
+#### Set the scope
+
+On the **Time Configuration** tab, select **Shift Name**, **Slot Name**,
+**College**, and **Study Level**. All four are required — they define which
+combination the periods you are about to enter belong to.
+
+#### Enter the periods
+
+Fill in the first period row — **Period Name**, **Time From**, **Time To**,
+**Sequence**, and tick **Break** if the period is a break. Click the **+** button to
+add another row and repeat for each period in the day.
+
+<Callout type="info">
+  Keep Sequence numbers in chronological order. The Class Schedule grid renders
+  periods in sequence order, so an out-of-order sequence produces a timetable that
+  reads oddly even when the times themselves are correct.
+</Callout>
+
+#### Submit
+
+Leave **Check if Active** on and click **Submit**. Each period appears as its own
+row in the table below.
+
+</Steps>
+
+## Creating a Time Slot Group
+
+<Steps>
+
+#### Switch to Group Master
+
+On the **Time Slot Group** tab, make sure the **Group Master** radio button is
+selected.
+
+#### Name the group and submit
+
+Enter the **Group Name**, leave **Check if Active** on, and click **Submit**. The
+group appears in the table with **Active** status and your name in **Created By**.
+
+</Steps>
+
+<Callout type="warning">
+  After submitting, the group exists but is empty. It will not appear as a usable
+  option on Class Schedule until time slots are mapped to it in the next section.
+</Callout>
+
+## Mapping Time Slots to a Group
+
+Use this once the group exists and the periods have been configured in Time
+Configuration.
+
+<Steps>
+
+#### Switch to Time Group Mapping
+
+On the **Time Slot Group** tab, select the **Time Group Mapping** radio button.
+
+#### Set the filters
+
+Select **Shift Name**, **Slot Name**, **College**, **Study Level**, and the **Group
+Name** you are mapping into. All five are required — clicking Show with any of them
+blank returns a validation message naming each missing field.
+
+#### Show the time slots
+
+Click **Show**. Every time slot configured for that Shift + Slot + College + Study
+Level combination is listed below, with **Time From** and **Time To** for each.
+**Group Name** and **Created By** show **-** for any slot not yet mapped to a group.
+
+<Callout type="warning">
+  If nothing is listed, no time slots exist yet for that Shift + Slot + College +
+  Study Level combination. Go back to the **Time Configuration** tab and configure
+  the periods for that combination first.
+</Callout>
+
+#### Select the time slots and submit
+
+Tick the row (or rows) you want to add to the group, then click **Submit**. The
+**Group Name** and **Created By** columns populate for those rows — Group Name with
+the name entered in the filter above, Created By with your username — confirming the
+mapping was saved.
+
+</Steps>
+
+## Using a Group on Class Schedule
+
+Once a group has time slots mapped to it, schedulers select it on the Class Schedule
+page:
+
+1. Go to the **Class Schedule** page and select the Academic Session, Campus,
+   College, Curriculum, Semester, and Section.
+2. Select the **Group Name**.
+3. Submit. The Class Schedule Slot grid renders only the time slots included in that
+   group, with the days of the week as columns.
+
+<Callout type="info">
+  Only groups that are **Active** and mapped to the selected college, shift, and
+  section appear in the Group Name dropdown. A group mapped to a different college
+  will not be offered.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — Setting up a new flexible shift for a college**
+A campus introduces a flex arrangement for the College of Criminal Justice
+Education. The scheduling admin creates the shift *CCJE Flex* on the Shift tab
+with Monday through Saturday ticked, adds a matching slot on Slot Master, then
+configures the period times for CCJE at College study level on the Time
+Configuration tab. Finally she creates the group *CCJE Shift Flex* and maps the
+new periods to it, so section schedulers can apply the whole pattern from Class
+Schedule in one selection.
+
+**Scenario 2 — A group is missing from the Class Schedule dropdown**
+A scheduler cannot find a group that was created last week. The group exists and
+is Active in Group Master, but no time slots were ever mapped to it in Time
+Group Mapping — so it has nothing to apply. Once the admin maps the relevant
+periods to the group, it appears on Class Schedule for that college and section.
+
+**Scenario 3 — Retiring a shift pattern mid-year**
+A shift pattern is discontinued after the first semester. Rather than deleting
+it, the admin edits the group in Group Master and turns off **Check if Active**.
+The group shows as **De-Active** and stops being offered on Class Schedule,
+while existing schedules that already reference it are left intact for
+reporting.
+
+## Common Errors
+
+**"Please Select Slot Name !!! / Please Select College !!! / Please Select Study Level !!! / Please Select Group Name !!!"**
+You clicked **Show** on the Time Group Mapping screen with one or more required
+filters still blank. The message lists every field that is missing. Fill in each
+field named in the message and click Show again. If you changed **Shift Name** just
+before this, note that doing so clears every field below it — re-select all four
+remaining filters.
+
+**"Please Select At list One Time Slot"**
+You tried to save a mapping without ticking any rows in the results grid. Tick at
+least one time slot row before saving. If no rows are listed at all, the periods
+have not been configured yet — set them up on the Time Configuration tab first.
+
+**The group does not appear on the Class Schedule page**
+The group exists but is either inactive or has no time slots mapped to the college
+and section being scheduled. Check the group's **Active Status** in Group Master.
+Re-run Time Group Mapping for the correct Shift, Slot, College, and Study Level and
+confirm the time slots are mapped. Confirm the session is mapped in **Section
+Offering** — session-wise creation only works when that mapping exists.
+
+## Frequently Asked Questions
+
+**What's the difference between a Shift, a Slot, and a Time Slot Group?**
+A **Shift** says which days of the week are covered. A **Slot** is a named pattern
+within that shift that colleges are scheduled against. A **Time Slot Group** is a
+bundle of already-configured periods that lets a scheduler apply many time slots in
+one selection on Class Schedule.
+
+**I created a group but it isn't showing on Class Schedule. What's wrong?**
+Creating a group only creates the name. You also have to map time slots to it under
+**Time Group Mapping**, and the group must be Active. An empty group has nothing to
+apply, so it will not be offered.
+
+**Can two colleges have different times for the same shift and slot?**
+Yes. Time Configuration is scoped by Shift + Slot + **College** + **Study Level**,
+so the same shift and slot can carry different period times for each college and
+study level.
+
+**Can I delete a shift, slot, or group I no longer need?**
+There is no delete action on this page. Edit the record and turn off **Check if
+Active** instead — that removes it from the selection lists while leaving existing
+schedules and reports intact.
+
+**What does the Break checkbox on Time Configuration do?**
+It marks the period as non-teaching time. Break periods still occupy a sequence
+position in the day, but they are flagged as breaks (shown as **Yes** in the Break
+column) rather than as class periods.
+
+**Can I change a shift's days after schedules have been built on it?**
+You can, but do so carefully. Removing a day from a shift that already has classes
+scheduled on it can leave those classes orphaned. Check the affected schedules
+first, and raise a ticket if you are unsure.
+
+**What does the Excel button on Time Group Mapping do?**
+It exports the time slots currently listed for your selected filters, which is
+useful for reviewing a group's contents offline or sharing the mapping with a
+college for confirmation.

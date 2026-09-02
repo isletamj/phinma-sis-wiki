@@ -1,0 +1,306 @@
+---
+title: Copy Section Offer
+---
+
+# Copy Section Offer
+
+## Overview
+
+The **Copy Section Offer** page carries the section offerings of one academic
+session over to another, so a new term can be opened without re-entering the shift,
+slot, modality, capacity and sequence for every section by hand. Registrars and
+scheduling administrators pick a source session and campus, load the offerings that
+already exist there, tick the sections they want, and copy them into a target
+session and campus.
+
+<Callout type="important">
+  The page opens under the heading **Section Offering Copy** — that is the same page
+  as the **Copy Section Offer** menu item, not a different one.
+</Callout>
+
+<Callout type="warning">
+  **Copying overwrites.** If the target session already has an offering saved for a
+  section you copy, the copied values replace it. There is no prompt, no list of
+  what changed, and no undo — so check what the target session already holds before
+  copying into it.
+</Callout>
+
+<Callout type="warning">
+  **Only the rows on the page you are looking at are copied.** The grid is paged.
+  Ticks you made on other pages stay visible when you return to them, but they are
+  ignored when you press **Copy**. Set **Show entries** to 100 and copy one page at
+  a time.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The **source** academic session already has its sections offered on **Sectioning →
+  Section Offering**. This page copies offerings that exist; it does not create
+  them.
+- The **target** academic session exists and appears in the session list.
+- The sections you are copying are already mapped to the **target** session and
+  campus on **Sectioning**. A copied offering only lands against a section that
+  exists there — if the mapping is missing, the section will not appear in the
+  target session's Section Offering table.
+- You have access to **Sectioning → Copy Section Offer**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Sectioning**.
+3. From the dropdown, select **Copy Section Offer**.
+
+## Understanding the Page
+
+The page is one screen with two filter panels side by side — **Select Existing** on
+the left and **Select For Copy** on the right — the **Show**, **Copy** and
+**Cancel** buttons beneath them, and a read-only **Section Offer** grid that appears
+once you click Show.
+
+The two panels are checked at different moments: **Show** only checks the Select
+Existing side, and **Copy** only checks the Select For Copy side. You can load the
+grid before you have decided where the offerings are going.
+
+### Select Existing — where the offerings are copied *from*
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | Searchable dropdown. The session whose saved offerings you want to reuse. |
+| **Campus** | Yes | Searchable dropdown. Only this campus's offerings are loaded. |
+
+<Callout type="info">
+  Changing either of these clears the grid and removes the Copy button. Click
+  **Show** again to reload.
+</Callout>
+
+### Select For Copy — where the offerings are copied *to*
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | The session the offerings are written into. The session chosen on the Select Existing side is **removed from this list**, so a session cannot be copied onto itself. Changing the source session resets this field back to *Please Select*. |
+| **Campus** | Yes | The full campus list. It does **not** have to match the source campus — offerings can be copied from one campus to another. |
+
+### Buttons
+
+| Button | What it does |
+| --- | --- |
+| **Show** | Loads the source session's offerings for the selected campus into the grid. Checks only the Select Existing fields. |
+| **Copy** | Appears only after you have clicked Show. Writes the ticked rows into the session and campus chosen under Select For Copy, **replacing any offering those sections already have there**. Checks those two fields and that at least one row is ticked. |
+| **Cancel** | Reloads the page to its starting state — all four dropdowns cleared, grid and Copy button gone. |
+| **Export** | Above the grid. Downloads the loaded offerings as an Excel file, honouring whatever is typed in the **Search** box. Unlike Copy, it covers every page of the grid, not just the one on screen. |
+
+### The Section Offer grid
+
+Everything in the grid is **read only** — it is a preview of what the source session
+already holds. Nothing can be edited here; corrections are made on the **Section
+Offering** page. The only thing you can interact with is the row checkbox.
+
+| Column | Description |
+| --- | --- |
+| **(checkbox)** | Ticks the row for copying. The checkbox in the header ticks every row **on the current page**. |
+| **Section** | The section code. |
+| **Shift** | The shift saved against that section in the source session. |
+| **Slot Name** | The slot saved against that section in the source session. |
+| **Modality** | The delivery mode (for example FLEX or FLEX REMOTE). |
+| **Capacity** | The seat limit saved in the source session. |
+| **Sequence** | The display order saved in the source session. |
+| **Course** | The courses the section is shared with, shown as short codes. **Black** means the section is offered under that course, **red** means it is not. |
+| **Publish** | The **Publish for Students** state in the source session, shown as a switch you cannot move. The state is carried across by the copy. |
+
+Above the grid are the **Show entries** selector (10, 25, 50 or 100), a **Search**
+box that filters the rows already loaded, and the **Export** button. Below it are
+the entry count and the page links.
+
+<Callout type="info">
+  **Export** and **Copy** do not work on the same set of rows. Export takes every
+  loaded row that matches the Search box; Copy takes only the ticked rows on the
+  page in front of you. Exporting first is a good way to keep a record of what the
+  source session held before you start.
+</Callout>
+
+<Callout type="info">
+  A large campus can return several hundred rows. Setting **Show entries** to 100
+  before you start ticking cuts the number of pages you have to work through — and
+  because Copy only sees the current page, fewer pages means fewer rounds of
+  copying.
+</Callout>
+
+## Copying Section Offerings to Another Session
+
+<Steps>
+
+#### Choose the source
+
+Under **Select Existing**, choose the **Academic Session** you are copying from and
+the **Campus**.
+
+#### Load the offerings
+
+Click **Show**. Every section offered in that session on that campus loads into the
+grid, and the **Copy** button appears.
+
+<Callout type="warning">
+  If nothing loads, clicking Show with either field blank raises a warning naming
+  each missing one — *Please Select Academic Session !!!* and *Please Select Campus
+  !!!*. If both are set and no grid appears, that session and campus have no
+  offerings saved on **Section Offering** yet.
+</Callout>
+
+#### Choose the destination
+
+Under **Select For Copy**, choose the target **Academic Session** and **Campus**.
+The source session will not be in the list. Setting these does not disturb the
+loaded grid.
+
+#### Tick the sections to copy
+
+Set **Show entries** to 100, then tick each section you want carried over — or use
+the header checkbox to tick the whole page at once.
+
+<Callout type="warning">
+  **Do not change pages between ticking and copying.** Copy reads only the rows
+  displayed at the moment you press it. Rows ticked on a page you have navigated
+  away from are skipped without any warning, and the success message still appears.
+</Callout>
+
+#### Copy
+
+Click **Copy**. A confirmation asks *Are You Sure Copy Section Offered?* — click
+**OK**. On success the message **Section Offered Successfully.** appears.
+
+</Steps>
+
+<Callout type="warning">
+  **Sections already offered in the target session are overwritten.** Their shift,
+  slot, modality, capacity, sequence and publish state are replaced with the source
+  session's values. The confirmation prompt does not distinguish between new sections
+  and ones that already had an offering, so if the target term has already been
+  worked on, copy only the sections that still need it.
+</Callout>
+
+<Callout type="warning">
+  After copying, the grid reloads the **source** session again and all ticks are
+  cleared, so the screen looks much as it did before. That is expected — the page
+  never displays the target session. Open **Sectioning → Section Offering**, filter
+  on the target session, and check the sections there.
+</Callout>
+
+## Copying a Whole Campus Page by Page
+
+When a campus has more offerings than fit on one page, work through it in rounds
+rather than ticking as you scroll:
+
+1. Set the source and target on both panels and click **Show**.
+2. Set **Show entries** to 100.
+3. On page 1, tick the header checkbox, click **Copy**, and confirm.
+4. The grid reloads and returns to page 1 with nothing ticked. Move to page 2 and
+   repeat.
+5. Continue until the last page, then verify the result on **Section Offering**
+   using the target session.
+
+## Key Scenarios
+
+**Scenario 1 — Opening the next semester from the current one**
+Ahead of enlistment for a new term, the registrar sets Select Existing to the
+current semester and the campus, clicks Show, sets Select For Copy to the new
+semester and the same campus, ticks the page and copies. The sections arrive in
+the new term with the same shift, slot, modality, capacity, sequence and publish
+state, ready to be adjusted individually on Section Offering.
+
+**Scenario 2 — Reusing a campus's setup on another campus**
+A second campus is running the same programs with the same shift pattern. The
+administrator loads the first campus's offerings, sets Select For Copy to the
+same target session but the other campus, and copies — then edits the few
+capacities that differ on Section Offering.
+
+**Scenario 3 — Only some sections are running again**
+Not every section from last term will run. Rather than copying everything and
+unpublishing the extras afterwards, the administrator uses the grid's **Search**
+box to bring up one program at a time and ticks only the sections that are
+returning.
+
+## Common Errors
+
+**"Please Select Academic Session !!! / Please Select Campus !!!"**
+A required dropdown is blank. Which panel it refers to depends on the button you
+pressed — **Show** checks the Select Existing side, **Copy** checks the Select For
+Copy side. If the warning appeared on Show, fill in the Select Existing session and
+campus. If it appeared on Copy, fill in the Select For Copy session and campus.
+
+**"Please check/select at least one entry."**
+Copy was pressed with no row ticked on the page currently displayed. Tick at least
+one row, or use the header checkbox, before pressing Copy. If you did tick rows,
+check you have not since moved to another page of the grid — ticks on other pages do
+not count.
+
+**Sections you ticked did not arrive in the target session**
+Those rows were on a different page of the grid when Copy was pressed. Set **Show
+entries** to 100 and copy one page at a time, pressing Copy before moving on. Re-run
+the copy for the sections that were missed; check the result on **Section Offering**
+against the target session.
+
+**The header checkbox does not tick every row**
+Rows you have already clicked by hand on that grid stop responding to the header
+checkbox — and unticking the header does not untick them either. Click **Show** to
+reload a clean grid, then use the header checkbox before ticking anything by hand.
+Either way, glance down the page and confirm the rows you want are actually ticked
+before pressing Copy.
+
+**Copied sections do not appear in the target session**
+Those sections are not mapped to the target session and campus, so there is nothing
+for the copied offering to attach to. It can also mean the rows were on a different
+page of the grid when Copy was pressed. Open **Sectioning** and check the section
+mapping for the target session, campus, college and course. Add the missing sections
+there, then run the copy again. If the mapping is fine, re-check the paging cause
+above.
+
+**"Error while inserting data"**
+The copy was rejected when it was written to the database. Confirm the target
+session and campus are correct and try a single section on its own. If it still
+fails, raise a ticket with the source session and campus, the target session and
+campus, and the section codes.
+
+## Frequently Asked Questions
+
+**What exactly gets copied?**
+For each ticked section — the Shift, Slot Name, Modality, Capacity, Sequence and the
+**Publish for Students** state, as they stand in the source session. The section
+codes themselves are not created here; they come from the **Sectioning** page.
+
+**Can I copy a session onto itself, into a different campus?**
+No, and that is by design — a session cannot be copied into itself, so the session
+selected under Select Existing is removed from the Select For Copy list. The two
+supported combinations are a different session on the same campus, and a different
+session on a different campus.
+
+**What happens if the target session already has these sections offered?**
+The copy overwrites them. The section keeps its code, but its shift, slot, modality,
+capacity, sequence and publish state are replaced with the source session's values.
+There is no warning and no undo, so treat a copy into a term someone has already
+worked on with care.
+
+**Why can't I see the Copy button?**
+It only appears after you have clicked **Show**. It also disappears whenever you
+change a **Select Existing** dropdown, because that clears the grid — click Show
+again.
+
+**I ticked rows, went to the next page, and came back. They are still ticked. Will they be copied?**
+Only if you are on that page when you press Copy. The ticks are remembered on
+screen, but Copy reads only the page in front of you.
+
+**Can I change a capacity or a shift here before copying?**
+No. The grid is read only. Copy the offerings first, then adjust them on
+**Sectioning → Section Offering** for the target session — or adjust them in the
+source session before copying.
+
+**How do I check the copy worked?**
+Open **Sectioning → Section Offering**, filter on the target session and campus, and
+look at the sections. The Copy page reloads the source session after a successful
+copy, so it will not show you the result.
+
+**Can I undo a copy?**
+There is no undo on this page. Corrections are made on **Section Offering** for the
+target session — including switching **Publish for Students** off for sections that
+should not have been carried over.
