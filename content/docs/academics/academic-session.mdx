@@ -1,0 +1,258 @@
+---
+title: Academic Session
+---
+
+# Academic Session
+
+## Overview
+
+The **Academic Session** page is used to define and manage the academic periods —
+school years, semesters, and summer terms — that the entire SIS operates on. It
+allows registrars and university setup administrators to create school years, define
+individual sessions within them, and map those sessions to specific colleges. All
+enrollment, grading, and fee modules in the SIS reference sessions created here.
+
+<Callout type="important">
+  School Year and Session setup must be completed before running any
+  enrollment-related configuration (Subject Offering, Section Creation, Fee Setup,
+  Enlistment Activity, etc.). Skipping or misconfiguring this step will cause
+  downstream modules to show no data or select the wrong session.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- You have administrative access to the Academic Session page.
+- College records must already exist in the system before using the **Session
+  College Mapping** tab.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Academics**.
+3. From the dropdown, select **Academic Session**.
+
+## Understanding the Page
+
+The Academic Session page is divided into three tabs: **School Year**, **Session
+Creation**, and **Session College Mapping**. Think of it like building a calendar
+from the top down — you create the year first, define the semesters within it, then
+assign those semesters to each college.
+
+### School Year
+
+Used to create and activate school year records (e.g., SY 2025-2026). All sessions
+must belong to an existing school year.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **School Year** | Yes | The school year label (e.g., SY 2025-2026). |
+| **Status** | — | Toggle to mark the school year as Active. Enabled by default on new records. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Edit** | ✏️ Edit icon to modify an existing school year. |
+| **School Year** | The label for the school year (e.g., SY 2024-2025). |
+| **Status** | **Active** (green badge) if the school year is in use. |
+
+### Session Creation
+
+Used to define individual academic sessions (e.g., SY 25-26 SEM I, SUMMER 2026)
+under a school year. Each session has a type, semester classification, date range,
+and a sequence number that other modules use for enrollment and reporting.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Session Long Name** | Yes | Full descriptive name of the session (e.g., SY 25-26 SEM I). Used as the primary label across the system. |
+| **Session Short Name** | Yes | Abbreviated name for dropdowns and compact displays (e.g., SY 25-26 SEM I). Often matches the Long Name. |
+| **Report Display Name** | Yes | The name that appears on official printed reports and documents (e.g., SEMESTER I SY 2025-2026). Follow your institution's formal naming convention. |
+| **Start Date / End Date** | Yes | The date range the session covers. Use the date picker to set both dates. |
+| **SEM I / SEM II** | Yes | Classifies the session: **SEM I**, **SEM II**, **SEM III**, or **Summer Term**. Determines how the session is treated across enrollment and grading modules. |
+| **Session Type** | Yes | The type of session (e.g., Regular, Summer). Select from the dropdown. |
+| **School Year** | Yes | The school year this session belongs to. Must already exist in the School Year tab. |
+| **Sequence No.** | Yes | A unique number that controls ordering. No duplicate sequence numbers are allowed. Higher sequence numbers may be selected as the default active session in automated flows — assign them carefully. |
+| **Status** | — | Toggle (Check if Active) to make the session active. Enabled by default. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Edit** | ✏️ Edit icon to modify the session. |
+| **Start Date** | The first day of the session. |
+| **End Date** | The last day of the session. |
+| **Session Long Name** | Full name of the session. |
+| **Session Short Name** | Abbreviated session name. |
+| **Report Display Name** | Name used in official reports. |
+| **SEM I / SEM II** | The semester classification (SEM I, SEM II, SEM III, Summer Term). |
+| **Status** | **START** if the session is active; **STOP** if inactive. |
+| **School Year** | The school year the session belongs to. |
+| **Sequence No.** | The ordering number for this session. |
+
+<Callout type="info">
+  Use the Search box above the table to quickly find a specific session by name. Use
+  Export to download the full session list for offline reference.
+</Callout>
+
+### Session College Mapping
+
+Used to link a session to one or more colleges. A session must be mapped to a
+college before that college can use it in enrollment modules like Subject Offering,
+Section Creation, and Fee Configuration.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Session** | Yes | The session to map. Select from the dropdown. |
+| **College** | Yes | One or more colleges to link to the session. Multiple colleges can be selected at once. |
+| **Status** | — | Toggle to mark the mapping as Active. Enabled by default. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Edit** | ✏️ Edit icon to modify an existing mapping. |
+| **College** | The name of the college mapped to this session. |
+| **Start Date** | Inherited from the session's configured start date. |
+| **End Date** | Inherited from the session's configured end date. |
+| **Session Long Name** | The session this mapping belongs to. |
+| **Session Short Name** | Short version of the session name. |
+| **Status** | **Active** (green badge) if the mapping is in use. |
+
+## Setting Up a New School Year
+
+Go to the **School Year** tab. Enter the School Year label in the required field
+(e.g., SY 2026-2027). The Status toggle is on by default — leave it enabled. Click
+**Submit**.
+
+<Callout type="warning">
+  The school year appears in the School Year List table. It is now available to
+  select in the Session Creation tab.
+</Callout>
+
+## Creating a New Session
+
+<Steps>
+
+#### Fill in the session details
+
+Go to the **Session Creation** tab. Fill in all required fields:
+
+| Field | Notes |
+| --- | --- |
+| **Session Long Name** | Use a consistent format (e.g., SY 26-27 SEM I). Match the pattern of existing sessions in the table. |
+| **Session Short Name** | Typically the same as the Long Name. |
+| **Report Display Name** | Use the formal naming standard (e.g., SEMESTER I SY 2026-2027). |
+| **Start Date / End Date** | Select using the date picker. |
+| **SEM I / SEM II** | Choose the appropriate classification: SEM I, SEM II, SEM III, or Summer Term. |
+| **Session Type** | Select the session type from the dropdown. |
+| **School Year** | Select the corresponding school year. |
+| **Sequence No.** | Enter a unique number. Check the table to avoid duplicates — the system will reject duplicate sequence numbers. |
+
+#### Submit
+
+Leave the **Check if Active** toggle on to activate the session immediately. Click
+**Submit**.
+
+</Steps>
+
+<Callout type="warning">
+  The session appears in the records table with **START** status. Proceed to the
+  Session College Mapping tab to make the session available to colleges.
+</Callout>
+
+## Mapping a Session to Colleges
+
+<Steps>
+
+#### Select the session and college(s)
+
+Go to the **Session College Mapping** tab. Select the session from the **Session**
+dropdown. Select one or more colleges from the **College** field.
+
+#### Submit the mapping
+
+Leave the Status toggle on and click **Submit**. Each mapped college appears as a
+separate row in the table below.
+
+</Steps>
+
+<Callout type="info">
+  You can select multiple colleges at once before submitting to map them all to the
+  same session in a single action.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — Setting up a new semester before enrollment opens**
+The Registrar needs to configure SY 2026-2027 Semester I before enrollment
+activities begin. They create the school year SY 2026-2027 in the School Year tab,
+then create a session with the correct dates, SEM I classification, and the next
+available sequence number. After mapping the session to all active colleges in
+Session College Mapping, downstream modules — Subject Offering, Section Creation,
+and Fee Setup — can now reference the session.
+
+**Scenario 2 — Adding a Summer Term session**
+A campus offers a Summer Term running April to June. The admin creates a new session
+under the existing school year, sets the SEM I/SEM II classification to **Summer
+Term**, assigns the next available sequence number, and sets the date range. After
+mapping it to the relevant colleges, faculty loading and enlistment for the summer
+term become accessible.
+
+**Scenario 3 — Correcting a session's end date after creation**
+The Registrar notices that SY 26-27 SEM I was saved with the wrong end date. They
+click the ✏️ Edit icon next to the session in the table, update the End Date, and
+resubmit. The system records the change automatically in the backend audit log for
+tracking purposes.
+
+## Common Errors
+
+**"Duplicate Sequence No."**
+The Sequence No. you entered is already assigned to another session. No two sessions
+can share the same sequence number. Check the Session Creation table, identify the
+highest existing sequence number, enter the next available number (e.g., if the
+highest is 88, enter 89), and resubmit the form.
+
+**Session is not appearing in other modules (Subject Offering, Fee Setup, Enlistment)**
+The session exists in Session Creation but has not yet been mapped to the relevant
+college. Go to the **Session College Mapping** tab, select the session and the
+affected college(s), and submit the mapping. The session should now appear in
+downstream modules.
+
+## Frequently Asked Questions
+
+**What's the difference between Session Long Name, Session Short Name, and Report Display Name?**
+They serve different display purposes. Long Name and Short Name are used in internal
+dropdowns and system labels. Report Display Name is what appears on official printed
+documents like transcripts and grade sheets — it should follow your institution's
+formal naming convention (e.g., SEMESTER I SY 2025-2026).
+
+**I created a session but it's not showing in Subject Offering or other modules. What's wrong?**
+The session needs to be mapped to a college first. Go to Session College Mapping,
+select the session and the affected college, and submit. The session will then be
+available in enrollment modules for that college.
+
+**Can I reuse a Sequence No. from an old, stopped session?**
+No. Sequence numbers must be unique across all sessions regardless of status. The
+system will reject any duplicate value. Always assign the next unused number.
+
+**What happens if I deactivate a session that's already in use?**
+Deactivating (setting to STOP) a live session may break enrollment and reporting for
+students currently assigned to it.
+
+**Do I need to map every college to a session, or only the ones that are enrolling?**
+Only map the colleges that will actually be using the session. Colleges not mapped
+will simply not see the session in their enrollment modules.
+
+**Why does Sequence No. matter beyond ordering?**
+Some automated system processes (e.g., default session selection in admissions) use
+the highest sequence number to pick the active session. Assigning sequence numbers
+out of order or creating gaps can cause the wrong session to be selected
+automatically.

@@ -1,0 +1,384 @@
+---
+title: Auto Advising Configuration
+---
+
+# Auto Advising Configuration
+
+## Overview
+
+The **Auto Advising Configuration** page decides which curricula and semesters are
+allowed to skip advisor approval during enlistment. It allows registrars and
+academic administrators to switch **auto-advising** on or off for a chosen set of
+curricula and year-semester codes within one academic session, campus and college.
+
+When auto-advising is **on** for a combination, a **regular** student's enlistment is
+treated as final the moment they submit it — no advisor approval step. When it is
+**off**, that student's enlistment is held and routed to the advisor for approval
+before it can proceed.
+
+<Callout type="important">
+  Auto-advising only ever applies to **regular** students. An **irregular**
+  student's enlistment is always sent to the advisor for approval, no matter what is
+  configured here. See *What Auto-Advising Changes for Students* below.
+</Callout>
+
+## What Auto-Advising Changes for Students
+
+This page has no effect of its own — it changes what happens on the **enlistment**
+side, at the moment a student submits their enlistment for the session.
+
+| | Auto-advising **on** | Auto-advising **off** |
+| --- | --- | --- |
+| **Regular student submits an enlistment** | The enlistment is treated as **final** on submission. No advisor is involved, and the student moves straight on to the next step. | The enlistment is **held** and sent to the student's advisor in **Enlistment Approval**. |
+| **What the advisor can do** | Nothing to do — the enlistment never reaches them. | Review it, **change the subjects** on it, add a **remark**, then approve it. |
+| **When the ORF is generated** | After the student submits. | Only after the advisor approves. |
+| **What the student sees meanwhile** | The enlistment proceeds. | *Pending for Approval*, plus any remark the advisor added. |
+| **Irregular student submits an enlistment** | **No change** — still sent to the advisor for approval. | Sent to the advisor for approval. |
+
+Three things follow from this that are worth being clear about:
+
+**It never applies to irregular students.** Auto-advising is a shortcut for the
+straightforward case only. An irregular student **always** goes through Enlistment
+Approval, and this page cannot change that. A student is irregular when **any one**
+of the following is true:
+
+- They have a **failing grade in a prerequisite subject**.
+- **Subject sequencing has not been followed.**
+- They are **re-studying a subject** — that is, carrying back subjects.
+- They enlisted **less than the maximum load** for the term.
+
+<Callout type="warning">
+  The asymmetry that catches people out: enlisting a **full load** only clears the
+  last reason on that list. A student carrying re-study or back subjects is
+  irregular whatever their load, and their enlistment still waits for the advisor. A
+  full load does not make an irregular student regular.
+</Callout>
+
+The first three reasons come from the student's own academic record; the fourth
+comes from the enlistment they have just submitted. You configure this page for the
+curriculum and semester — the system then decides student by student who actually
+qualifies.
+
+**The scope is narrower than "a course".** A row switches auto-advising on for one
+**curriculum year** and one **semester code**, inside one academic session, campus
+and college. Students on the same program but a different curriculum year, or in a
+semester code you did not tick, are unaffected. This is the most common reason a
+student who "should" be auto-advised is not.
+
+**It is read at submission, not applied retroactively.** Switching a row on part-way
+through an enlistment period does nothing for enlistments already sitting with an
+advisor — those still need the advisor to act. Switching a row off does not pull
+back enlistments that already went through.
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The **academic session** you are configuring exists and is active.
+- The **curriculum** exists and is **active** for the selected campus and college —
+  only active curricula are listed here.
+- The **year-and-semester codes** (Y1S1, Y2S2, and so on) you intend to select are
+  defined in that curriculum.
+- Enlistment for the session has **not yet opened**, or you accept that the change
+  only affects enlistments submitted after it is saved.
+- You have access to **Enlistment Management → Auto Advising Configuration**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Enlistment Management**.
+3. From the dropdown, select **Auto Advising Configuration**.
+
+## Understanding the Page
+
+The page has two parts stacked down the screen:
+
+1. A **form** at the top, where you pick what to configure and whether it is active.
+2. The **Auto Advisory List** underneath, showing the configurations that already
+   exist for the session, campus and college you have selected. This panel is
+   **hidden entirely** until you have selected all three, and stays hidden if
+   nothing has been configured for that combination.
+
+The first three fields are **cascading**: each one stays empty until the one before
+it has a value.
+
+**Academic Session → Campus → College → (Curriculum + Semester)**
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | The term the setting applies to. Listed newest first (for example *Summer 2026*, then *SY 26-27 SEM I*, then *SY 25-26 SEM II*). Setting this is what populates Campus. Auto-advising is configured **per session** — it does not carry over from one term to the next. |
+| **Campus** | Yes | The campuses available to your account, populated from the selected session. |
+| **College** | Yes | Populated from the selected Campus. |
+| **Curriculum** | Yes | **Multi-select.** Entries read *College abbreviation - Program name - curriculum year*, e.g. *CCJE - Bachelor of Science in Criminology - 23-24*. Only **active** curricula appear. The list has its own **Search** box and a **Select all** option. |
+| **Semester** | Yes | **Multi-select.** The curriculum's own year-and-semester codes — **Y1S1**, **Y1S2**, **Y2S1**, the trimester codes **Y1T1**–**Y3T3**, and the summer codes such as **Y2 Summer**. This is *not* the academic session. Also has **Search** and **Select all**. |
+| **Status** | Yes | A toggle. Switched **on** (blue) means auto-advising is **active** for the combinations you selected; switched **off** (grey) means **inactive**. It starts **on** by default on a blank form. |
+
+**Auto Advisory List columns:**
+
+| Column | Description |
+| --- | --- |
+| **Action** | An edit icon (✏️). Opens that record in the form above so its status can be changed — see *Activating or Deactivating an Existing Configuration*. |
+| **Academic Session** | The session the record was saved against. |
+| **Campus** | The campus the record covers. |
+| **College** | The college the record covers. |
+| **Curriculum** | The single curriculum, including its curriculum year, that the record covers. |
+| **Semester** | The single year-and-semester code the record covers. |
+| **Status** | **Active** (green badge) or inactive. |
+
+The list has the standard SIS table controls: **Show *N* entries** (10, 25, 50 or
+100), a **Search** box that filters the rows on screen, sortable column headers, an
+**Export** button, and pagination beneath.
+
+<Callout type="warning">
+  The Status label does not change. The text beside the toggle reads **Is Active**
+  whether the switch is on or off. Read the **switch position and colour**, not the
+  wording, to tell which state you are about to save.
+</Callout>
+
+<Callout type="info">
+  Curriculum and Semester are combined as a **cross-product**, and each combination
+  is stored as its own row in the Auto Advisory List. Selecting 3 curricula and 2
+  semesters creates **6** rows in one submission. Select only the semesters that
+  genuinely apply to every curriculum in your selection, or split the work into more
+  than one submission.
+</Callout>
+
+<Callout type="info">
+  The list is filtered by the **Academic Session, Campus and College** selected
+  above it — it is not a view of everything configured across the school. Change the
+  college and you are looking at a different list. Curriculum and Semester do not
+  filter it.
+</Callout>
+
+## Turning Auto-Advising On for a Curriculum and Semester
+
+<Steps>
+
+#### Identify the session, campus and college
+
+Work down the first three fields in order: **Academic Session**, then **Campus**,
+then **College**. Each selection reloads the page and fills the dropdown below it,
+so give each one a moment before moving on.
+
+Choose the academic session the enlistment will actually happen in. A setting saved
+against *SY 25-26 SEM II* does nothing for *SY 26-27 SEM I*.
+
+Once all three are set, check the **Auto Advisory List** at the bottom of the page
+before adding anything — the combination you are about to configure may already be
+there.
+
+#### Select the curricula
+
+Open **Curriculum** and tick every curriculum this setting should apply to. Use the
+**Search** box to narrow a long list, or **Select all** to take the whole college at
+once.
+
+Pick the **curriculum year** the affected students actually follow — a college
+usually has several years of the same program listed (for example *- 18-19*, *-
+22-23*, *- 23-24*), and each one is configured separately.
+
+#### Select the semesters
+
+Open **Semester** and tick the year-and-semester codes the setting applies to. These
+are the **curriculum's own** codes (Y1S1, Y2S2, Y1T1, Y2 Summer), not the academic
+session.
+
+Remember the cross-product: every curriculum you ticked in the previous step is
+paired with every semester you tick here, and each pair becomes its own row.
+
+#### Set the status
+
+Leave the **Status** toggle **on** to activate auto-advising for the selected
+combinations.
+
+#### Submit
+
+Click **Submit** to save. Nothing is applied until you do. The new rows then appear
+in the **Auto Advisory List** below.
+
+**Cancel** clears the whole form back to *Please Select* and hides the Auto Advisory
+List. It does not undo anything already saved.
+
+</Steps>
+
+<Callout type="warning">
+  Set this before enlistment opens. The configuration is read when a student submits
+  their enlistment. Switching it on midway through an enlistment period does not
+  retroactively approve enlistments that have already been routed to an advisor —
+  those still need the advisor to act on them.
+</Callout>
+
+## Reviewing What Is Already Configured
+
+To check whether auto-advising is on for a particular program:
+
+1. Set **Academic Session**, **Campus** and **College**.
+2. Read the **Auto Advisory List** that appears below the form.
+3. Use the list's own **Search** box to jump to a curriculum or semester code, or
+   raise **Show *N* entries** to 25, 50 or 100 to see more rows at once.
+4. Use **Export** if you want the list outside the system.
+
+If no list appears at all, nothing has been configured for that session, campus and
+college.
+
+<Callout type="info">
+  Leave **Curriculum** and **Semester** empty while you are only reading. They do
+  not filter the list, and filling them in is the first step towards creating new
+  rows.
+</Callout>
+
+## Activating or Deactivating an Existing Configuration
+
+A row that already exists is changed from the list, not by re-entering it in the
+form.
+
+1. Set **Academic Session**, **Campus** and **College** so the row you want appears
+   in the **Auto Advisory List**.
+2. Click the **edit icon (✏️)** in that row's **Action** column.
+3. The form above loads with that record's values, and every selection field —
+   Academic Session, Campus, College, Curriculum and Semester — becomes **locked**.
+   Only the **Status** toggle can be changed.
+4. Switch **Status** on or off as required.
+5. Click **Submit** to save the change, or **Cancel** to leave the record as it is.
+
+<Callout type="important">
+  Editing an existing record can only turn it on or off. The curriculum and semester
+  it applies to cannot be changed here — if a row was created against the wrong
+  curriculum year or semester code, deactivate it and create the correct one.
+</Callout>
+
+<Callout type="warning">
+  Switching a row off puts that curriculum and semester back under advisor approval
+  for every student in it, regular students included.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — Opening a term for regular students**
+Enlistment for the new semester is about to open and the registrar wants regular
+students to enlist without waiting on an advisor. They select the academic session,
+campus and college, tick all of the college's active curricula and the semester
+codes in play for the term, leave the Status toggle on, and submit. The new rows
+appear in the Auto Advisory List, and regular students who enlist afterwards see
+their enlistment go straight through; irregular students still land with their
+advisor.
+
+**Scenario 2 — Holding one program back for review**
+A college wants its graduating-year students screened by an advisor before
+enlistment is final, even the regular ones. The administrator configures the
+college's curricula with the earlier semester codes only, leaving the graduating-year
+code out — so those students continue to route through advisor approval while
+everyone else is auto-advised.
+
+**Scenario 3 — A student who is still waiting for approval**
+A student reports that their enlistment shows *Pending for Approval* even though
+auto-advising was set up. The administrator loads the session, campus and college
+and checks the Auto Advisory List for a row matching the student's exact curriculum
+year and semester code, with Status **Active**. If the row is there and active, the
+next thing to check is whether the student is actually regular — back subjects, a
+broken subject sequence, or an under-loaded enlistment each make them irregular, and
+advisor approval is expected in that case.
+
+## Common Errors
+
+**The Campus or College dropdown is empty**
+The field above it has not been set, or your account has no campus or college mapped
+to it for that session. Set **Academic Session** first, then **Campus**, then
+**College** — each one populates the next — and give the page a moment after each
+selection, since it reloads between steps. If Campus stays empty on a session you
+know is open, raise a support ticket; your user account may not be mapped to a
+campus.
+
+**The Auto Advisory List does not appear**
+Either the session, campus and college are not all selected yet, or nothing has been
+configured for that combination. Complete all three of **Academic Session**,
+**Campus** and **College**. If the panel still does not appear, there are no records
+for that combination — check the other campuses and colleges the program might have
+been configured under before assuming the configuration is missing.
+
+**The curriculum I need is not in the Curriculum list**
+Only **active** curricula for the selected campus and college are listed. Confirm
+the **Campus** and **College** above match where the curriculum actually sits, check
+that the curriculum is still marked active in the curriculum setup for that college,
+and check the **curriculum year** — the program may be listed under a different year
+than the one you expected.
+
+**The semester code I need is not in the Semester list**
+The Semester list carries the year-and-semester codes defined in the curricula
+available to the selected college. A code that is not defined does not appear.
+Confirm you are looking for the **curriculum's** code (Y1S1, Y2S2, Y1T1) and not the
+academic session name. If a code is genuinely missing from a curriculum, it has to be
+added to the curriculum before it can be configured here.
+
+**A regular student is still being sent to the advisor**
+Either the combination the student sits in has no active row, or the student is not
+regular.
+
+- Load the **Auto Advisory List** for the student's academic session, campus and
+  college and confirm a row exists for their exact **curriculum year** and
+  **semester code**, with Status **Active**.
+- Check whether the student is irregular. A failing grade in a prerequisite, subject
+  sequencing not followed, a subject being re-studied, or **an enlistment below the
+  maximum load** each send the enlistment to the advisor regardless of this page.
+  Note that a full load only clears the last of those — a student with back subjects
+  stays irregular whatever they enlist.
+- Remember that enlistments already routed to an advisor before the row was
+  activated stay with the advisor.
+- If none of the above explains it, raise a support ticket with the student number,
+  the academic session, and the curriculum and semester the student is under.
+
+## Frequently Asked Questions
+
+**What does auto-advising actually do?**
+It removes the advisor approval step for regular students. With it on, the
+enlistment a student submits is final and the ORF proceeds; with it off, the
+enlistment sits with the advisor until they approve it.
+
+**Does this page override advisor approval for irregular students?**
+No. Irregular students always go to the advisor. This page only affects students the
+system considers regular for that term.
+
+**My student is irregular but enlisted a full load. Shouldn't they be auto-advised?**
+No. Enlisting a full load only removes *one* of the reasons a student can be
+irregular — under-loading. If they are also carrying re-study or back subjects, or
+their subject sequencing is broken, they stay irregular and the enlistment still
+goes to the advisor.
+
+**A regular student enlisted fewer subjects than the full load. Why did their enlistment go to the advisor?**
+Because an under-loaded enlistment is itself a reason to be treated as irregular. A
+student who takes less than the maximum load for the term is sent for enlistment
+advising even if nothing else about their record is unusual.
+
+**Do I have to set this up again every semester?**
+Yes. Each row is tied to an academic session, so each new term needs its own
+configuration.
+
+**Can I configure more than one curriculum at a time?**
+Yes. Both **Curriculum** and **Semester** are multi-selects with a **Select all**
+option, and one submission creates a row for every curriculum-and-semester pair you
+tick.
+
+**Where can I see what is already configured?**
+In the **Auto Advisory List** at the bottom of the page. Set the academic session,
+campus and college and the list appears; it shows only the records for that
+combination.
+
+**Can I change the curriculum or semester on a record I already saved?**
+No. Opening a record with the edit icon locks every field except **Status**. To
+correct a wrong curriculum year or semester code, deactivate that row and create the
+right one.
+
+**The toggle still says "Is Active" after I switched it off. Did it not work?**
+The label is fixed text and does not change. Judge the state from the switch itself:
+blue and to the right is active, grey and to the left is inactive. The **Status**
+column in the Auto Advisory List is the reliable confirmation of what was actually
+saved.
+
+**I switched auto-advising on after students had already enlisted. Why are their enlistments still pending?**
+The setting is read at the moment a student submits. Enlistments already routed to
+an advisor stay there and need the advisor to act on them.
+
+**Can I set a minimum GWA so only students above it are auto-advised?**
+Not on this page. The only control here is on or off for a curriculum and semester.

@@ -1,0 +1,332 @@
+---
+title: Attendance Configuration
+---
+
+# Attendance Configuration
+
+## Overview
+
+The **Attendance Configuration** page defines the rules that govern attendance
+taking for a term. For a given academic session, college and study level it sets the
+date range within which attendance may be recorded, how many days a faculty member
+has to enter or correct attendance before it locks, and whether the SMS, email and
+lesson plan facilities are switched on. Registrars and academic administrators set
+this up once per term, before faculty begin taking attendance.
+
+<Callout type="important">
+  No attendance is recorded on this page. It only sets the rules. Attendance itself
+  is taken elsewhere in the **Scheduling** module, and this configuration is what
+  decides whether that entry is still open or already locked.
+</Callout>
+
+<Callout type="important">
+  This page's window feeds Create Class Schedule. The **Start Date** and **End
+  Date** set here must fall within the Academic Session's own dates, and they in
+  turn become the basis for the class schedule period on **Create Class Schedule** —
+  so set this up before building schedules for the term, not after.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The **Academic Session** you are configuring already exists in the system.
+- You know the term's **start and end dates** and the **lock period** the school has
+  agreed on.
+- You have access to **Scheduling → Attendance Configuration**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Scheduling**.
+3. From the dropdown, select **Attendance Configuration**.
+
+## Understanding the Page
+
+The page is a single form at the top with a records table beneath it. There are no
+tabs.
+
+One row in the table is one rule, and a rule is always the combination of **one
+academic session + one college + one study level**. Because College and Study Level
+are both multi-selects, submitting the form once can create several rows at a time —
+one for every college-and-study-level pairing you picked.
+
+<Callout type="info">
+  In practice, treat this as session + college. Study Level is not actually used to
+  differentiate configurations day-to-day — so for planning purposes, expect one row
+  per Academic Session + College combination rather than reasoning about the Study
+  Level split.
+</Callout>
+
+<Callout type="warning">
+  There is no delete on this page. A configuration is retired by loading it with the
+  edit icon, switching **Status** off, and clicking Submit.
+</Callout>
+
+### Form fields
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | Single-select dropdown, newest session first. Defaults to *Please Select*. |
+| **College** | Yes | Multi-select with a **Select All** option and a type-ahead filter. Chosen colleges appear as chips with an **×** to remove them. |
+| **Study Level** | Yes | Multi-select with **Select All** — *Graduate*, *College*, *Senior High School*, *Certificate*, *ETEEAP*. Also shown as removable chips. |
+| **Start Date** | Yes | Date picker. The first date on which attendance may be recorded for this session. Entered as **mm/dd/yyyy**. Must fall within the selected Academic Session's own start and end dates — the system validates against the session window. |
+| **End Date** | Yes | Date picker. The last date on which attendance may be recorded. Entered as **mm/dd/yyyy**. Must also fall within the Academic Session's window. |
+| **Lock By Day** | Yes | Digits only, three characters maximum. The number of days attendance stays open for entry or correction before it locks. The system default is **1 day**. |
+| **SMS Facility** | No | **Check if Active** toggle, on by default. Switches attendance notifications by SMS on or off for this configuration. |
+| **Email Facility** | No | **Check if Active** toggle, on by default. Switches attendance notifications by email on or off for this configuration. |
+| **Lesson Plan** | No | **Check if Active** toggle, on by default on a blank form. Controls how the Lesson Plan field behaves on **Attendance By Faculty**. On, the field is a dropdown of configured lesson plans; off, it is free text the faculty member types. |
+| **Status** | No | **Check if Active** toggle, on by default. An inactive configuration stops governing attendance for that college and study level. |
+
+<Callout type="info">
+  The four toggles all carry the same **Check if Active** label — read the heading
+  above each one to tell them apart.
+</Callout>
+
+### Table columns
+
+| Column | Description |
+| --- | --- |
+| **Action** | Edit icon (✏️) that loads the record into the form above. |
+| **Academic Session** | The session the rule applies to. |
+| **College** | A single college. Selecting several colleges on the form produces several rows here. |
+| **Study Level** | A single study level, for the same reason. |
+| **Start Date** | Displayed as **dd-mm-yyyy** — note this is not the mm/dd/yyyy order the form uses. |
+| **End Date** | Displayed as **dd-mm-yyyy**. |
+| **Lock By Days** | The lock period in days. |
+| **SMS Facility** | **Active** (green badge) or **Inactive** (red badge). |
+| **Email Facility** | **Active** or **Inactive**. |
+| **Lesson Plan** | **Active** or **Inactive** — whether the Lesson Plan field on Attendance By Faculty is a dropdown or free text. |
+| **Status** | **Active** (green badge) or **Inactive** (red badge). |
+
+The table also carries a **Show entries** selector (10 / 25 / 50 / 100), a
+**Search** box, an **Export** button (downloads whatever is currently loaded and
+filtered in the table), sortable column headers and pagination.
+
+<Callout type="info">
+  The table is **not** filtered by anything you pick in the form above it — it lists
+  every configuration ever created, across all sessions. Use the **Search** box to
+  narrow it, for example by typing a session name such as *SY 25-26 SEM I* or a
+  college name. The search matches across every column.
+</Callout>
+
+## Creating an Attendance Configuration
+
+<Steps>
+
+#### Choose the academic session
+
+Open the **Academic Session** dropdown and pick the term you are configuring. Only
+one session can be configured at a time.
+
+#### Choose the colleges and study levels
+
+Pick one or more colleges from **College**, and one or more levels from **Study
+Level**. Use **Select All** when the same rule applies campus-wide, or the
+type-ahead box to find a specific college quickly.
+
+Colleges that share the same dates and lock period can be set up in one pass. Only
+split them into separate submissions when their rules genuinely differ — for example
+when the graduate school starts a month later than the undergraduate colleges.
+
+#### Set the attendance window
+
+Fill in **Start Date** and **End Date**. These bound the period in which attendance
+may be recorded for the session, so they normally track the term's own first and
+last class days.
+
+#### Set the lock period
+
+Enter the number of days in **Lock By Day**. This is how long a faculty member has
+to enter or correct attendance for a class before the record locks. The default is 1
+day; a larger number is more forgiving of late encoding.
+
+#### Set the facility toggles
+
+**SMS Facility** and **Email Facility** decide whether attendance notifications go
+out by SMS and by email. **Lesson Plan** decides how faculty record the lesson plan
+when they take attendance — on gives them a dropdown, off gives them a free-text
+box. Leave **Status** on so the configuration takes effect.
+
+#### Submit
+
+Click **Submit**. One row appears in the table for every college-and-study-level
+combination you selected.
+
+</Steps>
+
+<Callout type="info">
+  Leave **Lesson Plan** off unless your school has actually populated the lesson
+  plan configuration. Switching it on with nothing configured leaves faculty with an
+  empty dropdown instead of a box they can type into.
+</Callout>
+
+<Callout type="warning">
+  Clicking Submit with a required field blank raises a stacked warning naming each
+  one — *Please Select Academic Session !!!*, *Please Select College !!!*, *Please
+  Select Study Level !!!*, *Please Enter Start Date !!!*, *Please Enter End Date
+  !!!*, *Please Enter Lock by Days !!!*. The four toggles are not part of that
+  check.
+</Callout>
+
+<Callout type="warning">
+  Duplicate active configurations are not allowed. You cannot submit a second active
+  configuration for a combination that already has one. Edit the existing row
+  instead of trying to create a new one for the same scope.
+</Callout>
+
+## Editing an Existing Configuration
+
+1. Find the record in the table — use the **Search** box, or raise **Show entries**
+   to bring more rows onto one page.
+2. Click the edit icon (✏️) in the **Action** column. The record loads into the form
+   at the top of the page, with the College and Study Level shown as chips.
+3. Change what needs changing. Nothing is locked — even the Academic Session,
+   College and Study Level can be reassigned.
+4. Click **Submit** to save.
+
+<Callout type="info">
+  The button stays labelled **Submit** while you are editing; it does not change to
+  *Update*. **Cancel** clears the form back to a blank new record with all four
+  toggles switched back on — it does not undo a save.
+</Callout>
+
+## Deactivating a Configuration
+
+There is no delete on this page, so a rule that no longer applies is switched off
+instead.
+
+1. Find the record in the table and click the edit icon (✏️).
+2. Switch the **Status** toggle off.
+3. Click **Submit**. The record's **Status** badge in the table turns red and reads
+   *Inactive*.
+
+The record and its history stay in the table, so a past term's configuration can
+always be looked up.
+
+## Key Scenarios
+
+**Scenario 1 — Setting up a new semester**
+Before classes begin, the registrar opens the page, selects the incoming academic
+session, uses **Select All** on College, picks the *College* study level, and sets
+the start and end dates to the first and last class days of the term. A lock period
+of 2 days is entered so faculty have the class day plus one more to encode. One
+submission creates a row for every college.
+
+**Scenario 2 — The graduate school runs on a different calendar**
+The School of Graduate and Professional Studies starts a month after the
+undergraduate colleges. The administrator creates a second configuration for the
+same session, this time selecting only that college and the *Graduate* study level,
+with its own later start date. The two rules coexist because each is scoped to its
+own college and study level.
+
+**Scenario 3 — Faculty need more time to encode**
+A college reports that a two-day lock window is too tight during the midterm period.
+The administrator finds that college's row, clicks the edit icon, raises **Lock By
+Day**, and submits. The wider window applies from that point on.
+
+**Scenario 4 — Faculty cannot pick a lesson plan**
+A college switches **Lesson Plan** on expecting faculty to choose from a list, but no
+lesson plans have been configured, so the dropdown on Attendance By Faculty comes up
+empty. The administrator loads the row, switches **Lesson Plan** back off and
+submits, returning the field to free text so faculty can type what they covered.
+
+**Scenario 5 — A configuration was created against the wrong college**
+A rule was submitted with an extra college selected by mistake. Because there is no
+delete, the administrator loads the unwanted row with the edit icon, switches
+**Status** off and submits, leaving the correct rows untouched.
+
+## Common Errors
+
+**"Please Select Academic Session !!!" / "Please Enter Lock by Days !!!" and similar**
+Submit was clicked with one or more required fields blank. Each missing field gets
+its own line in the warning. Work across the form in order: Academic Session,
+College, Study Level, Start Date, End Date, Lock By Day. The SMS, Email, Lesson Plan
+and Status toggles can be left as they are — they are never part of the check.
+
+**Letters will not type into Lock By Day**
+This is expected. The field accepts digits only, and no more than three of them.
+Enter a plain number of days, such as `2`.
+
+**I cannot find the configuration I just created**
+The table lists every configuration in the system across all sessions, so a new
+record can be several pages down. Type the session name or the college name into the
+table's **Search** box, or sort by a column heading, or raise **Show entries** to
+100.
+
+**Attendance is locking sooner than expected**
+The rule that applies is the one matching the class's academic session, college
+**and** study level — which may not be the row you were looking at. Search the table
+for the affected college and confirm the **Study Level** on the row matches the
+class, check the row's **Status** badge is *Active* and that today's date falls
+between its **Start Date** and **End Date**, then adjust **Lock By Days** on that
+specific row.
+
+## Frequently Asked Questions
+
+**What exactly does Lock By Day control?**
+The number of days attendance stays open for entry or correction before it locks.
+The system default is 1 day, which means attendance has to be encoded almost
+immediately; a larger number gives faculty more time.
+
+**Can I set different rules for different colleges in the same semester?**
+Yes. Each row is scoped to one academic session, one college and one study level, so
+every college can have its own dates and lock period within the same term.
+
+**I selected five colleges. Why did five rows appear?**
+Because College and Study Level are multi-selects but each saved record holds a
+single college and a single study level. One submission fans out into one row per
+combination, which is what lets you edit them individually afterwards.
+
+**What do the SMS Facility and Email Facility toggles do?**
+They switch attendance notifications on or off for that configuration — SMS for one,
+email for the other. Turning a toggle off stops that channel being used for the
+colleges and study levels the record covers.
+
+**What does the Lesson Plan toggle change?**
+It changes the **Lesson Plan** field on the **Attendance By Faculty** page. Switched
+on, that field is a dropdown listing the configured lesson plans. Switched off, it
+is a free-text field the faculty member types into.
+
+**What happens if I try to create a second active configuration for the same session, college and study level?**
+It's not allowed. Duplicate active configurations for the same combination are
+blocked — edit the existing row instead of submitting a new one.
+
+**What does the Export button download?**
+Whatever is currently loaded and filtered in the table below — the rows you're
+looking at, not necessarily the entire history.
+
+**Should Lesson Plan be on or off?**
+Off, unless the lesson plan configuration has been populated for your school. PHINMA
+is not currently using it, so leaving the toggle on would give faculty a dropdown
+with nothing in it. Free text is the safer default until lesson plans are set up.
+
+**Can I delete a configuration?**
+No. There is no delete anywhere on this page. Load the record with the edit icon,
+switch **Status** off and submit — that takes it out of effect while keeping the
+record.
+
+**How does the Start Date/End Date set here affect Create Class Schedule?**
+This configuration's Start Date and End Date — which must themselves sit inside the
+Academic Session's own dates — become the basis for the class schedule period on
+**Create Class Schedule**. Set this configuration up before building schedules for
+the term.
+
+**Why does the table show a different date order from the form?**
+The form takes dates as **mm/dd/yyyy** and the table displays them as
+**dd-mm-yyyy**. It is the same date — check the order before assuming a record is
+wrong.
+
+**All four toggles say "Check if Active". How do I tell them apart?**
+By the heading above each one — SMS Facility, Email Facility, Lesson Plan and
+Status. *Check if Active* is just the shared label the system puts on every toggle.
+
+**I edited a record and the button still says Submit. Did it save?**
+Yes. The button does not change to *Update* while editing. Use **Cancel** only when
+you want to abandon the edit — it clears the form back to a blank new record rather
+than undoing a save.
+
+**Why is the table showing configurations from years ago?**
+The table is not tied to the session you picked in the form — it always lists
+everything. Past terms stay visible so their rules can be checked later. Use the
+Search box to narrow it to the session you care about.

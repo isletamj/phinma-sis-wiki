@@ -1,0 +1,356 @@
+---
+title: Create Class Schedule
+---
+
+# Create Class Schedule
+
+## Overview
+
+The **Create Class Schedule** page is where a section's weekly timetable is built.
+It allows registrars and scheduling administrators to take one section that has
+already been offered for an academic session and lay its subjects out across the
+days of the week and the time slots available to that section, together with the
+room and the teacher for each class.
+
+<Callout type="important">
+  This page builds the timetable for **one section at a time**, and it only works
+  once the section has been offered and its time slots have been grouped. Almost
+  every "nothing appears in the dropdown" problem on this page is really a gap in
+  **Section Offering** or **Time Slot Configurations** — see Prerequisites below.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The section exists and is mapped to the Campus, College and Course in
+  **Sectioning → Sectioning**.
+- The section has been **offered for the academic session** in **Sectioning →
+  Section Offering**, with its Shift, Slot Name, Modality and Capacity filled in.
+  The Shift and Slot chosen there decide which time slots this page can offer.
+- The Shift + Slot the section is offered in is **mapped to a group** in
+  **Sectioning → Time Slot Configurations → Time Slot Group → Time Group Mapping**.
+  Without that mapping the **Group Name** dropdown on this page stays empty.
+- The rooms you intend to assign have been created in **Scheduling → Room
+  Configurations**.
+- **Attendance Configuration** has been set up for the session and college in
+  **Scheduling → Attendance Configuration**. Its Start Date/End Date — which itself
+  must sit inside the Academic Session's own window — is what the Class Schedule
+  Start/End Date on this page is actually validated against, not the raw session
+  dates directly.
+- You have access to **Scheduling → Create Class Schedule**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Scheduling**.
+3. From the dropdown, select **Create Class Schedule**.
+
+## Understanding the Page
+
+The page is a single screen, not a set of tabs. It has three parts stacked down the
+page:
+
+1. A **filter form** at the top, where you identify the section and the date range
+   you are scheduling.
+2. Two small **read-only information panels** that appear beside the form as you
+   fill it in, confirming what the system knows about your selection.
+3. The **Subjects** panel and the **Class Schedule Slot** grid underneath — the
+   subject list on the left, the timetable on the right. Both appear only once a
+   Group Name has been chosen.
+
+The filter form is strictly **cascading**. Every dropdown stays empty until the one
+before it has a value, in this order:
+
+**Academic Session → Campus → College → Curriculum → Semester → Section → Group
+Name**
+
+**Filter fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | The term you are scheduling. Listed newest first (for example *Summer 2026*, then *SY 26-27 SEM I*, then *SY 25-26 SEM II*). Setting this is what populates Campus. |
+| **Campus** | Yes | The campuses available to your account. |
+| **College** | Yes | Populated from the selected Campus. |
+| **Curriculum** | Yes | Populated from the selected College. Entries read *College abbreviation - Program name - curriculum year*, e.g. *CMA - Bachelor of Science in Business Administration major in Financial Management - 23-24*. Pick the curriculum year the section's students actually follow. |
+| **Semester** | Yes | The curriculum's own year-and-semester code, e.g. **Y1S1** — not the academic session. Only the codes that exist in the selected curriculum are listed. |
+| **Section** | Yes | The sections offered for that curriculum and semester in the selected session. |
+| **Group Name** | Yes | The **time slot group** the section's shift and slot are mapped to. This is what decides which time rows the grid will show. |
+| **Existing Dates** | No | Date ranges of class schedules **already created** for this selection, listed as *DD/MM/YYYY - DD/MM/YYYY*. It only fills in once Group Name is set. Choosing a range reopens that schedule read-only. Leave it on *Please Select* when creating a schedule. |
+| **Class Schedule Start Date** | Yes | First day the schedule applies. Displayed for reference against the academic session's own dates in the Selected Session panel, but the actual validated window is the one set on **Attendance Configuration** for this session/college, which itself sits inside the session's dates. |
+| **Class Schedule End Date** | Yes | Last day the schedule applies, likewise bounded by the Attendance Configuration window for this session/college. |
+
+**Information panels:**
+
+| Panel | What it tells you |
+| --- | --- |
+| **Selected Session** | The **Start Date** and **End Date** of the academic session itself. Appears once Section is chosen. Keep your Class Schedule dates inside these two dates. |
+| **Shift / Slot / Modality / Capacity** | The values recorded for this section in **Section Offering**. Appears once Group Name is chosen. If any of these is wrong, fix it on Section Offering — it cannot be changed here. |
+
+**Class Schedule Slot grid:**
+
+| Column | Description |
+| --- | --- |
+| **Time** | One row per time slot belonging to the selected Group Name. A busy group can run to a hundred rows, so the grid scrolls. |
+| **Monday** – **Sunday** | One column per day. Each cell is a placeholder for one class: the subject, its teacher and its room. An empty cell means nothing is scheduled at that day and time. |
+
+A legend sits above the grid: **`$` indicates main teacher** and **`#` indicates
+additional teacher**. Those markers appear against teacher names both in the
+Subjects panel and inside scheduled cells.
+
+**Subjects panel:** a searchable list of the section's subjects, each shown as
+*subject code - teacher name* with the `$` or `#` marker. Entries are dragged from
+here onto the grid. **The panel is driven by Block Section Teacher, not just the
+subject list** — every teacher configured there for the section (main teacher `$` or
+co-teacher `#`) gets its own card, so a subject with a co-teacher shows up as two
+separate cards, one per teacher.
+
+<Callout type="warning">
+  Choosing Group Name clears the two date fields. If you fill in the Class Schedule
+  Start and End Dates first and then pick a Group Name, the dates are wiped and you
+  have to enter them again. **Set Group Name before the dates.**
+</Callout>
+
+<Callout type="info">
+  Selecting a Group Name reloads the whole page and can take a minute or more,
+  because the system is building every time row for that group. The page will look
+  frozen while it works. Wait for the grid to appear rather than clicking again — a
+  second click just restarts the wait.
+</Callout>
+
+## Creating a Class Schedule
+
+<Steps>
+
+#### Identify the section
+
+Work down the filter form in order: **Academic Session**, **Campus**, **College**,
+**Curriculum**, **Semester**, **Section**. Each selection reloads the page and fills
+the dropdown below it, so give each one a moment before moving on.
+
+Once **Section** is set, the **Selected Session** panel appears. Note the two dates
+in it — they are the boundaries your schedule dates have to sit inside.
+
+#### Choose the Group Name
+
+Open **Group Name** and pick the time slot group for this section. The page then
+reloads and the **Class Schedule Slot** grid appears below, with one row per time
+slot in that group.
+
+At the same time the second panel appears, showing the **Shift**, **Slot**,
+**Modality** and **Capacity** recorded for the section in Section Offering. Check
+them before going further — if the shift or slot is wrong, the wrong time rows are
+being offered and the fix belongs on Section Offering, not here.
+
+An empty Group Name dropdown almost always means the section's slot has never been
+mapped to a group. See *Common Errors* below.
+
+#### Set the schedule dates
+
+Enter **Class Schedule Start Date** and **Class Schedule End Date**. The Selected
+Session panel shows the academic session's own dates for reference, but the dates
+you enter here are validated against the window set on **Attendance Configuration**
+for this session and college — which is itself required to sit inside the session's
+dates. Set up Attendance Configuration for the term before relying on this
+validation.
+
+Use the full session window when the schedule runs for the whole term. Use a shorter
+window when the section's classes only run for part of it — a block that finishes
+early, or a schedule that changes partway through the term.
+
+#### Place the subjects on the grid
+
+Once the grid is on screen, a **Subjects** panel appears to the left of it. It lists
+the subjects this section is taking, each one with the teacher already assigned to
+it — for example *CRI 089 - REINER JAN MARQUEZ $*. The **`$`** marks the main
+teacher; **`#`** marks an additional teacher. The panel has its own **Search** box
+for narrowing a long list.
+
+Build the week by **dragging a subject from the panel into the grid cell** for the
+day and time it should run.
+
+- A subject can be placed **more than once** — drag it into each cell it meets in,
+  for example the same subject on Monday and Thursday.
+- Once a subject is sitting in a cell, the cell shows the subject and teacher plus a
+  **Select Room** dropdown. Choose the room there. Room entries read *room name,
+  building, floor* — for example *403 HH - 4F*.
+- The Room dropdown has a search field, so type part of the room name rather than
+  scrolling the whole list.
+- A cell can be left with no room chosen; **Select Room** simply stays as it is.
+
+Each card sitting in a grid cell carries an **×** button in its upper-right corner —
+click it to take the class off the grid. This is separate from the Ok/Remove
+conflict confirmation below, which only appears when a drop causes a clash.
+
+#### Submit
+
+When the grid reflects the week you want, click **Submit**. This is the point at
+which the schedule is written — everything before it is unsaved screen state.
+
+**Cancel** clears the form back to a blank state and discards anything you have laid
+out. It does not undo a schedule that has already been submitted — for that, use
+**Class Schedule Revision** or **Cancel Class Schedule**.
+
+</Steps>
+
+<Callout type="warning">
+  Nothing is saved until you click Submit. Dragging subjects onto the grid only
+  arranges them on screen. If you navigate away, change a filter or let the session
+  time out before submitting, the whole layout is lost.
+</Callout>
+
+### If the drop causes a conflict
+
+If the class you drop clashes with something already scheduled — a teacher
+double-booked, a room double-booked, or another schedule clash at that day and time
+— a confirmation appears with two buttons:
+
+| Button | What it does |
+| --- | --- |
+| **Ok** | Keeps the class in the cell you dropped it in, conflict and all. |
+| **Remove** | Takes the class back off the cell, leaving it empty. |
+
+This confirmation **only appears when there is a conflict**. A clean drop lands
+silently.
+
+The system warns you but does not stop you — you can keep a conflicting class if
+that is genuinely intended. Review anything left outstanding in **Scheduling →
+Conflict Management** afterwards.
+
+## Reopening a Schedule You Already Created
+
+The **Existing Dates** dropdown holds the date ranges of schedules already created
+for the selection you have made.
+
+1. Set **Academic Session**, **Campus**, **College**, **Curriculum**, **Semester**,
+   **Section** and **Group Name** exactly as they were when the schedule was
+   created.
+2. Open **Existing Dates** and choose the date range you want.
+3. The grid loads with that schedule's classes already in place.
+
+<Callout type="warning">
+  A schedule opened this way cannot be edited here. As soon as an existing date
+  range is loaded, the **Submit** button disappears and only **Cancel** is left, so
+  the grid is effectively read-only. Use **Scheduling → Class Schedule Revision** to
+  change an existing schedule, or **Cancel Class Schedule** to remove it.
+</Callout>
+
+<Callout type="info">
+  Existing Dates is filtered by the whole selection above it, **Group Name
+  included** — it stays empty until a Group Name is chosen. A schedule created under
+  a different Group Name will not appear until you switch to that group. Ranges are
+  listed as *DD/MM/YYYY - DD/MM/YYYY*.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — Scheduling a new section for the coming term**
+A section has just been opened and offered for the new semester. The scheduler sets
+the session, campus, college, curriculum, semester and section, picks the group the
+section's shift is mapped to, enters the term's start and end dates, then places
+each offered subject into a day and time with its room and teacher, and submits. The
+section's students and faculty can now see the timetable.
+
+**Scenario 2 — A section whose Group Name will not appear**
+A scheduler reaches the Group Name dropdown and finds it empty even though the
+section is clearly offered. The section is offered in a slot that has never been
+mapped to a time slot group. The fix is on **Time Slot Configurations → Time Slot
+Group → Time Group Mapping**, not on this page; once the mapping exists the group
+appears here.
+
+**Scenario 3 — A mid-term schedule change**
+A section's Friday classes need to move from the eighth week onward. Rather than
+rewriting the original schedule, the scheduler ends the existing schedule at the
+last day of week seven and creates a second schedule starting the following Monday
+with the new layout, so the historical timetable and the attendance taken against it
+stay intact.
+
+## Common Errors
+
+**The Group Name dropdown is empty, or the group I want is missing**
+The shift and slot the section is offered in have no time slot group mapped to them.
+The dropdown only lists groups that cover the section's own shift and slot. Check
+**Sectioning → Section Offering** to see which **Shift** and **Slot Name** the
+section is actually offered in, then go to **Sectioning → Time Slot Configurations →
+Time Slot Group → Time Group Mapping** and confirm that shift and slot are mapped to
+a group for the section's College and Study Level. If the mapping is missing, create
+it, then come back to this page.
+
+**The Existing Dates dropdown is empty although a schedule was already created**
+Existing Dates is filtered by the entire selection above it. A schedule saved under
+a different Group Name, semester or curriculum will not be listed under the one you
+have chosen. Confirm the **Group Name** matches the one used when the schedule was
+created — this is the usual cause — and re-check the **Curriculum** and
+**Semester**, since a section can exist under more than one curriculum year. If a
+schedule demonstrably exists — faculty can take attendance or encode grades against
+it — but no date range appears under any combination, raise a support ticket with
+the section, group name and academic session.
+
+**The dates I entered disappeared**
+Selecting a **Group Name** reloads the page and resets the Class Schedule Start and
+End Date fields. Set Group Name first, then enter the dates. Re-enter the dates and
+continue; nothing else is lost.
+
+**The page seems to have frozen after I chose a Group Name**
+The page is rebuilding the time slot grid, which for a large group can take a minute
+or more. Wait for the **Class Schedule Slot** grid to appear rather than clicking
+again. If the page eventually returns you to the sign-in screen, your session has
+timed out — log in again and rebuild the selection.
+
+**An Ok / Remove confirmation appears when I drop a class**
+The class you dropped clashes with something already scheduled — a teacher, a room
+or the schedule itself can each trigger it. The confirmation only ever appears on a
+conflict. Click **Remove** to take the class back off the cell and drop it into a
+free slot instead, or **Ok** to keep it where it is if the overlap is intended.
+Either way, review what is left in **Scheduling → Conflict Management** before the
+term starts.
+
+## Frequently Asked Questions
+
+**What is the difference between Academic Session and Semester on this page?**
+**Academic Session** is the term the school is running — *SY 26-27 SEM I*.
+**Semester** is the curriculum's own year-and-semester code — *Y1S1* — which tells
+the system which set of subjects the section is taking. They are different things
+and both are required.
+
+**What date range should the Class Schedule dates cover?**
+The **Selected Session** panel displays the academic session's own dates as soon as
+you pick a section, but the dates you enter are actually validated against the
+window set on **Attendance Configuration** for this session and college — which
+itself has to sit inside the session's dates. Use the full Attendance Configuration
+window for a schedule that runs all term, and a shorter one for a block that does
+not.
+
+**The Shift, Slot, Modality or Capacity shown for my section is wrong. Can I change it here?**
+No. Those values are read-only on this page — they come from **Sectioning → Section
+Offering**. Correct them there and the panel will show the new values.
+
+**Can I schedule two sections at once?**
+No. The page works on one section at a time. Repeat the flow for each section.
+
+**How do I change a schedule after I have submitted it?**
+Use **Scheduling → Class Schedule Revision** to alter it, or **Scheduling → Cancel
+Class Schedule** to remove it. Do not create a second schedule over the same dates
+to correct the first one.
+
+**I laid out the whole week and lost it. What happened?**
+The grid is not saved until **Submit** is clicked. Anything dropped onto it is
+screen state only, so navigating away, changing a filter or a session timeout
+discards it. Submit before you leave the page.
+
+**What do the `$` and `#` symbols beside a teacher's name mean?**
+**`$`** marks the main teacher for that class and **`#`** marks an additional
+teacher. The legend is printed above the grid.
+
+**A subject is scheduled on the grid but I can't find its card in the Subjects panel. Why?**
+The panel is populated from **Block Section Teacher**, not directly from the subject
+list — every teacher (main or co-teacher) configured there gets its own card. If a
+subject shows a teacher who isn't configured in Block Section Teacher for this
+section, no card exists for that pairing even though the class may already be on the
+grid. Check Block Section Teacher for the missing subject/teacher entry.
+
+**My section is offered but does not appear in the Section dropdown. Why?**
+The Section list is filtered by the curriculum and semester above it. Check that the
+curriculum year and the Y-S code match the ones the section is actually offered
+under, and that the section is offered for the academic session you selected in
+**Section Offering**.

@@ -1,0 +1,454 @@
+---
+title: Room Configurations
+---
+
+# Room Configurations
+
+## Overview
+
+The **Room Configurations** page is where the physical teaching spaces of each
+campus are registered in the SIS. It allows registrars and scheduling administrators
+to build up the buildings, floors, room types and ICT facilities of a campus, and
+then to create the individual rooms that class schedules are later assigned to.
+Every room the scheduler can pick from starts life on this page.
+
+<Callout type="important">
+  The page opens under the heading **Room Master** — that is the same page as the
+  **Room Configurations** menu item, not a different one.
+</Callout>
+
+<Callout type="warning">
+  Records must be unique. Duplicates are blocked, whether you are creating a record
+  on a tab or uploading a batch through Import Room Data. Uniqueness is judged on
+  the **full combination of values in the record**, not on the room name alone — so
+  the same room name may legitimately exist on a different floor or in a different
+  building.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The **Campus** you are configuring rooms for exists in the system. The Campus
+  dropdowns on this page read from the campus master, not from anything you can add
+  here.
+- You have access to **Scheduling → Room Configurations**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Scheduling**.
+3. From the dropdown, select **Room Configurations**.
+
+## Understanding the Page
+
+The page is divided into six tabs: **Building**, **Floor**, **Room Type**, **ICT
+Facilities**, **Room** and **Import Room Data**.
+
+The first four tabs are reference lists. Each one is a simple form at the top and a
+records table below it, and each one exists only to fill a dropdown on the **Room**
+tab. The **Room** tab is where the actual room record is created. **Import Room
+Data** is the bulk alternative to creating rooms one at a time.
+
+<Callout type="info">
+  The tabs are only loosely sequential. **Building** must be created before a room
+  can be attached to it, and **Floor**, **Room Type** and **ICT Facilities** must
+  contain the values you intend to choose. But the four reference tabs are
+  independent of one another and can be filled in any order.
+</Callout>
+
+Every tab except Import Room Data carries the same table controls: a **Show
+entries** selector (10 / 25 / 50 / 100), a **Search** box, an **Export** button,
+sortable column headers, pagination, and an **Action** column holding an edit icon
+(✏️).
+
+<Callout type="warning">
+  There is no delete anywhere on this page. A building, floor, room type, facility
+  or room is retired by loading it with the edit icon, switching **Check if Active**
+  off, and clicking Submit.
+</Callout>
+
+### Building
+
+Registers a building against a campus. This is the only reference tab that is
+campus-specific.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Campus** | Yes | Searchable dropdown of campuses (Main Campus, San Jose Campus, South Campus). |
+| **Building Name** | Yes | Free text, e.g. *Technology Building*. Building names only have to be unique within a campus — *Phase 1* exists on both San Jose and South Campus. |
+| **Status** | Yes | **Check if Active** toggle. Defaults to on for a new record. |
+
+**Table columns:** Action | Campus | Building Name | Status.
+
+### Floor
+
+A plain list of floor labels used across every campus.
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Floor Name** | Yes | Free text, e.g. *3F*. Existing values include *GF*, *1F* through *7F*, and the non-physical labels *Online* and *TBA*. |
+| **Status** | Yes | **Check if Active** toggle. |
+
+**Table columns:** Action | Floor Name | Status.
+
+<Callout type="info">
+  Floors are **not** tied to a building or a campus. The same list is offered for
+  every room on every campus, so a floor only needs to be created once.
+</Callout>
+
+### Room Type
+
+The category a room is classified as. Current values are *Classroom*, *Laboratory*,
+*Online* and *Field*.
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Room Type Name** | Yes | Free text, e.g. *Seminar Hall*. |
+| **Status** | Yes | **Check if Active** toggle. |
+
+**Table columns:** Action | Room Type Name | Status.
+
+### ICT Facilities
+
+The equipment available in a room. Current values are *Projector*, *Computers* and
+*laptop*.
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **ICT Facilities** | Yes | Free text, e.g. *Laptops*. |
+| **Status** | Yes | **Check if Active** toggle. |
+
+**Table columns:** Action | ICT Facilities | Status.
+
+### Room
+
+The main tab. One record here is one physical (or virtual) room.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Campus** | Yes | Searchable dropdown. Selecting a campus is what fills the Building Name dropdown. |
+| **Building Name** | Yes | Searchable dropdown, populated from the selected Campus. Only buildings created on the **Building** tab for that campus appear. |
+| **Floor Name** | Yes | Dropdown of the full **Floor** list. It is *not* filtered by the building you chose. |
+| **Room Name** | Yes | Free text, e.g. *307 HH*. This is the label schedulers will see. |
+| **Seat Capcity** | Yes | Number of seats available for regular classes. |
+| **Exam Capcity** | No | Number of seats available during examinations, usually lower than the seat capacity. |
+| **Room Type Name** | No | Dropdown of the **Room Type** list. |
+| **ICT Facilities** | No | Multi-select of the **ICT Facilities** list, with a type-ahead filter and a **Select All** option. Picked facilities appear as chips with an **×** to remove them. |
+| **Maximum Hours** | Yes | Two digits maximum. The number of hours the room is allotted for use **per day**. |
+| **Status** | Yes | **Check if Active** toggle. |
+
+**Table columns:** Action | Campus | Building Name | Floor Name | Room Name | Seat
+Capcity | Exam Capcity | Room Type Name | ICT Facilities | Maximum Hours | Status.
+
+<Callout type="info">
+  The records table is **not** filtered by the Campus you pick in the form above it
+  — it always lists every room in the system. Use the table's own **Search** box to
+  narrow it, for example by typing a building name or a room code.
+</Callout>
+
+### Import Room Data
+
+Creates rooms in bulk from a spreadsheet instead of one at a time.
+
+| Control | What it does |
+| --- | --- |
+| **Download Template** | Downloads `PreFormat_For_RoomMaster.xlsx`, the workbook the upload expects. |
+| **Attach Excel File** | File picker for the completed template. |
+| **Upload Excel** | Submits the attached file and creates the room records. |
+
+This tab has no records table — check the results on the **Room** tab afterwards.
+
+<Callout type="important">
+  Download the template *after* you have created the buildings. The workbook is
+  generated from your system's current data, so a building added later will not
+  appear in its reference sheets.
+</Callout>
+
+## Setting Up Rooms for a Campus
+
+<Steps>
+
+#### Create the buildings
+
+On the **Building** tab, choose the **Campus**, type the **Building Name**, leave
+**Check if Active** on, and click **Submit**. Repeat for every building on that
+campus.
+
+#### Check the floors, room types and facilities
+
+Open the **Floor**, **Room Type** and **ICT Facilities** tabs in turn and confirm the
+values you need are already listed. Add any that are missing — these lists are
+shared across all campuses, so most of the time there is nothing to add.
+
+#### Create the room
+
+On the **Room** tab, choose the **Campus** first — the **Building Name** dropdown
+stays empty until you do — then the **Building Name** and **Floor Name**. Fill in
+the **Room Name**, **Seat Capcity** and **Maximum Hours**.
+
+| Field | Notes |
+| --- | --- |
+| **Exam Capcity** | Optional. Set it when the room seats fewer students during exams than during regular classes. |
+| **Room Type Name** | Optional, but worth setting — it is how a laboratory is told apart from a lecture room downstream. |
+| **ICT Facilities** | Optional. Pick as many as apply, or use **Select All**. |
+
+#### Submit
+
+Click **Submit**. The room appears in the table below.
+
+</Steps>
+
+<Callout type="warning">
+  Clicking Submit with a required field blank raises a stacked warning naming each
+  one — *Please Select Campus Name !!!*, *Please Select Building Name !!!*, *Please
+  Select Floor Name !!!*, *Please Enter Room Name !!!*, *Please Enter Seating
+  Capacity !!!*, *Please Enter Maximum Hours !!!*. Exam Capcity, Room Type Name and
+  ICT Facilities are not part of that check.
+</Callout>
+
+## Editing an Existing Record
+
+Editing works the same way on every tab.
+
+1. Find the record in the table — use the **Search** box, or raise **Show entries**
+   to bring more rows onto one page.
+2. Click the edit icon (✏️) in the **Action** column. The record loads into the form
+   at the top of the tab.
+3. Change what needs changing. On the Room tab nothing is locked — even the Campus,
+   Building and Floor can be reassigned.
+4. Click **Submit** to save.
+
+<Callout type="info">
+  The button stays labelled **Submit** while you are editing; it does not change to
+  *Update*. **Cancel** clears the form back to a blank new record rather than
+  undoing a save.
+</Callout>
+
+## Importing Rooms in Bulk
+
+Use this when a new campus or a new building is being brought online and there are
+dozens of rooms to create.
+
+<Steps>
+
+#### Create the buildings first
+
+On the **Building** tab, add every building the batch will reference, and check that
+the floors, room types and facilities you need exist on their tabs. The import
+**matches** against these lists — it does not create anything that is missing.
+
+#### Download the template
+
+Open the **Import Room Data** tab and click **Download Template**. You get a
+workbook called `PreFormat_For_RoomMaster.xlsx` with five sheets:
+
+| Sheet | What it is |
+| --- | --- |
+| **Room Master** | The only sheet you fill in. One row per room. |
+| **Campus & Building** | Reference list of every campus and its buildings, as currently set up. |
+| **Floor Name** | Reference list of the floors available. |
+| **Room Type Name** | Reference list of the room types available. |
+| **Facilities Name** | Reference list of the ICT facilities available. |
+
+The four reference sheets are a snapshot of your system taken at download time. They
+are there to copy values from — the Room Master sheet has no built-in dropdowns, so
+a typo will not be caught by Excel.
+
+#### Fill in the Room Master sheet
+
+The sheet has nine columns. The first six carry a coloured header, which marks them
+as required — the same six fields the form asks for.
+
+| Column | Required | Notes |
+| --- | --- | --- |
+| **CAMPUS** | Yes | Must match a campus exactly as spelled on the **Campus & Building** sheet. |
+| **BUILDING_NAME** | Yes | Must match a building listed against that campus on the **Campus & Building** sheet. |
+| **FLOOR_NAME** | Yes | Must match a value on the **Floor Name** sheet. |
+| **ROOM_NAME** | Yes | The room label, e.g. *307 HH*. |
+| **SEAT_CAPACITY** | Yes | Regular class capacity. |
+| **MAXIMUM_HOURS** | Yes | Note the column order — Maximum Hours comes *before* Exam Capacity here, the reverse of the form's layout. |
+| **EXAM_CAPACITY** | No | Leave blank if the room seats the same number during examinations. |
+| **ROOM_TYPE_NAME** | No | Must match a value on the **Room Type Name** sheet. |
+| **ICT_FACILITIES** | No | Must match a value on the **Facilities Name** sheet. |
+
+#### Upload
+
+Click the Excel icon under **Attach Excel File**, select your completed workbook,
+then click **Upload Excel**.
+
+#### Verify
+
+Open the **Room** tab and search for a few of the rooms you uploaded to confirm they
+were created with the right building, floor and capacity.
+
+If **none** of them are there, the file was rejected rather than partly applied —
+see *My upload created nothing at all* below.
+
+</Steps>
+
+<Callout type="warning">
+  One duplicate rejects the whole upload. The import is all-or-nothing: if any row
+  matches a record that already exists, the entire file is rejected and *no* rooms
+  are created — not just the offending row. Check the **Room** tab before you
+  upload, and keep batches small enough to be easy to correct.
+</Callout>
+
+## Retiring a Room or a Reference Value
+
+There is no delete on this page, so a room or reference value that is no longer
+usable is deactivated instead.
+
+1. Open the tab holding the record.
+2. Click the edit icon (✏️) to load it into the form.
+3. Switch **Check if Active** off.
+4. Click **Submit**.
+
+<Callout type="warning">
+  A Building, Floor, Room Type or ICT Facility cannot be deactivated while a Room is
+  still using it. The page enforces its configuration hierarchy — Building, Floor,
+  Room Type and ICT Facilities all feed the Room tab, so a value that is currently
+  mapped to a Room record is protected from deactivation. Reassign or update the
+  rooms using that value first, then deactivate it.
+
+  Once deactivation succeeds, the record shows an **Inactive** tag in its own tab's
+  table and drops out of the dropdown(s) that read from it — for example, a
+  deactivated Floor no longer appears in the Room tab's Floor Name dropdown, though
+  rooms already saved with that floor keep it.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — A new building opens on Main Campus**
+Facilities hands over a new four-storey building before the term starts. The
+administrator adds the building on the **Building** tab against Main Campus, checks
+that floors *1F* to *4F* already exist on the **Floor** tab, then creates each room
+on the **Room** tab with its seat capacity, exam capacity and room type. The rooms
+become selectable when class schedules are built.
+
+**Scenario 2 — A laboratory is taken out of service for repairs**
+A computer laboratory is unusable for a semester. Rather than deleting it, the
+administrator loads the room with the edit icon, switches **Check if Active** off
+and submits. The room stops appearing as an option for new schedules while its
+record and history stay intact.
+
+**Scenario 3 — Fewer seats during finals**
+A lecture hall seats 55 for regular classes but only 30 with examination spacing.
+The administrator sets **Seat Capcity** to 55 and **Exam Capcity** to 30 on the room
+record, so the examination side of the system works from the smaller number without
+affecting normal class capacity.
+
+**Scenario 4 — Online delivery needs a "room"**
+Flexible-learning classes still have to be scheduled somewhere. The campus uses the
+*Online* floor and the *Online* room type to create placeholder rooms, so remote
+sections can be scheduled without occupying a physical space.
+
+## Common Errors
+
+**The Building Name dropdown is empty on the Room tab**
+No **Campus** has been selected, or the campus you selected has no buildings yet.
+Select the Campus first — Building Name is filled from it. If it is still empty,
+open the **Building** tab and create the building for that campus.
+
+**"Please Select Campus Name !!!" / "Please Enter Seating Capacity !!!" and similar**
+Submit was clicked with one or more required fields blank. Each missing field gets
+its own line in the warning. Work left to right across the form: Campus, Building
+Name, Floor Name, Room Name, Seat Capcity, Maximum Hours. Exam Capcity, Room Type
+Name and ICT Facilities can be left blank.
+
+**The room type or facility I need is not in the dropdown**
+It has not been created, or it has been deactivated. Open the **Room Type** or **ICT
+Facilities** tab and check the table, including the inactive rows. If it exists but
+is inactive, load it with the edit icon, switch **Check if Active** back on and
+submit. If it does not exist, add it, then return to the **Room** tab.
+
+**My upload created nothing at all**
+The import is all-or-nothing. A single bad row rejects the whole file and the upload
+simply fails — no rooms are created, including the clean rows. This happens whether
+the bad row is a duplicate, or a row whose Campus, Building, Floor, Room Type or ICT
+Facility does not match anything already set up in the system.
+
+- Search the **Room** tab for the room names in your file. A record that matches an
+  existing one on the full combination of values is a duplicate and will block the
+  upload.
+- Compare every row's values against the reference sheets in the template, character
+  for character. The import matches on exact text, and the workbook has no dropdowns
+  to catch a typo — an unrecognized Campus, Building, Floor, Room Type or ICT
+  Facility fails the upload the same way a duplicate does.
+- Confirm each building is listed against the right campus — a building on the
+  Campus & Building sheet belongs to one campus only.
+- Fix the file and upload it again. Nothing was created the first time, so there is
+  no partial batch to clean up.
+
+**I cannot find the room I just created in the table**
+The table lists every room in the system, so a new record can be several pages down.
+Type the room name into the table's **Search** box, or sort by a column, or raise
+**Show entries** to 100.
+
+## Frequently Asked Questions
+
+**Why does the page say "Room Master" when the menu says "Room Configurations"?**
+They are the same page. *Room Configurations* is the menu label; *Room Master* is
+the heading rendered on the page itself.
+
+**Do I have to fill in the tabs in order?**
+Not strictly. Building, Floor, Room Type and ICT Facilities are independent of each
+other, so they can be done in any order — but all of them have to hold the values
+you need before you create the room on the **Room** tab.
+
+**Are floors tied to a building?**
+No. The Floor list is global. Creating *3F* once makes it available to every room on
+every campus, so there is no need to create a floor per building.
+
+**Can I delete a room?**
+No. There is no delete anywhere on this page. Load the room with the edit icon,
+switch **Check if Active** off and submit — that takes it out of circulation while
+keeping the record.
+
+**What is the difference between Seat Capcity and Exam Capcity?**
+Seat Capcity is the normal class capacity of the room. Exam Capcity is the reduced
+capacity used for examinations, where students are spaced further apart. Only Seat
+Capcity is required.
+
+**Why is the records table showing rooms from other campuses?**
+The table is not linked to the Campus you selected in the form — it always lists
+every room. Use the table's Search box to narrow it.
+
+**Can one room have more than one ICT facility?**
+Yes. ICT Facilities is a multi-select, and it has a **Select All** option for rooms
+that are fully equipped.
+
+**I need to add a hundred rooms. Do I have to do them one by one?**
+No. Use the **Import Room Data** tab — download the template, fill it in, and upload
+it. Create the buildings first, since the import matches against buildings that
+already exist.
+
+**Can I reuse a template I downloaded last month?**
+Only if nothing has changed. The reference sheets in the workbook are a snapshot
+taken at download time, so buildings, floors, room types or facilities added since
+then will not be listed. Download a fresh copy to be safe.
+
+**What happens if my upload includes a room that already exists?**
+The whole upload is rejected — not just that row. The import is all-or-nothing, so
+nothing is created until every row is clean. Remove or correct the duplicate and
+upload the file again.
+
+**What counts as a duplicate?**
+A record matching an existing one on the **full combination** of its values. The
+room name on its own is not the test, so the same name can exist on a different
+floor or in a different building without being treated as a duplicate.
+
+**The import template has no dropdowns. How do I avoid typos?**
+Copy the values straight from the workbook's reference sheets — **Campus &
+Building**, **Floor Name**, **Room Type Name** and **Facilities Name**. The import
+matches on the exact text, and nothing in the spreadsheet will warn you about a
+misspelling.
+
+**I edited a room and the button still says Submit. Did it save?**
+Yes. The button does not change to *Update* while editing — Submit saves the change
+to the existing record. Use Cancel only when you want to abandon the edit and start
+a blank record.

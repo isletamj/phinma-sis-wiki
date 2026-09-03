@@ -1,0 +1,409 @@
+---
+title: Holiday/Event Entry
+---
+
+# Holiday/Event Entry
+
+## Overview
+
+The **Holiday/Event Entry** page is where the academic calendar's non-teaching days
+are declared and applied to class schedules. It allows registrars and scheduling
+administrators to maintain the master list of holiday and event names, apply a named
+holiday or event to a specific academic session, campus and set of colleges, and —
+where required — cancel the class schedules that fall on those dates so no
+attendance is expected or recorded against them.
+
+<Callout type="important">
+  Applying a holiday and *cancelling class schedules* are two different actions. The
+  entry alone marks the date on the calendar; the **Cancel Class Schedule** toggle
+  is what removes the classes. Cancelled class schedules cannot be restored by
+  editing the entry — use the **Holiday / Event Revert** tab.
+</Callout>
+
+<Callout type="info">
+  The menu item reads **Holiday/Event Entry** while the page header reads **Holiday
+  Event Entry**. They are the same page.
+</Callout>
+
+## Prerequisites
+
+Before using this page, make sure the following are in place:
+
+- The **Academic Session** you are declaring the holiday for already exists and is
+  the correct one — holidays are applied per session, not globally.
+- **Campus** and **College** records are configured, since both drive the entry
+  form's dropdowns.
+- The holiday or event name exists on the **Holiday / Event Name** tab. If it does
+  not, create it there first.
+- You have access to **Scheduling → Holiday/Event Entry**.
+
+## How to Access
+
+1. Log in to the PHINMA SIS portal.
+2. From the top navigation, click **Scheduling**.
+3. From the dropdown, select **Holiday/Event Entry**.
+
+## Understanding the Page
+
+The page is divided into four tabs: **Holiday / Event Name**, **Holiday Entry**,
+**Event Entry**, and **Holiday / Event Revert**.
+
+The tabs are sequential in practice. The first tab is the master list — a name must
+exist there before it can be applied anywhere else. The second and third tabs apply
+those names to the calendar. The fourth undoes an application that was made in
+error.
+
+The difference between the second and third tabs is only the **Category** of the
+name being applied. A name saved with Category *Holiday* appears on the **Holiday
+Entry** tab; a name saved with Category *Event* appears on **Event Entry**.
+Everything else about the two forms is identical.
+
+<Callout type="info">
+  Switching tabs clears whatever you had typed into the form. Finish an entry before
+  moving between tabs.
+</Callout>
+
+<Callout type="info">
+  Every tab's table carries the same controls — a **Show entries** selector (10 / 25
+  / 50 / 100), a **Search** box, an **Export** button, and pagination. There is no
+  delete action anywhere on this page.
+</Callout>
+
+### Holiday / Event Name
+
+The master list of names. This is where a label such as *Christmas Break* or *Class
+Suspension* first comes into existence, and where it is classified as a holiday or
+an event.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Holiday / Event Name** | Yes | The label, typed free-form (placeholder: *e.g. Christmas*). This text appears verbatim in every downstream dropdown, table and report, so follow your campus naming convention. |
+| **Category** | Yes | Dropdown with two options — **Holiday** or **Event**. This choice decides which entry tab the name will be available on. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Edit** | ✏️ Edit icon — loads the name and its category back into the form above. |
+| **Holiday / Event Name** | The label. Sortable. |
+| **Category** | The category code — **H** for Holiday, **E** for Event. Sortable. |
+
+### Holiday Entry
+
+Applies a name from the *Holiday* category to a session, campus and set of colleges,
+on a date or date range.
+
+**Form fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | Searchable dropdown of every session in the system, newest first. |
+| **Campus** | Yes | Searchable dropdown. One campus per entry — a holiday that covers three campuses is three entries. |
+| **College** | Yes | Multi-select with **Select All**. It stays empty until *both* Academic Session and Campus are selected. Each college you pick is added as a chip with an **×** for removing it. |
+| **Holiday List** | Yes | Searchable dropdown, showing only names saved with Category **Holiday**. |
+| **Enable Multiple Day's** | No | Off by default. Off, the form shows a single **Date**. On, it shows **Start Date** and **End Date** instead — use it for a break that spans several days. |
+| **Date** *(or **Start Date** / **End Date**)* | Yes | Date picker, `mm/dd/yyyy`. |
+| **Detail (if any)** | No | Free-text note about the entry. Existing rows commonly carry *NA*. |
+| **Cancel Class Schedule** | No | **Check If Required** toggle, off by default. Turning it on cancels the class schedules that fall inside the date range for the selected colleges. |
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **Edit** | ✏️ Edit icon — loads the whole entry back into the form, colleges included. |
+| **Session Name** | The academic session the entry applies to. |
+| **Campus** | The campus the entry applies to. |
+| **Holiday / Event Name** | The name that was applied. |
+| **Start Date** / **End Date** | The date range. Both show the same date for a single-day entry. |
+| **School Institute** | Every college covered by the entry, comma-separated. |
+
+<Callout type="warning">
+  Cancelling class schedules is irreversible from this form. The page's own note is
+  explicit: *class schedule once cancelled cannot be reverted*. Editing the entry
+  afterwards does not put the classes back — use the **Holiday / Event Revert** tab.
+  To cancel one class rather than a whole date, use **Scheduling → Cancel Class
+  Schedule** instead.
+</Callout>
+
+<Callout type="info">
+  Selecting a **Campus** also filters the Holiday List table below the form to that
+  campus, which is a quick way to check whether the holiday has already been entered
+  before you submit it again.
+</Callout>
+
+### Event Entry
+
+Identical in shape to Holiday Entry, with two differences:
+
+- The name dropdown is labelled **Event List** and shows only names saved with
+  Category **Event**.
+- The table below is the **Event List**, with an **Event Name** column in place of
+  Holiday / Event Name.
+
+The same Academic Session → Campus → College dependency, the same **Enable Multiple
+Day's** behaviour, the same **Cancel Class Schedule** toggle and the same warning
+apply.
+
+### Holiday / Event Revert
+
+Undoes an entry made on either of the two tabs above, including the class-schedule
+cancellation.
+
+**Filter fields:**
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Academic Session** | Yes | The session the entry was made against. |
+| **Campus** | Yes | The campus the entry was made against. |
+| **College** | Yes | Multi-select with **Select All**. |
+| **Event/Holiday List** | Yes | Single dropdown covering both categories. Entries are prefixed for clarity — **Holiday - Christmas Break**, **Event - Class Suspension**. |
+| **Start Date** | Yes | Beginning of the range to search. |
+| **End Date** | Yes | End of the range to search. |
+
+Click **Show** to filter, or **Cancel** to clear the filters.
+
+**Table columns:**
+
+| Column | Description |
+| --- | --- |
+| **SR No.** | Row number. |
+| **Type** | **Holiday** or **Event**. |
+| **Session** | The academic session. |
+| **Campus** | The campus. |
+| **College** | Every college covered by the entry, comma-separated. |
+| **Holiday/Event Name** | The prefixed name, e.g. *Holiday - Bonifacio Day*. |
+| **Details** | Whatever was typed into Detail (if any) when the entry was made. |
+| **Date** | The date of the entry. |
+| **Action** | Red **Revert** button — removes the entry and restores what it cancelled. |
+
+<Callout type="info">
+  The table on this tab loads with every existing entry already listed, so you can
+  browse it without filtering first. Use the filters to narrow a long list before
+  reverting.
+</Callout>
+
+## Creating a Holiday or Event Name
+
+<Steps>
+
+#### Open the Holiday / Event Name tab
+
+This tab is selected by default when the page opens.
+
+#### Enter the name and category
+
+| Field | Notes |
+| --- | --- |
+| **Holiday / Event Name** | Type the label exactly as it should appear everywhere else. |
+| **Category** | Choose **Holiday** for a calendar holiday, **Event** for a suspension or other non-holiday disruption. |
+
+#### Submit
+
+Click **Submit**. The name appears in the Holiday List table and becomes available
+on the matching entry tab immediately. **Cancel** clears the form without saving.
+
+</Steps>
+
+<Callout type="info">
+  Choosing the category matters. A name saved as *Event* will never appear in the
+  Holiday Entry dropdown, and vice versa. Check the list below the form before
+  creating a name — it may already exist.
+</Callout>
+
+### Editing an Existing Name
+
+Click the ✏️ icon on any row. The name and category load into the form; change what
+you need and click **Submit** again. There is no way to delete a name from this page
+— if a name is no longer used, leave it in the list rather than repurposing it,
+since entries already made against it keep the label.
+
+## Applying a Holiday to the Calendar
+
+<Steps>
+
+#### Open the Holiday Entry tab
+
+Click **Holiday Entry**.
+
+#### Set the scope
+
+Fill the four dropdowns in order — they depend on each other.
+
+| Field | Notes |
+| --- | --- |
+| **Academic Session** | Pick the session the date falls inside. |
+| **Campus** | One campus only. |
+| **College** | Only populates once Session *and* Campus are set. Use **Select All** when the holiday covers the whole campus. |
+| **Holiday List** | The holiday name. |
+
+A holiday across several campuses is several entries. Repeat the whole flow once per
+campus — this is why the same holiday appears three times in the list table.
+
+#### Set the date
+
+For a single day, leave **Enable Multiple Day's** off and fill **Date**.
+
+For a break spanning several days, turn **Enable Multiple Day's** on. The Date field
+is replaced by **Start Date** and **End Date**; fill both.
+
+Add a short note in **Detail (if any)** if it helps whoever reads the entry later.
+
+#### Decide whether to cancel class schedules
+
+Leave **Cancel Class Schedule** off to record the holiday on the calendar without
+touching schedules.
+
+Turn it on to cancel the class schedules falling inside the date range, for the
+colleges you selected. Those classes are removed from the schedule and no attendance
+is expected against them.
+
+#### Submit
+
+Click **Submit**. The entry appears in the Holiday List table below.
+
+</Steps>
+
+<Callout type="warning">
+  Before you submit with **Cancel Class Schedule** on, confirm the session, campus,
+  colleges and dates are all correct. Cancelled class schedules cannot be reverted
+  by editing this entry. Recovery is only through the **Holiday / Event Revert**
+  tab.
+</Callout>
+
+## Applying an Event to the Calendar
+
+Use this when classes are disrupted by something that is not a calendar holiday — a
+class suspension, for example.
+
+1. Click **Event Entry**.
+2. Set **Academic Session**, **Campus**, **College** and **Event List** — the same
+   dependent order as Holiday Entry.
+3. Set the date, or turn on **Enable Multiple Day's** and set **Start Date** and
+   **End Date**.
+4. Decide whether to turn on **Cancel Class Schedule**, with the same care as above.
+5. Click **Submit**.
+
+<Callout type="info">
+  The same event name can be used more than once. *Class Suspension* is meant to be
+  reused across sessions, campuses and dates — you do not need a new name for each
+  occurrence.
+</Callout>
+
+## Reverting a Holiday or Event
+
+Use this when an entry was made against the wrong session, campus, colleges or dates
+— especially if class schedules were cancelled.
+
+1. Click **Holiday / Event Revert**.
+2. Set **Academic Session**, **Campus**, **College**, **Event/Holiday List**,
+   **Start Date** and **End Date** to match the entry you want to undo.
+3. Click **Show**.
+4. Find the row in the table and confirm every column — Type, Session, Campus,
+   College and Date — before acting.
+5. Click **Revert** on that row.
+
+<Callout type="warning">
+  Revert is the only recovery path for cancelled class schedules. Reverting the
+  wrong row undoes a holiday that was intended, so read the row carefully before
+  clicking.
+</Callout>
+
+## Key Scenarios
+
+**Scenario 1 — Declaring a national holiday across all three campuses**
+The registrar is entering Bonifacio Day for the second semester. Because one entry
+covers one campus, they complete the Holiday Entry form three times — once for Main
+Campus, once for San Jose Campus, once for South Campus — using **Select All** on
+College each time and turning on **Cancel Class Schedule**. The Holiday List table
+then shows three rows for Bonifacio Day, one per campus, which is expected.
+
+**Scenario 2 — A campus-wide class suspension called at short notice**
+Classes are suspended for one day due to weather. The scheduling administrator opens
+**Event Entry**, selects the session and campus, selects all colleges, chooses
+**Class Suspension** from the Event List, sets the date, turns on **Cancel Class
+Schedule**, and submits. Attendance is no longer expected for that date, so faculty
+are not marked as owing attendance and the day does not appear as present in
+reports.
+
+**Scenario 3 — A holiday entered against the wrong campus**
+A holiday meant for South Campus was submitted against Main Campus with schedules
+cancelled. Editing the entry will not restore the Main Campus classes. The
+administrator goes to **Holiday / Event Revert**, filters to Main Campus and that
+date, clicks **Revert** on the row, then re-enters the holiday correctly under South
+Campus.
+
+**Scenario 4 — A multi-day Christmas break**
+Rather than creating one entry per day, the registrar turns on **Enable Multiple
+Day's**, sets Start Date and End Date to the first and last day of the break, and
+submits a single entry covering the whole range.
+
+## Common Errors
+
+**The College dropdown is empty except for "Select All"**
+College is populated from the Academic Session and Campus above it. One of them has
+not been selected yet. Select **Academic Session** first, then **Campus**, then
+reopen the College dropdown — the colleges attached to that campus and session will
+now be listed.
+
+**Required fields were left blank on Submit**
+Submit was clicked on Holiday Entry or Event Entry before every required field was
+filled in. The page raises a validation message telling you to fill in the mandatory
+fields before it will save. Check that **Academic Session**, **Campus**,
+**College**, **Holiday List** (or **Event List**), and the date field(s) are all
+set, fill in whatever is missing, and click **Submit** again.
+
+**The holiday I want is not in the Holiday List dropdown**
+The name either does not exist yet, or it was saved with Category **Event** rather
+than **Holiday**. Open the **Holiday / Event Name** tab and search the table for the
+name. If it is there with Category **E**, it belongs on the Event Entry tab — use
+that tab instead, or edit the record's category if it was classified in error. If it
+is not there at all, create it on that tab first.
+
+**Classes were cancelled by mistake**
+An entry was submitted with **Cancel Class Schedule** turned on, against the wrong
+scope or dates. Do not edit the entry — editing does not restore the schedules. Go
+to **Holiday / Event Revert**, filter to the entry, and click **Revert** on that row,
+then re-enter the holiday or event with the correct scope.
+
+## Frequently Asked Questions
+
+**What is the difference between a Holiday and an Event here?**
+Only the Category assigned to the name, and therefore which tab it can be applied
+from. Names categorised as *Holiday* are applied on the Holiday Entry tab; names
+categorised as *Event* on the Event Entry tab. The forms, the date handling and the
+class-schedule cancellation behave identically.
+
+**Do I have to turn on Cancel Class Schedule?**
+No. Leaving it off records the date on the calendar without touching any class
+schedules. Turn it on only when the classes on that date should be removed and no
+attendance should be expected.
+
+**I entered the holiday but attendance is still being taken. Why?**
+The entry was almost certainly saved with **Cancel Class Schedule** off, or the
+colleges selected did not include the one in question. Check the entry's **School
+Institute** column, revert it if the scope was wrong, and re-enter it with the
+toggle on and the correct colleges.
+
+**Can I cancel just one class instead of the whole day?**
+No — this page works at the date and college level. For a single class schedule, use
+**Scheduling → Cancel Class Schedule**.
+
+**Can I delete a holiday or event name I no longer need?**
+No. The Holiday / Event Name tab has no delete action, only edit. Leave unused names
+in the list rather than renaming them for a different purpose — entries already made
+against a name keep whatever label it carries.
+
+**Why does the same holiday appear several times in the list?**
+One entry covers one campus. A holiday declared for three campuses is three entries,
+and each one lists its own set of colleges in the School Institute column.
+
+**Can the same event name be used again next semester?**
+Yes. Names on the master list are reusable across sessions, campuses and dates —
+*Class Suspension* is meant to be applied repeatedly.
+
+**I reverted an entry. What happened to the cancelled classes?**
+Reverting removes the holiday or event entry and restores what it cancelled. If
+something still looks wrong afterwards, raise a support ticket with the session,
+campus, college, holiday name and date so the schedule can be checked.
